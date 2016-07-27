@@ -34,9 +34,16 @@ bundle exec jekyll serve
 * Each slide is a block quote
 * All the content before a slide appears as the notes for that slide.
 
+## Controls
+
+* It should work with slide remotes and a wii mote on supported platforms
+* Click, Return or right key to Advance
+* Left Key to go back
+* f to toggle fullscreen
+* If you hae multiple tabs open (in a broser which supports a service worker), press parent in the control bar and it will control all the other tabs
 
 <!-- This slide uses information from _config.yml -->
-<blockquote class="dark" id="splash-slide" style="background-image: url('images/patter.svg');">
+<blockquote class="dark" id="splash-slide" style="background-image: url('images/pattern.svg');">
 <h1>{{ site.name }}</h1>
 <div class="labs-logo"></div>
 <h3>{{ site.description }}</h3>
