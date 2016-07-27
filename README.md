@@ -30,13 +30,16 @@ bundle exec jekyll serve
 
 ## About
 
-* This is useful for creating a blog post which is also a slide deck.
-* Each slide is a block quote
-* All the content before a slide appears as the notes for that slide.
+This is useful for creating a blog post which is also a slide deck.
+
+Each slide is a block quote
+
+All the content before a slide appears as the notes for that slide.
 
 ## Controls
 
-* It should work with slide remotes and a wii mote on supported platforms
+It should work with slide remotes and a wii mote on supported platforms
+
 * Click, Return or right key to Advance
 * Left Key to go back
 * f to toggle fullscreen
@@ -50,10 +53,20 @@ bundle exec jekyll serve
 <h2>{{site.author.name}} - {{site.author.company}}</h2>
 </blockquote>
 
-* Block quotes can also be defined short hand as well
+Block quotes can also be defined short hand as well
 
 > # Content Goes Here
 > Demo slide
+>
+> ```markdown
+> > # Content Goes Here
+> > Demo Slide
+> >
+> > ```markdown
+> > > # Content Goes Here
+> > > Demo Slide
+> > ```
+> ```
 
 # This h1 is what defines the slide name
 

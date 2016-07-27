@@ -44,7 +44,13 @@ img.emoji {
 }
 
 body.post {
-	& > h2, & > h3 {
+
+	p, ul {
+		max-width: 80em;
+		margin: auto;
+	}
+
+	& > h2, & > h3, & > h1 {
 		margin: 2em 0 1.5em 0;
 		border-bottom: 1px solid #DADADA;
 	}
@@ -53,21 +59,21 @@ body.post {
 		border-bottom: 1px solid #ccc;
 		background: url(/images/pattern.svg);
 		background-size: cover;
-		margin: 0;
+		margin: 0 0 1em 0;
 		padding: 2em 1em 1em 1em;
 	}
 
-	& .title h1 {
+	.title h1 {
 		font-size: 2em;
 		text-decoration: none;
 	}
 
-	& img {
+	img {
 		max-width: 80%;
 		max-height: 50vmax;
 	}
 
-	& blockquote {
+	blockquote {
 		background-color: white;
 		box-shadow: 0 0 2em -0.5em;
 		border: 1px solid grey;
@@ -77,6 +83,7 @@ body.post {
 		min-height: 4em;
 		position: relative;
 		overflow: hidden;
+		margin-bottom: 3em;
 	}
 
 	footer {

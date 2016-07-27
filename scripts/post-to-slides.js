@@ -50,7 +50,7 @@ function init() {
 		while (slide = $('body > blockquote')) {
 			i++;
 			let name = '';
-			const notes = slide.prevAll();
+			const notes = slide.prevAll().filter(a => !a.tagName.match(/^script/i));
 			const newSlide = document.createElement('div').setClassName('a-slides_slide');
 			const notesWrapper = document.createElement('div').setClassName('a-slides_notes');
 			const progressBar = document.createElement('div').setClassName('a-slides_progress');
