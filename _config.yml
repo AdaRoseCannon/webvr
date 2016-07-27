@@ -4,14 +4,14 @@
 # 3. config.yml
 
 aslide: https://rawgit.com/AdaRoseEdwards/a-slides/master/build
-name: Progressive Web Apps
-description: Life of a push notification
+name: A-Slides Template
+description: Example usage of a-slides
 color: lavenderblush
 author:
   name: Ada Rose Edwards
   email: ada@ada.is
   twitter: lady_ada_king
-  company: Samsung
+  company: Samsung Research UK
 
 permalink: /:title.html
 

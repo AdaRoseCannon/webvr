@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Demo Slide Deck From Single Page
+title: Readme
 description: Building a slide deck from a single page
 image: https://ada.is/progressive-web-apps-talk/images/FinancialTimes_G-FTUS_Balloon_LordMayorsAppeal.jpg
 ---
@@ -11,23 +11,36 @@ image: https://ada.is/progressive-web-apps-talk/images/FinancialTimes_G-FTUS_Bal
 window.aSlidesSlideData = [];
 </script>
 
-<!-- Link to trigger conversion script -->
+<!-- contents -->
 
+# README
+
+This is a little layout for blog posts which can turn into slides using a-slides
+
+<!-- Link to trigger conversion script -->
 [Convert to Slide Deck](#aslides)
 
-<!-- Everything below this is content -->
+## Set up
 
-# A-Slides From single Page Post
+```bash
+sudo apt-get install bundler zlib1g-dev libxml2-dev
+bundle install
+bundle exec jekyll serve
+```
+
+## About
 
 * This is useful for creating a blog post which is also a slide deck.
 * Each slide is a block quote
 * All the content before a slide appears as the notes for that slide.
 
+
+<!-- This slide uses information from _config.yml -->
 <blockquote class="dark" id="splash-slide" style="background-image: url('images/patter.svg');">
 <h1>{{ site.name }}</h1>
 <div class="labs-logo"></div>
 <h3>{{ site.description }}</h3>
-<h2>Ada Rose Edwards - Financial Times</h2>
+<h2>{{site.author.name}} - {{site.author.company}}</h2>
 </blockquote>
 
 * Block quotes can also be defined short hand as well
