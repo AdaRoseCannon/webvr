@@ -8,7 +8,23 @@ image: https://ada.is/progressive-web-apps-talk/images/FinancialTimes_G-FTUS_Bal
 <!-- Define slide animation generators -->
 
 <script>
-window.aSlidesSlideData = [];
+
+function addScript (url) {
+	var p = new Promise(function (resolve, reject) {
+		var script = document.createElement('script');
+		script.setAttribute('src', url);
+		document.head.appendChild(script);
+		script.onload = resolve;
+		script.onerror = reject;
+	});
+	function promiseScript () {
+		return p;
+	};
+	promiseScript.promise = p;
+	return promiseScript;
+}
+addScript('https://cdn.rawgit.com/AdaRoseEdwards/dirty-dom/v1.3.1/build/dirty-dom-lib.min.js');
+window.aSlidesSlideData = {};
 </script>
 
 <!-- contents -->
@@ -48,13 +64,11 @@ It should work with slide remotes and a wii mote on supported platforms
 <!-- This slide uses information from _config.yml -->
 <blockquote class="dark" id="splash-slide" style="background-image: url('images/pattern.svg');">
 <h1>{{ site.name }}</h1>
-<div class="labs-logo"></div>
 <h3>{{ site.description }}</h3>
 <h2>{{site.author.name}} - {{site.author.company}}</h2>
 </blockquote>
 
 Block quotes can also be defined short hand as well
-
 > # Content Goes Here
 > Demo slide
 >
@@ -84,9 +98,41 @@ window.aSlidesSlideData = {'slide-this-h1-is-what-defines-the-slide-name': {
 		this.appendChild(window.MAKE.markdown('# Hello'));
 		yield;
 		this.appendChild(window.MAKE.markdown('# World'));
+		yield;
 	},
-	teardown: {
+	teardown() {
 		this.innerHTML = '';
 	}
 }}
 >```
+
+# Demo
+
+<script>
+	window.aSlidesSlideData['slide-demo'] = {
+		setup: function () {
+			this.innerHTML = '';
+		},
+
+		// action: function *() {
+		// 	this.addMarkdown('# Hello');
+		// 	yield;
+		// 	this.addMarkdown('# World');
+		// 	yield;
+		//	return;
+		// },
+		//
+		// This fake generator is an a-slides compatible
+		// es5 shim, from post-to-slides.js
+		action: window.FakeGenerator([
+			function() {this.addMarkdown('# Hello');},
+			function() {this.addMarkdown('# World');},
+			function() {this.addMarkdown('## - From Ada');},
+			function() {},
+		]),
+		teardown: function () {
+			this.innerHTML = '';
+		}
+	};
+</script>
+> This content gets removed
