@@ -53,3 +53,13 @@ Position is "Left/Right Up/Down In/Out"
 		</a-sky>
 	</a-scene>
 </blockquote>
+
+# Producing content with 360 Cameras
+
+Samsung Gear 360 and A-Sky
+
+# Introduce some tools for making 3d content
+
+# Introduce some physics
+
+# Show the Javascript API
