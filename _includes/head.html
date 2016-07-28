@@ -38,13 +38,9 @@
 	{% if page.script %}
 	<script src="{{page.script}}"></script>
 	{% endif %}
-	{% if page.script1 %}
-	<script src="{{page.script1}}"></script>
-	{% endif %}
-	{% if page.script2 %}
-	<script src="{{page.script2}}"></script>
-	{% endif %}
-	{% if page.script3 %}
-	<script src="{{page.script3}}"></script>
+	{% if page.scripts %}
+	{% for item in page.scripts %}
+	<script src="{{ item }}"></script>
+	{% endfor %}
 	{% endif %}
 </head>

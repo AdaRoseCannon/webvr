@@ -3,33 +3,15 @@ layout: post
 title: Readme
 description: Building a slide deck from a single page
 image: https://ada.is/progressive-web-apps-talk/images/FinancialTimes_G-FTUS_Balloon_LordMayorsAppeal.jpg
+script: https://cdn.rawgit.com/AdaRoseEdwards/dirty-dom/v1.3.1/build/dirty-dom-lib.min.js
 ---
 
 <!-- Define slide animation generators -->
 
-<script>
-
-function addScript (url) {
-	var p = new Promise(function (resolve, reject) {
-		var script = document.createElement('script');
-		script.setAttribute('src', url);
-		document.head.appendChild(script);
-		script.onload = resolve;
-		script.onerror = reject;
-	});
-	function promiseScript () {
-		return p;
-	};
-	promiseScript.promise = p;
-	return promiseScript;
-}
-addScript('https://cdn.rawgit.com/AdaRoseEdwards/dirty-dom/v1.3.1/build/dirty-dom-lib.min.js');
-window.aSlidesSlideData = {};
-</script>
-
 <!-- contents -->
 
 # README
+
 
 This is a little layout for blog posts which can turn into slides using a-slides
 
