@@ -7,7 +7,9 @@ script: https://cdn.rawgit.com/AdaRoseEdwards/dirty-dom/v1.3.1/build/dirty-dom-l
 ---
 
 <!-- Define slide animation generators -->
-
+<script>
+	window.aSlidesSlideData = {};
+</script>
 <!-- contents -->
 
 # README
