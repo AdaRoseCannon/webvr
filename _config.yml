@@ -4,8 +4,8 @@
 # 3. config.yml
 
 aslide: https://rawgit.com/AdaRoseEdwards/a-slides/master/build
-name: A-Slides Template
-description: Example usage of a-slides
+name: Getting started with WebVR
+description: Introduction to A-Frame
 color: lavenderblush
 author:
   name: Ada Rose Edwards
