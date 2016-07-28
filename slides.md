@@ -1,9 +1,12 @@
 ---
 layout: post
-title: Readme
-description: Building a slide deck from a single page
+title: Getting Started with WebVR
+description: Touching on A-Frame and tools for authoring content.
 image: https://ada.is/progressive-web-apps-talk/images/FinancialTimes_G-FTUS_Balloon_LordMayorsAppeal.jpg
-script1: https://aframe.io/releases/0.2.0/aframe.min.js
+scripts: [
+	'https://aframe.io/releases/0.2.0/aframe.min.js',
+	'https://cdn.rawgit.com/AdaRoseEdwards/dirty-dom/v1.3.1/build/dirty-dom-lib.min.js'
+]
 ---
 
 <!-- Define slide animation generators -->
@@ -18,6 +21,8 @@ script1: https://aframe.io/releases/0.2.0/aframe.min.js
 # Basic Scene
 
 A-Frame allows one to write a 3D scene directly into their markup.
+
+Position is "Left/Right Up/Down In/Out"
 
 >```html
 	<a-scene>
