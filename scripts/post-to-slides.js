@@ -98,6 +98,7 @@ function init() {
 			newSlide.className = ('a-slides_slide');
 			notesWrapper = document.createElement('div');
 			notesWrapper.className = ('a-slides_notes');
+			notesWrapper.tabIndex = -1; // make not tab able to but receives focus when slides are changing.
 			progressBar = document.createElement('div');
 			progressBar.className = ('a-slides_progress');
 
@@ -158,6 +159,12 @@ function init() {
 			e.preventDefault();
 			finishAt = Date.now() + 900*1000;
 		});
+
+		slideContainer.addEventListener('a-slides_slide-setup', function () {
+			var notes = slideContainer.querySelector('.a-slides_slide.active .a-slides_notes');
+			if (notes) notes.focus();
+		});
+
 		return slideContainer;
 	});
 }
@@ -168,7 +175,7 @@ function init() {
 			window.removeEventListener('hashchange', locationHashChanged);
 			window.location.hash = oldHash;
 			init().then(function(slideContainer) {
-				fire(slideContainer, 'a-slides_goto-slide', {slide: oldHash ? document.querySelector('[data-slide-id="' + oldHash.substr(1,Infinity) + '"]') : 0});
+				fire(slideContainer, 'a-slides_goto-slide', {slide: oldHash ? slideContainer.querySelector('[data-slide-id="' + oldHash.substr(1,Infinity) + '"]') : 0});
 			});
 		}
 	}
@@ -180,7 +187,7 @@ function init() {
 			if (location.hash === '#aslides' || oldHash === false) {
 				fire(slideContainer, 'a-slides_goto-slide', {slide: 0});
 			} else {
-				fire(slideContainer, 'a-slides_goto-slide', {slide: document.querySelector('[data-slide-id="' + oldHash.substr(1,Infinity) + '"]')});
+				fire(slideContainer, 'a-slides_goto-slide', {slide: slideContainer.querySelector('[data-slide-id="' + oldHash.substr(1,Infinity) + '"]')});
 			}
 		});
 	} else {

@@ -14,7 +14,6 @@ script: https://cdn.rawgit.com/AdaRoseEdwards/dirty-dom/v1.3.1/build/dirty-dom-l
 
 # README
 
-
 This is a little layout for blog posts which can turn into slides using a-slides
 
 <!-- Link to trigger conversion script -->
@@ -53,6 +52,7 @@ It should work with slide remotes and a wii mote on supported platforms
 </blockquote>
 
 Block quotes can also be defined short hand as well
+
 > # Content Goes Here
 > Demo slide
 >
@@ -120,3 +120,29 @@ window.aSlidesSlideData = {'slide-this-h1-is-what-defines-the-slide-name': {
 	};
 </script>
 > This content gets removed
+
+# Events
+
+## a-slides provides a number of events you can hook into:
+
+These get fired on the slide container
+
+* a-slides_slide-setup
+* a-slides_slide-teardown
+* a-slides_refresh-slide (fireable)
+* a-slides_next-slide (fireable)
+* a-slides_previous-slide (fireable)
+* a-slides_goto-slide (fireable)
+
+> ```javascript
+>
+> slideContainer.fire = (function fire(name, detail) {
+> 	this.dispatchEvent(new CustomEvent(name, { detail: detail || {}}));
+> 	return this;
+> }).bind(slideContainer);
+>
+> // goto a slide by id or by dom element
+> slideContainer.fire('a-slides_goto-slide', {slide: 0});
+> slideContainer.fire('a-slides_goto-slide', {slide: document.querySelector('.a-slide')});
+> ```
+

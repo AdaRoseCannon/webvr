@@ -3,7 +3,7 @@
 # 2. config.build.yml
 # 3. config.yml
 
-aslide: https://rawgit.com/AdaRoseEdwards/a-slides/master/build
+aslide: https://cdn.rawgit.com/AdaRoseEdwards/a-slides/master/build
 name: Getting started with WebVR
 description: Introduction to A-Frame
 color: lavenderblush
