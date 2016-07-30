@@ -18,7 +18,26 @@ scripts: [
 <!-- Link to trigger conversion script -->
 [Convert to Slide Deck](#aslides)
 
-# Basic Scene
+# Contents
+
+> * The illusion of 3D
+> * What can be done in the Web Today
+>   * VR Headsets - Samsung Gear VR, Cardboard, Vive
+>   * Controllers -
+> * VR is easier than ever with the web
+> * Composing scenes with A-Frame
+> * Producing Assets
+>   * 3D Models
+>   * 360 Degree Photos and Videos
+>     * Capturing Yourself
+>     * Rendering Digitally
+> * Interactivity, Animation and Physics
+
+# Introduction - The Illusion of 3D
+
+# Why VR and the web go and in hand
+
+# Composing scenes with A-Frame
 
 A-Frame allows one to write a 3D scene directly into their markup.
 
@@ -63,3 +82,5 @@ Samsung Gear 360 and A-Sky
 # Introduce some physics
 
 # Show the Javascript API
+
+# Resources
