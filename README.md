@@ -2,7 +2,6 @@
 layout: post
 title: Readme
 description: Building a slide deck from a single page
-image: https://ada.is/progressive-web-apps-talk/images/FinancialTimes_G-FTUS_Balloon_LordMayorsAppeal.jpg
 script: https://cdn.rawgit.com/AdaRoseEdwards/dirty-dom/v1.3.1/build/dirty-dom-lib.min.js
 ---
 
