@@ -7,7 +7,7 @@ scripts: [
 	'https://cdn.rawgit.com/aframevr/aframe/9045c899d5a1fb4649720c2d1e9f530209533f23/dist/aframe.js', # master at the time of writing
 	'https://cdn.rawgit.com/mrdoob/three.js/r75/examples/js/Mirror.js', # For a-ada-ocean
 	'https://cdn.rawgit.com/mrdoob/three.js/r75/examples/js/WaterShader.js', # For a-ada-ocean
-	'a-frame-assets/ada-components/webgl-ocean-shader.js',
+	'a-frame-assets/ada-components/webgl-ocean-shader.js?cb=1',
 
 	'https://cdn.rawgit.com/mrdoob/three.js/r79/examples/js/SkyShader.js', # For the sky/sun
 	'a-frame-assets/ada-components/webgl-sky-sun-shader.js'
