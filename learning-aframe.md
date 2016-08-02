@@ -79,3 +79,30 @@ Mixins allow you to remove some of a Components properties and share them. E.g.
 ```
 
 Notice how the mixin only has one line property set. Also notice how the color of the sky is the component name but the color of the line is a property of the line component.
+
+# Primitives
+
+Primitives are away to expose Components with a nice interface. E.g.
+
+a-ocean adds the `ocean` component and maps properties to component attributes.
+
+```js
+AFRAME.registerPrimitive('a-ocean', {
+
+  // Attaches the ocean component by default.
+  // And smartly makes the ocean parallel to the ground.
+  defaultComponents: {
+    ocean: {},
+    rotation: {x: -90, y: 0, z: 0}
+  },
+
+  // Maps HTML attributes to the developer's ocean component's properties.
+  mappings: {
+    width: 'ocean.width',
+    depth: 'ocean.depth',
+    density: 'ocean.density',
+    color: 'ocean.color',
+    opacity: 'ocean.opacity'
+  }
+});
+```
