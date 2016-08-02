@@ -89,16 +89,16 @@ AFRAME.registerComponent('a-ada-ocean', {
 });
 
 AFRAME.registerPrimitive('a-ada-ocean', {
-  defaultComponents: {
-    'a-ada-ocean': {}
-  },
-  mappings: {
-    width: 'a-ada-ocean.width',
-    depth: 'a-ada-ocean.depth',
-    color: 'a-ada-ocean.color',
-    opacity: 'a-ada-ocean.opacity',
-	src: 'a-ada-ocean.src',
+	defaultComponents: {
+		'a-ada-ocean': {}
+	},
+	mappings: {
+		width: 'a-ada-ocean.width',
+		depth: 'a-ada-ocean.depth',
+		color: 'a-ada-ocean.color',
+		opacity: 'a-ada-ocean.opacity',
+		src: 'a-ada-ocean.src',
 		'src-height': 'a-ada-ocean.srcWidth',
 		'src-width': 'a-ada-ocean.srcHeight'
-  }
+	}
 });
