@@ -54,6 +54,10 @@ AFRAME.registerComponent('a-ada-ocean', {
 			this.el.sceneEl.renderer &&
 			this.el.sceneEl.camera
 		) {
+
+			this.camera = new THREE.PerspectiveCamera();
+			this.el.sceneEl.camera.add(this.camera);
+
 			waterNormals = new THREE.TextureLoader().load( this.data.src );
 			waterNormals.wrapS = waterNormals.wrapT = THREE.RepeatWrapping;
 			water = new THREE.Water( this.el.sceneEl.renderer, this.el.sceneEl.camera, this.el.sceneEl.object3D, {
@@ -78,22 +82,23 @@ AFRAME.registerComponent('a-ada-ocean', {
 		}
 	},
 
-	remove: function () {}
+	remove: function () {
+		this.water.remove();
+		this.water = undefined;
+	}
 });
 
 AFRAME.registerPrimitive('a-ada-ocean', {
-  // Attaches the ocean component by default.
-  // And smartly makes the ocean parallel to the ground.
   defaultComponents: {
-    ocean: {},
-    rotation: {x: -90, y: 0, z: 0}
+    'a-ada-ocean': {}
   },
-  // Maps HTML attributes to his ocean component's properties.
   mappings: {
-    width: 'ocean.width',
-    depth: 'ocean.depth',
-    density: 'ocean.density',
-    color: 'ocean.color',
-    opacity: 'ocean.opacity'
+    width: 'a-ada-ocean.width',
+    depth: 'a-ada-ocean.depth',
+    color: 'a-ada-ocean.color',
+    opacity: 'a-ada-ocean.opacity',
+	src: 'a-ada-ocean.src',
+		'src-height': 'a-ada-ocean.srcWidth',
+		'src-width': 'a-ada-ocean.srcHeight'
   }
 });

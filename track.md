@@ -11,7 +11,7 @@ scripts: [
 ]
 ---
 
-<a-scene  fog="type: linear; color: #ECECEC; far: 100;">
+<a-scene fog="type: linear; color: #ECECEC; far: 100;" isMobile="true">
 	<a-assets>
 		<a-asset-item id="Feisar-ship-obj" src="a-frame-assets/Feisar_Ship_OBJ/Feisar_Ship.obj"></a-asset-item>
 		<a-asset-item id="Feisar-ship-mtl" src="a-frame-assets/Feisar_Ship_OBJ/Feisar_Ship.mtl"></a-asset-item>
@@ -22,7 +22,7 @@ scripts: [
 		<a-obj-model src="#Feisar-ship-obj" mtl="#Feisar-ship-mtl"></a-obj-model>
 	</a-entity>
 
-	<a-entity position="0 -5 0" a-ada-ocean="src: #water-normal; width: 1000; depth: 1000;"></a-entity>
+	<a-ada-ocean position="0 -5 0" src="#water-normal" width="1000" depth="1000"></a-ada-ocean>
 
 	<a-sky color="#ECECEC"></a-sky>
 </a-scene>
