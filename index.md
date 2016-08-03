@@ -85,6 +85,8 @@ Samsung Gear 360 and A-Sky
 
 # Best Practises
 
+* Avoid creating Objects and Arrays in 'tick' functions. Will reduce garbage collection.
+
 # Resources
 
 https://developer.leapmotion.com/assets/Leap%20Motion%20VR%20Best%20Practices%20Guidelines.pdf

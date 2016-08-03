@@ -10,17 +10,13 @@ scripts: [
 	'a-frame-assets/ada-components/webgl-ocean-shader.js?cb=1',
 
 	'https://cdn.rawgit.com/mrdoob/three.js/r79/examples/js/SkyShader.js', # For the sky/sun
-	'a-frame-assets/ada-components/webgl-sky-sun-shader.js'
+	'a-frame-assets/ada-components/webgl-sky-sun-shader.js',
+
+	'a-frame-assets/ada-components/ada-follow.js'
 ]
 ---
 
-<a-scene fog="type: linear; color: #ECECEC; far: 100;" isMobile inspector>
-
-	<a-entity position="0 6 0">
-		<a-camera></a-camera>
-	</a-entity>
-
-	<a-entity light="color: #FFFFFF; intensity: 0.3; type: ambient;"></a-entity>
+<a-scene fog="type: linear; color: #ECECEC; far: 100;" isMobile inspector stats>
 
 	<a-assets>
 		<a-asset-item id="Feisar-ship-obj" src="a-frame-assets/Feisar_Ship_OBJ/Feisar_Ship.obj"></a-asset-item>
@@ -28,7 +24,13 @@ scripts: [
 		<img id="water-normal" src="https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/waternormals.jpg" crossorigin="anonymous" />
 	</a-assets>
 
-	<a-entity position="0 1 -10" rotation="0 90 0" scale="0.05 0.05 0.05">
+	<a-entity position="-15 6 0" rotation="0 -90 0" ada-follow="target: #ship; distance: 20;">
+		<a-camera wasd-controls="enabled: false;"></a-camera>
+	</a-entity>
+
+	<a-entity light="color: #FFFFFF; intensity: 0.3; type: ambient;"></a-entity>
+
+	<a-entity position="0 1 0" rotation="0 90 0" scale="0.05 0.05 0.05" id="ship">
 		<a-obj-model src="#Feisar-ship-obj" mtl="#Feisar-ship-mtl"></a-obj-model>
 	</a-entity>
 
