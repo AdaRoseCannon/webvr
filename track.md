@@ -15,19 +15,31 @@ scripts: [
 ---
 
 <a-scene fog="type: linear; color: #ECECEC; far: 100;" isMobile inspector>
+
+	<a-entity position="0 1.8 0">
+		<a-camera></a-camera>
+	</a-entity>
+
+	<a-entity light="color: #FFFFFF; intensity: 0.4; type: ambient;"></a-entity>
+
 	<a-assets>
 		<a-asset-item id="Feisar-ship-obj" src="a-frame-assets/Feisar_Ship_OBJ/Feisar_Ship.obj"></a-asset-item>
 		<a-asset-item id="Feisar-ship-mtl" src="a-frame-assets/Feisar_Ship_OBJ/Feisar_Ship.mtl"></a-asset-item>
 		<img id="water-normal" src="https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/waternormals.jpg" crossorigin="anonymous" />
 	</a-assets>
 
-	<a-entity position="0 0 -10" rotation="0 90 0" scale="0.0d5 0.05 0.05">
+	<a-entity position="0 0 -10" rotation="0 90 0" scale="0.05 0.05 0.05">
 		<a-obj-model src="#Feisar-ship-obj" mtl="#Feisar-ship-mtl"></a-obj-model>
 	</a-entity>
 
-	<a-ada-ocean position="0 0 0" src="#water-normal" width="1000" depth="1000"></a-ada-ocean>
+	<a-ada-sky control="#sun">
+		<!-- This light gets positioned by the sky -->
+		<a-entity light="color: #FFFFFF; intensity: 1.5" id="sun"></a-entity>
+	</a-ada-sky>
 
-	<a-ada-sky></a-ada-sky>
+	<a-ada-ocean position="0 0 0" src="#water-normal" width="1000" depth="1000" light="#sun">
+	</a-ada-ocean>
+
 </a-scene>
 
 <script>

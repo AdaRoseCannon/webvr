@@ -35,6 +35,9 @@ AFRAME.registerComponent('a-ada-ocean', {
 		waterColor: {
 			default: '#001e0f',
 			parse: colorParse
+		},
+		light: {
+			type: 'selector'
 		}
 	},
 
@@ -57,6 +60,10 @@ AFRAME.registerComponent('a-ada-ocean', {
 
 			this.camera = new THREE.PerspectiveCamera();
 			this.el.sceneEl.camera.add(this.camera);
+
+			if (this.data.light) {
+				this.data.sunDirection = this.data.light.object3D.position;
+			}
 
 			waterNormals = new THREE.TextureLoader().load( this.data.src );
 			waterNormals.wrapS = waterNormals.wrapT = THREE.RepeatWrapping;
@@ -97,6 +104,7 @@ AFRAME.registerPrimitive('a-ada-ocean', {
 		depth: 'a-ada-ocean.depth',
 		color: 'a-ada-ocean.color',
 		opacity: 'a-ada-ocean.opacity',
+		light: 'a-ada-ocean.light',
 		src: 'a-ada-ocean.src',
 		'src-height': 'a-ada-ocean.srcWidth',
 		'src-width': 'a-ada-ocean.srcHeight'
