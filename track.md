@@ -16,7 +16,7 @@ scripts: [
 
 <a-scene fog="type: linear; color: #ECECEC; far: 100;" isMobile inspector>
 
-	<a-entity position="0 1.8 0">
+	<a-entity position="0 6 0">
 		<a-camera></a-camera>
 	</a-entity>
 
