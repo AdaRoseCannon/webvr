@@ -17,7 +17,7 @@ AFRAME.registerComponent('a-ada-ocean', {
 		src: { type: 'src' },
 		width: { default: 100 },
 		depth: { default: 100 },
-		distortionScale: {default: 10},
+		distortionScale: { default: 15 },
 		opacity: {
 			default: 1.0,
 			min: 0, max: 1
@@ -29,7 +29,7 @@ AFRAME.registerComponent('a-ada-ocean', {
      		default: { x: 1, y: 1, z: 1 }
 		},
 		sunColor: {
-			default: 'white',
+			default: 'grey',
 			parse: colorParse
 		},
 		waterColor: {
@@ -47,6 +47,7 @@ AFRAME.registerComponent('a-ada-ocean', {
 
 	update: function () {
 		this.water = undefined;
+		this.el.setObject3D(null);
 	},
 
 	tick: function (time) {
@@ -61,8 +62,13 @@ AFRAME.registerComponent('a-ada-ocean', {
 			this.camera = new THREE.PerspectiveCamera();
 			this.el.sceneEl.camera.add(this.camera);
 
-			if (this.data.light) {
-				this.data.sunDirection = this.data.light.object3D.position;
+			if (this.data.light && this.data.light.object3D) {
+				var p = this.data.light.object3D.position.normalize();
+				this.data.sunDirection = {
+					x: p.x,
+					y: p.y,
+					z: p.z
+				};
 			}
 
 			waterNormals = new THREE.TextureLoader().load( this.data.src );

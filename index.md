@@ -83,4 +83,10 @@ Samsung Gear 360 and A-Sky
 
 # Show the Javascript API
 
+# Best Practises
+
 # Resources
+
+https://developer.leapmotion.com/assets/Leap%20Motion%20VR%20Best%20Practices%20Guidelines.pdf
+
+https://developer.oculus.com/documentation/intro-vr/latest/concepts/bp_intro/

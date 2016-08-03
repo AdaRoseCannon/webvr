@@ -20,7 +20,7 @@ scripts: [
 		<a-camera></a-camera>
 	</a-entity>
 
-	<a-entity light="color: #FFFFFF; intensity: 0.4; type: ambient;"></a-entity>
+	<a-entity light="color: #FFFFFF; intensity: 0.3; type: ambient;"></a-entity>
 
 	<a-assets>
 		<a-asset-item id="Feisar-ship-obj" src="a-frame-assets/Feisar_Ship_OBJ/Feisar_Ship.obj"></a-asset-item>
@@ -28,11 +28,11 @@ scripts: [
 		<img id="water-normal" src="https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/waternormals.jpg" crossorigin="anonymous" />
 	</a-assets>
 
-	<a-entity position="0 0 -10" rotation="0 90 0" scale="0.05 0.05 0.05">
+	<a-entity position="0 1 -10" rotation="0 90 0" scale="0.05 0.05 0.05">
 		<a-obj-model src="#Feisar-ship-obj" mtl="#Feisar-ship-mtl"></a-obj-model>
 	</a-entity>
 
-	<a-ada-sky control="#sun">
+	<a-ada-sky control="#sun" inclination="0.49">
 		<!-- This light gets positioned by the sky -->
 		<a-entity light="color: #FFFFFF; intensity: 1.5" id="sun"></a-entity>
 	</a-ada-sky>
