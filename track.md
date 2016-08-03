@@ -12,7 +12,8 @@ scripts: [
 	'https://cdn.rawgit.com/mrdoob/three.js/r79/examples/js/SkyShader.js', # For the sky/sun
 	'a-frame-assets/ada-components/webgl-sky-sun-shader.js',
 
-	'a-frame-assets/ada-components/ada-follow.js'
+	'a-frame-assets/ada-components/ada-follow.js',
+	'a-frame-assets/ada-components/ada-ship-controller.js',
 ]
 ---
 
@@ -24,14 +25,17 @@ scripts: [
 		<img id="water-normal" src="https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/waternormals.jpg" crossorigin="anonymous" />
 	</a-assets>
 
-	<a-entity position="-15 6 0" rotation="0 -90 0" ada-follow="target: #ship; distance: 20;">
-		<a-camera wasd-controls="enabled: false;"></a-camera>
+	<a-entity ada-follow="target: #ship-camera-target; distance: 20;" position="-15 0 0">
+		<a-entity position="0 6 0" rotation="0 -90 0">
+			<a-camera wasd-controls="enabled: false;"></a-camera>
+		</a-entity>
 	</a-entity>
 
 	<a-entity light="color: #FFFFFF; intensity: 0.3; type: ambient;"></a-entity>
 
-	<a-entity position="0 1 0" rotation="0 90 0" scale="0.05 0.05 0.05" id="ship">
-		<a-obj-model src="#Feisar-ship-obj" mtl="#Feisar-ship-mtl"></a-obj-model>
+	<a-entity ada-ship-controller>
+		<a-entity  id="ship-camera-target" position="-15 0 0"></a-entity>
+		<a-obj-model src="#Feisar-ship-obj" mtl="#Feisar-ship-mtl" position="0 1 0" rotation="0 90 0" scale="0.05 0.05 0.05"></a-obj-model>
 	</a-entity>
 
 	<a-ada-sky control="#sun" inclination="0.49">
