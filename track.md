@@ -13,7 +13,7 @@ scripts: [
 	'a-frame-assets/ada-components/webgl-sky-sun-shader.js',
 
 	'a-frame-assets/ada-components/ada-follow.js',
-	'a-frame-assets/ada-components/ada-ship-controller.js',
+	'a-frame-assets/ada-components/ada-ship-controller.js'
 ]
 ---
 
@@ -59,7 +59,7 @@ scripts: [
 	</a-ada-sky>-->
 
 	<!-- Prerendered for performance -->
-	<a-sky src="#cgsky">
+	<a-sky src="#cgsky" position="0 -1 0">
 		<a-entity light="color: #FFFFFF; intensity: 1.5" position="0 1 50"></a-entity>
 	</a-sky>
 
