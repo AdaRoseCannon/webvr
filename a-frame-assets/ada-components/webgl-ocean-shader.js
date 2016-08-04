@@ -15,8 +15,8 @@ AFRAME.registerComponent('a-ada-ocean', {
 
 	schema: {
 		src: { type: 'src' },
-		width: { default: 100 },
-		depth: { default: 100 },
+		width: { default: 2000 },
+		depth: { default: 2000 },
 		distortionScale: { default: 15 },
 		opacity: {
 			default: 1.0,

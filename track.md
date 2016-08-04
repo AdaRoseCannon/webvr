@@ -29,8 +29,8 @@ scripts: [
 
 	<!-- CAMERA -->
 
-	<a-entity ada-follow="target: #ship-camera-target; distance: 20;">
-		<a-entity position="0 6 0" rotation="0 90 0">
+	<a-entity look-at="#ship" ada-follow="target: #ship-camera-target; distance: 20;">
+		<a-entity position="0 6 0" rotation="0 180 0">
 
 			<!-- Disable the default wasd controls we are using those to control the ship -->
 			<a-camera wasd-controls="enabled: false;"></a-camera>
@@ -43,7 +43,7 @@ scripts: [
 		<a-entity  id="ship-camera-target" position="0 0 15"></a-entity>
 
 		<!-- The model was really big, and did not point in the direction I wanted. I also made it 1/20 it's original size so it is about 4 units wide. -->
-		<a-obj-model src="#Feisar-ship-obj" mtl="#Feisar-ship-mtl" rotation="0 180 0" position="0 1 0" scale="0.05 0.05 0.05"></a-obj-model>
+		<a-obj-model src="#Feisar-ship-obj" mtl="#Feisar-ship-mtl" rotation="0 180 0" position="0 1 0" scale="0.05 0.05 0.05" id="ship"></a-obj-model>
 	</a-entity>
 
 	<!-- ENVIRONMENT -->

@@ -32,6 +32,7 @@ scripts: [
 >     * Capturing Yourself
 >     * Rendering Digitally
 > * Interactivity, Animation and Physics
+>   * A-Frame components different from Web-Components
 
 # Introduction - The Illusion of 3D
 

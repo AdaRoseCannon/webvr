@@ -6,7 +6,7 @@
  *
  */
 
-var distance = 200000;
+var distance = 450000;
 
 AFRAME.registerComponent('a-ada-sky', {
 
@@ -29,7 +29,7 @@ AFRAME.registerComponent('a-ada-sky', {
 
 		// Add Sun Helper
 		this.sunSphere = new THREE.Mesh(
-			new THREE.SphereBufferGeometry( 15000, 16, 8 ),
+			new THREE.SphereBufferGeometry( 30000, 16, 8 ),
 			new THREE.MeshBasicMaterial( { color: 0xffffff } )
 		);
 

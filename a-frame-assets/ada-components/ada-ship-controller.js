@@ -10,8 +10,10 @@ var MAX_DELTA = 0.2;
  */
 AFRAME.registerComponent('ada-ship-controller', {
 	schema: {
-		easing: { default: 20 },
-		acceleration: { default: 65 }
+		easing: { default: 10 },
+		acceleration: { default: 250 },
+		rollAcceleration: { default: 50 },
+		rollTarget: { type: 'selector' }
 	},
 
 	init: function () {
@@ -24,6 +26,7 @@ AFRAME.registerComponent('ada-ship-controller', {
 		this.onKeyDown = this.onKeyDown.bind(this);
 		this.onKeyUp = this.onKeyUp.bind(this);
 		this.attachVisibilityEventListeners();
+		this.roll = 0;
 	},
 
 	update: function (previousData) {
@@ -46,15 +49,26 @@ AFRAME.registerComponent('ada-ship-controller', {
 			return;
 		}
 
+		var position = el.getComputedAttribute('position');
+		var rotation = el.getComputedAttribute('rotation');
+
 		velocity.x -= velocity.x * easing * delta;
 		velocity.z -= velocity.z * easing * delta;
+		rotation.y += this.roll * easing * delta * 0.1;
+		this.roll -= this.roll * easing * delta * 0.1;
 
-		var position = el.getComputedAttribute('position');
+		if (this.data.rollTarget) {
+			var rollTargetRotation = this.data.rollTarget.getComputedAttribute('rotation');
+			rollTargetRotation.z = this.roll;
+			this.rollTarget.setAttribute('rotation', rotation);
+		} else {
+			rotation.z = this.roll;
+		}
 
-		if (keys[65]) { velocity.x -= acceleration * delta; } // Left
-		if (keys[68]) { velocity.x += acceleration * delta; } // Right
-		if (keys[87]) { velocity.z -= acceleration * delta; } // Up
-		if (keys[83]) { velocity.z += acceleration * delta; } // Down
+		if (keys[65] || keys[37]) { this.roll += this.data.rollAcceleration * delta; } // Left
+		if (keys[68] || keys[39]) { this.roll -= this.data.rollAcceleration * delta; } // Right
+		if (keys[87] || keys[38]) { velocity.z -= acceleration * delta; } // Up
+		if (keys[83] || keys[40]) { velocity.z += acceleration * delta; } // Down
 
 		movementVector = this.getMovementVector(delta);
 		el.object3D.translateX(movementVector.x);
@@ -66,6 +80,8 @@ AFRAME.registerComponent('ada-ship-controller', {
 			y: position.y + movementVector.y,
 			z: position.z + movementVector.z
 		});
+
+		el.setAttribute('rotation', rotation);
 	},
 
 	play: function () {
