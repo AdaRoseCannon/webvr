@@ -4,7 +4,7 @@ title: Track
 description: A-Frame Demo
 image: ./images/track-screenshot.jpg
 scripts: [
-	'https://cdn.rawgit.com/aframevr/aframe/1e85c4e63634fd8d5b819453ca7e76bd8568dadf/dist/aframe.min.js', # master at the time of writing
+	'https://cdn.rawgit.com/aframevr/aframe/1e85c4e63634fd8d5b819453ca7e76bd8568dadf/dist/aframe-0.2.0.min.js', # master at the time of writing
 	'https://cdn.rawgit.com/mrdoob/three.js/r75/examples/js/Mirror.js', # For a-ada-ocean
 	'https://cdn.rawgit.com/mrdoob/three.js/r75/examples/js/WaterShader.js', # For a-ada-ocean
 	'a-frame-assets/ada-components/webgl-ocean-shader.js?cb=1',
@@ -25,6 +25,9 @@ scripts: [
 		<a-asset-item id="Feisar-ship-obj" src="a-frame-assets/Feisar_Ship_OBJ/Feisar_Ship.obj"></a-asset-item>
 		<a-asset-item id="Feisar-ship-mtl" src="a-frame-assets/Feisar_Ship_OBJ/Feisar_Ship.mtl"></a-asset-item>
 		<img id="water-normal" src="https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/waternormals.jpg" crossorigin="anonymous" />
+
+		<!-- Sky is free sample sky from cgskies, buy one for commecial use -->
+		<img id="cgsky" src="a-frame-assets/sky/CGSkies_0347_free.jpg" crossorigin="anonymous" />
 	</a-assets>
 
 	<!-- CAMERA -->
@@ -50,11 +53,15 @@ scripts: [
 
 	<a-entity light="color: #FFFFFF; intensity: 0.3; type: ambient;"></a-entity>
 
-	<a-ada-sky control="#sun" inclination="0.49">
+	<!-- SKY SHADER -->
+	<!--<a-ada-sky control="#sun" inclination="0.49">
 		<a-entity light="color: #FFFFFF; intensity: 1.5" id="sun"></a-entity>
-	</a-ada-sky>
+	</a-ada-sky>-->
 
-	<!--<a-sky color="#aaa"></a-sky>-->
+	<!-- Prerendered for performance -->
+	<a-sky src="#cgsky">
+		<a-entity light="color: #FFFFFF; intensity: 1.5" position="0 1 50"></a-entity>
+	</a-sky>
 
 	<a-ada-ocean position="0 0 0" src="#water-normal" width="1000" depth="1000" light="#sun"></a-ada-ocean>
 
