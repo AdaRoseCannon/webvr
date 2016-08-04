@@ -4,12 +4,12 @@ title: Track
 description: A-Frame Demo
 image: ./images/track-screenshot.jpg
 scripts: [
-	'https://cdn.rawgit.com/aframevr/aframe/v0.2.0/dist/aframe.js', # master at the time of writing
+	'https://cdn.rawgit.com/aframevr/aframe/1e85c4e63634fd8d5b819453ca7e76bd8568dadf/dist/aframe.min.js', # master at the time of writing
 	'https://cdn.rawgit.com/mrdoob/three.js/r75/examples/js/Mirror.js', # For a-ada-ocean
 	'https://cdn.rawgit.com/mrdoob/three.js/r75/examples/js/WaterShader.js', # For a-ada-ocean
 	'a-frame-assets/ada-components/webgl-ocean-shader.js?cb=1',
 
-	'https://cdn.rawgit.com/mrdoob/three.js/r74/examples/js/SkyShader.js', # For the sky/sun
+	'https://cdn.rawgit.com/mrdoob/three.js/r79/examples/js/SkyShader.js', # For the sky/sun
 	'a-frame-assets/ada-components/webgl-sky-sun-shader.js',
 
 	'a-frame-assets/ada-components/ada-follow.js',
@@ -17,7 +17,7 @@ scripts: [
 ]
 ---
 
-<a-scene fog="type: linear; color: #ECECEC; far: 100;" isMobile inspector stats>
+<a-scene inspector>
 
 	<!-- Assets -->
 
@@ -51,9 +51,10 @@ scripts: [
 	<a-entity light="color: #FFFFFF; intensity: 0.3; type: ambient;"></a-entity>
 
 	<a-ada-sky control="#sun" inclination="0.49">
-		<!-- This light gets positioned by the sky -->
 		<a-entity light="color: #FFFFFF; intensity: 1.5" id="sun"></a-entity>
 	</a-ada-sky>
+
+	<!--<a-sky color="#aaa"></a-sky>-->
 
 	<a-ada-ocean position="0 0 0" src="#water-normal" width="1000" depth="1000" light="#sun"></a-ada-ocean>
 

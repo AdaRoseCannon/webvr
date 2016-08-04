@@ -68,7 +68,7 @@ AFRAME.registerComponent('ada-ship-controller', {
 
 		if (keys[65] || keys[37]) { this.roll += this.data.rollAcceleration * delta; } // Left
 		if (keys[68] || keys[39]) { this.roll -= this.data.rollAcceleration * delta; } // Right
-		if (keys[87] || keys[38]) { velocity.z -= acceleration * delta; } // Up
+		if (keys[87] || keys[38] || keys['touch']) { velocity.z -= acceleration * delta; } // Up
 		if (keys[83] || keys[40]) { velocity.z += acceleration * delta; } // Down
 
 		movementVector = this.getMovementVector(delta);
@@ -118,11 +118,19 @@ AFRAME.registerComponent('ada-ship-controller', {
 	attachKeyEventListeners: function () {
 		window.addEventListener('keydown', this.onKeyDown);
 		window.addEventListener('keyup', this.onKeyUp);
+
+		this.el.sceneEl.addEventListener("touchstart", this.handleTouchStart.bind(this), false);
+		this.el.sceneEl.addEventListener("touchend", this.handleTouchEnd.bind(this), false);
+		this.el.sceneEl.addEventListener("touchcancel", this.handleTouchCancel.bind(this), false);
 	},
 
 	removeKeyEventListeners: function () {
 		window.removeEventListener('keydown', this.onKeyDown);
 		window.removeEventListener('keyup', this.onKeyUp);
+
+		this.el.sceneEl.addEventListener("touchstart", this.handleTouchStart.bind(this), false);
+		this.el.sceneEl.addEventListener("touchend", this.handleTouchEnd.bind(this), false);
+		this.el.sceneEl.addEventListener("touchcancel", this.handleTouchCancel.bind(this), false);
 	},
 
 	onBlur: function () {
@@ -149,6 +157,27 @@ AFRAME.registerComponent('ada-ship-controller', {
 	onKeyUp: function (event) {
 		if (!shouldCaptureKeyEvent(event)) { return; }
 		this.keys[event.keyCode] = false;
+	},
+
+	handleTouchStart: function (e) {
+		if (e.target.dataset.aframeCanvas === 'true') {
+			e.preventDefault();
+			this.keys['touch'] = true;
+		}
+	},
+
+	handleTouchCancel: function (e) {
+		if (e.target.dataset.aframeCanvas === 'true') {
+			e.preventDefault();
+			this.keys['touch'] = false;
+		}
+	},
+
+	handleTouchEnd: function (e) {
+		if (e.target.dataset.aframeCanvas === 'true') {
+			e.preventDefault();
+			this.keys['touch'] = false;
+		}
 	},
 
 	getMovementVector: (function (delta) {

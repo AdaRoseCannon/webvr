@@ -2,7 +2,7 @@
  * Based on https://github.com/brianchirls/three.js/blob/master/examples/webgl_shaders_sky.html
  * Requires:
  *
- *	https://cdn.rawgit.com/mrdoob/three.js/blob/r75/examples/js/SkyShader.js
+ *	https://cdn.rawgit.com/mrdoob/three.js/blob/r77/examples/js/SkyShader.js
  *
  */
 
