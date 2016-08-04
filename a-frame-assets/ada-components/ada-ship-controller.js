@@ -122,6 +122,10 @@ AFRAME.registerComponent('ada-ship-controller', {
 		this.el.sceneEl.addEventListener("touchstart", this.handleTouchStart.bind(this), false);
 		this.el.sceneEl.addEventListener("touchend", this.handleTouchEnd.bind(this), false);
 		this.el.sceneEl.addEventListener("touchcancel", this.handleTouchCancel.bind(this), false);
+
+		this.el.sceneEl.addEventListener("mousedown", this.handleTouchStart.bind(this), false);
+		this.el.sceneEl.addEventListener("mouseup", this.handleTouchEnd.bind(this), false);
+		this.el.sceneEl.addEventListener("mouseleave", this.handleTouchCancel.bind(this), false);
 	},
 
 	removeKeyEventListeners: function () {
@@ -131,6 +135,10 @@ AFRAME.registerComponent('ada-ship-controller', {
 		this.el.sceneEl.addEventListener("touchstart", this.handleTouchStart.bind(this), false);
 		this.el.sceneEl.addEventListener("touchend", this.handleTouchEnd.bind(this), false);
 		this.el.sceneEl.addEventListener("touchcancel", this.handleTouchCancel.bind(this), false);
+
+		this.el.sceneEl.addEventListener("mousedown", this.handleTouchStart.bind(this), false);
+		this.el.sceneEl.addEventListener("mouseup", this.handleTouchEnd.bind(this), false);
+		this.el.sceneEl.addEventListener("mouseleave", this.handleTouchCancel.bind(this), false);
 	},
 
 	onBlur: function () {
