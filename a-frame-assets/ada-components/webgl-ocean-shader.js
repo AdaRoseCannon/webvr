@@ -15,8 +15,8 @@ AFRAME.registerComponent('a-ada-ocean', {
 
 	schema: {
 		src: { type: 'src' },
-		width: { default: 20000 },
-		depth: { default: 20000 },
+		width: { default: 1000 },
+		depth: { default: 1000 },
 		distortionScale: { default: 15 },
 		opacity: {
 			default: 1.0,
@@ -89,6 +89,7 @@ AFRAME.registerComponent('a-ada-ocean', {
 			);
 			mirrorMesh.add( water );
 			mirrorMesh.rotation.x = - Math.PI * 0.5;
+			mirrorMesh.scale.multiplyScalar(10);
 
 			this.water = water;
 			this.el.setObject3D('mesh', mirrorMesh);
