@@ -39,7 +39,7 @@ scripts: [
 
 	<!-- SHIP (from turbosquid) -->
 
-	<a-entity ada-ship-controller rotation="0 90 0">
+	<a-entity ada-ship-controller="easing: 5; acceleration: 100;" rotation="0 90 0">
 		<a-entity  id="ship-camera-target" position="0 0 15"></a-entity>
 
 		<!-- The model was really big, and did not point in the direction I wanted. I also made it 1/20 it's original size so it is about 4 units wide. -->

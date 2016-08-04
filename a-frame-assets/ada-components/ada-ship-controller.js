@@ -11,6 +11,7 @@ var MAX_DELTA = 0.2;
 AFRAME.registerComponent('ada-ship-controller', {
 	schema: {
 		easing: { default: 10 },
+		rollEasing: { default: 1 },
 		acceleration: { default: 250 },
 		rollAcceleration: { default: 50 },
 		rollTarget: { type: 'selector' }
@@ -52,10 +53,10 @@ AFRAME.registerComponent('ada-ship-controller', {
 		var position = el.getComputedAttribute('position');
 		var rotation = el.getComputedAttribute('rotation');
 
+		rotation.y += this.roll * this.data.rollEasing * delta * -velocity.z * 0.05;
+		this.roll -= this.roll * this.data.rollEasing * delta;
 		velocity.x -= velocity.x * easing * delta;
 		velocity.z -= velocity.z * easing * delta;
-		rotation.y += this.roll * easing * delta * 0.1;
-		this.roll -= this.roll * easing * delta * 0.1;
 
 		if (this.data.rollTarget) {
 			var rollTargetRotation = this.data.rollTarget.getComputedAttribute('rotation');
