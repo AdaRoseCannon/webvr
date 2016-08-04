@@ -160,21 +160,21 @@ AFRAME.registerComponent('ada-ship-controller', {
 	},
 
 	handleTouchStart: function (e) {
-		if (e.target.dataset.aframeCanvas === 'true') {
+		if (e.target.tagName !== "BUTTON") {
 			e.preventDefault();
 			this.keys['touch'] = true;
 		}
 	},
 
 	handleTouchCancel: function (e) {
-		if (e.target.dataset.aframeCanvas === 'true') {
+		if (e.target.tagName !== "BUTTON") {
 			e.preventDefault();
 			this.keys['touch'] = false;
 		}
 	},
 
 	handleTouchEnd: function (e) {
-		if (e.target.dataset.aframeCanvas === 'true') {
+		if (e.target.tagName !== "BUTTON") {
 			e.preventDefault();
 			this.keys['touch'] = false;
 		}
