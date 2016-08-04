@@ -4,7 +4,7 @@ title: Track
 description: A-Frame Demo
 image: ./images/track-screenshot.jpg
 scripts: [
-	'https://cdn.rawgit.com/aframevr/aframe/1e85c4e63634fd8d5b819453ca7e76bd8568dadf/dist/aframe-0.2.0.min.js', # master at the time of writing
+	'https://cdn.rawgit.com/aframevr/aframe/1e85c4e63634fd8d5b819453ca7e76bd8568dadf/dist/aframe-v0.2.0.min.js', # master at the time of writing
 	'https://cdn.rawgit.com/mrdoob/three.js/r75/examples/js/Mirror.js', # For a-ada-ocean
 	'https://cdn.rawgit.com/mrdoob/three.js/r75/examples/js/WaterShader.js', # For a-ada-ocean
 	'a-frame-assets/ada-components/webgl-ocean-shader.js?cb=1',
