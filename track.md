@@ -4,7 +4,7 @@ title: Track
 description: A-Frame Demo
 image: ./images/track-screenshot.jpg
 scripts: [
-	'https://cdn.rawgit.com/aframevr/aframe/9045c899d5a1fb4649720c2d1e9f530209533f23/dist/aframe.js', # master at the time of writing
+	'https://cdn.rawgit.com/aframevr/aframe/v0.2.0/dist/aframe.js', # master at the time of writing
 	'https://cdn.rawgit.com/mrdoob/three.js/r75/examples/js/Mirror.js', # For a-ada-ocean
 	'https://cdn.rawgit.com/mrdoob/three.js/r75/examples/js/WaterShader.js', # For a-ada-ocean
 	'a-frame-assets/ada-components/webgl-ocean-shader.js?cb=1',
@@ -50,10 +50,10 @@ scripts: [
 
 	<a-entity light="color: #FFFFFF; intensity: 0.3; type: ambient;"></a-entity>
 
-	<a-ada-sky control="#sun" inclination="0.49">
+	<!--<a-ada-sky control="#sun" inclination="0.49">-->
 		<!-- This light gets positioned by the sky -->
-		<a-entity light="color: #FFFFFF; intensity: 1.5" id="sun"></a-entity>
-	</a-ada-sky>
+		<!--<a-entity light="color: #FFFFFF; intensity: 1.5" id="sun"></a-entity>-->
+	<!--</a-ada-sky>-->
 
 	<a-ada-ocean position="0 0 0" src="#water-normal" width="1000" depth="1000" light="#sun"></a-ada-ocean>
 
