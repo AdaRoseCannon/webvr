@@ -65,6 +65,16 @@ scripts: [
 
 	<a-ada-ocean position="0 0 0" src="#water-normal" width="1000" depth="1000" light="#sun"></a-ada-ocean>
 
+	<!-- TRACK -->
+
+	<a-curve id="track" type="spline" closed="true">
+		<a-curve-point position="0 0 0"></a-curve-point>
+		<a-curve-point position="1 0 0"></a-curve-point>
+		<a-curve-point position="0 0 1"></a-curve-point>
+	</a-curve>
+
+	<a-clone-along-curve geometry="primitive: box;" material="color: red" curve="#track" spacing="5"></a-clone-along-curve>
+
 </a-scene>
 
 <script>
