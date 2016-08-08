@@ -63,7 +63,7 @@ scripts: [
 	</a-ada-sky>-->
 
 	<!-- Prerendered for performance -->
-	<a-sky src="#cgsky" position="0 -1 0">
+	<a-sky src="#cgsky" position="0 -1 0" rotation="0 -90 0">
 		<a-entity light="color: #FFFFFF; intensity: 1.5" position="0 1 50"></a-entity>
 	</a-sky>
 
