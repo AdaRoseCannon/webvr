@@ -4,7 +4,9 @@ title: Track
 description: A-Frame Demo
 image: ./images/track-screenshot.jpg
 scripts: [
-	'https://cdn.rawgit.com/aframevr/aframe/1e85c4e63634fd8d5b819453ca7e76bd8568dadf/dist/aframe.min.js', # master at the time of writing
+	'https://cdn.rawgit.com/aframevr/aframe/1e85c4e63634fd8d5b819453ca7e76bd8568dadf/dist/aframe.js', # master at the time of writing
+
+	'https://rawgit.com/ngokevin/aframe-look-at-component/master/dist/aframe-look-at-component.min.js', # look at component
 
 	'https://cdn.rawgit.com/mrdoob/three.js/r75/examples/js/Mirror.js', # For a-ada-ocean
 	'https://cdn.rawgit.com/mrdoob/three.js/r75/examples/js/WaterShader.js', # For a-ada-ocean
@@ -34,7 +36,7 @@ scripts: [
 
 	<!-- CAMERA -->
 
-	<a-entity look-at="#ship" ada-follow="target: #ship-camera-target; distance: 20;">
+	<a-entity look-at="#ship" ada-follow="target: #ship-camera-target;">
 		<a-entity position="0 6 0" rotation="0 180 0">
 
 			<!-- Disable the default wasd controls we are using those to control the ship -->
@@ -69,13 +71,14 @@ scripts: [
 
 	<!-- TRACK -->
 
-	<a-curve id="track" type="spline" closed="true">
+	<a-curve id="track" type="CatmullRom">
 		<a-curve-point position="0 0 0"></a-curve-point>
 		<a-curve-point position="1 0 0"></a-curve-point>
 		<a-curve-point position="0 0 1"></a-curve-point>
 	</a-curve>
 
-	<a-clone-along-curve geometry="primitive: box;" material="color: red" curve="#track" spacing="5"></a-clone-along-curve>
+	<a-draw-curve curve="#track" material="shader: line; color: red;"></a-draw-curve>
+	<a-clone-along-curve geometry="primitive: box;" curve="#track" spacing="5"></a-clone-along-curve>
 
 </a-scene>
 
