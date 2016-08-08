@@ -95,3 +95,7 @@ https://developer.leapmotion.com/assets/Leap%20Motion%20VR%20Best%20Practices%20
 https://developer.oculus.com/documentation/intro-vr/latest/concepts/bp_intro/
 
 https://iswebvrready.org
+
+WebVR Example: http://threejs.org/examples/webvr_cubes.html
+
+WebVR enable url: internet://webvr-enable

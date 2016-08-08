@@ -1,5 +1,5 @@
 // Based on https://github.com/aframevr/aframe/blob/master/src/components/wasd-controls.js
-// it controls the ship with wasd
+// it controls the ship with wasd, head tilting and mouse clicks
 
 var shouldCaptureKeyEvent = AFRAME.utils.shouldCaptureKeyEvent;
 
@@ -31,6 +31,9 @@ AFRAME.registerComponent('ada-ship-controller', {
 	},
 
 	update: function (previousData) {
+
+		if (AFRAME.utils.isGearVR()) this.el.sceneEl.camera.el.components['look-controls'].removeEventListeners();
+
 		var data = this.data;
 		var acceleration = data.acceleration;
 		var easing = data.easing;
