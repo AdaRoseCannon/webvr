@@ -28,7 +28,7 @@
 		{% else %}
 		<meta name="twitter:description" content="{{ site.description }}">
 		{% endif %}
-		<script src="https://cdn.polyfill.io/v2/polyfill.js?features=Array.isArray,Array.from,default-3.6,Element.prototype.before"></script>
+		<script src="https://cdn.polyfill.io/v2/polyfill.js?features=Array.isArray,Array.from,default-3.6,Element.prototype.before,Element.prototype.after,Element.prototype.remove"></script>
 		{% if page.script %}
 		<script src="{{page.script}}"></script>
 		{% endif %}
@@ -37,9 +37,6 @@
 		<script src="{{ item }}"></script>
 		{% endfor %}
 		{% endif %}
-		<style>
-
-		</style>
 	</head>
 	<body class="post">
 		{{ content }}

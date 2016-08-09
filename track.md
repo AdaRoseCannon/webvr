@@ -4,7 +4,7 @@ title: Track
 description: A-Frame Demo
 image: ./images/track-screenshot.jpg
 scripts: [
-	'https://cdn.rawgit.com/aframevr/aframe/679a5d9fa501e81f5fdfa36d162580a116946fd1/dist/aframe.js', # master at the time of writing
+	'https://cdn.rawgit.com/aframevr/aframe/679a5d9fa501e81f5fdfa36d162580a116946fd1/dist/aframe.min.js', # master at the time of writing
 
 	'https://rawgit.com/ngokevin/aframe-look-at-component/master/dist/aframe-look-at-component.min.js', # look at component
 
