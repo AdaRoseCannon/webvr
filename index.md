@@ -48,6 +48,8 @@ The goal if this talk is to get you building a-frame demos to run across browser
 
 # Contents
 
+> # Contents
+>
 > * Introduction
 
 # Introduction - The Illusion of 3D
@@ -92,10 +94,43 @@ The proportion of people who access the internet on mobile devices is ever incre
 > Movie representation of traversing the web.
 > then show google cardboard near the end
 
+# Doing graphics in the Web
+
+There are many tools and libaries for producing publishing graphics for the Web:
+
+* Goo Create - Web bas
+* Unity - Can be compiled for the Web
+* Unreal - Can also be compiled for the Web
+* THREE.js - JavaScript library for building scenes
+* A-Frame - What I talk about here
+
+> A non-exhaustive list:
+>
+> * Goo Create - Cool web based editor
+> * Unity - Can compile for the Web
+> * Unreal - Can also compile for the Web
+> * THREE.js - JavaScript library for building scenes. Has a nice API.
+> * A-Frame - What I talk about here.
+
+These are all really good solutions and if you are already familiar with one of these then don't feel pressured to change.
+
+Why do I like A-Frame? it is Webby.
+
+What does Webby mean?
 
 # Composing scenes with A-Frame
 
-A-Frame allows one to write a 3D scene directly into their markup.
+Well for one it looks like html and can be written directly into your markup.
+
+*Who here has built a website by typing out html before?*
+
+It is also modular and extensible. This means that I can write a component for example. A component to give a heads up display or fancy lighting.
+
+Then anyone can include it in their scenes without needing to write complex JavaScript.
+
+It is extensible because my components will be based on other A-Frame components and you can release components that depend on mine.
+
+You are not required to write a single line of JavaScript unless you want to make your own components.
 
 Position is "Left/Right Up/Down In/Out"
 
@@ -142,6 +177,8 @@ Samsung Gear 360 and A-Sky
 > WebVR Example: http://threejs.org/examples/webvr_cubes.html
 >
 > WebVR enable url: internet://webvr-enable
+>
+> https://github.com/aframevr/aframe-boilerplates
 
 <script>
 	var iframes = Array.from(document.querySelectorAll('iframe'));
