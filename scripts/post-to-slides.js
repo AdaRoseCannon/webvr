@@ -76,7 +76,7 @@ function fire(node, name, detail) {
 
 function init() {
 	return Promise.all([
-			addScript('https://cdn.rawgit.com/AdaRoseEdwards/a-slides/v1.2.8/build/a-slides.js').promise
+			addScript('https://cdn.rawgit.com/AdaRoseEdwards/a-slides/v1.3.4/build/a-slides.js').promise
 	])
 	.then(function () {
 
@@ -127,14 +127,14 @@ function init() {
 		new ASlides(slideData, {
 			slideContainer: slideContainer,
 			plugins: [
-				ASlides.prototype.plugins.markdownTransform, // needs to be run first
-				ASlides.prototype.plugins.slideController, // needs to be run before buttons are added to it.
-				ASlides.prototype.plugins.deepLinking,
-				ASlides.prototype.plugins.interactionKeyboard,
-				ASlides.prototype.plugins.interactionTouch({ // has configuration
+				ASlides.plugins.markdownTransform, // needs to be run first
+				ASlides.plugins.slideController, // needs to be run before buttons are added to it.
+				ASlides.plugins.deepLinking,
+				ASlides.plugins.interactionKeyboard,
+				ASlides.plugins.interactionTouch({ // has configuration
 					use: ['swipe-back']
 				}),
-				ASlides.prototype.plugins.bridgeServiceWorker
+				ASlides.plugins.bridgeServiceWorker
 			]
 		});
 
@@ -163,7 +163,7 @@ function init() {
 			});
 		}
 
-		slideContainer.addEventListener('a-slides_slide-setup', function () {
+		slideContainer.addEventListener('a-slides_slide-show', function () {
 			var notes = slideContainer.querySelector('.a-slides_slide.active .a-slides_notes');
 			if (notes) notes.focus();
 		});

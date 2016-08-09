@@ -11,12 +11,12 @@ scripts: [
 
 <script>
 	window.iframeSlide = {
+		setup: function () {
+			var iframe = this.querySelector('iframe');
+			iframe.src = iframe.dataset.src;
+		},
 		action: window.FakeGenerator([
-			function() {
-				var iframe = this.querySelector('iframe');
-				iframe.src = iframe.dataset.src;
-			},
-			function() {},
+			function() {}
 		]),
 		teardown: function () {
 			this.querySelector('iframe').src = 'about: blank';
@@ -44,25 +44,54 @@ scripts: [
 <h2>{{site.author.name}} - {{site.author.company}}</h2>
 </blockquote>
 
+The goal if this talk is to get you building a-frame demos to run across browsers.
+
 # Contents
 
-> * The illusion of 3D
-> * What can be done in the Web Today
->   * VR Headsets - Samsung Gear VR, Cardboard, Vive
->   * Controllers -
-> * VR is easier than ever with the web
-> * Composing scenes with A-Frame
-> * Producing Assets
->   * 3D Models
->   * 360 Degree Photos and Videos
->     * Capturing Yourself
->     * Rendering Digitally
-> * Interactivity, Animation and Physics
->   * A-Frame components different from Web-Components
+> * Introduction
 
 # Introduction - The Illusion of 3D
 
+Hi I'm Ada from Samsung RnD.
+
+First i'd like to ask some questions:
+
+* Who here has used VR borrowed a friends or had a go?
+* Who has a VR headset whether a Google Cardobard or GearVR?
+
+For those who haven't experienced VR yet. You can have a go on my Gear VR at the end.
+
+What you get from VR as opposed to a computer monitor or TV screen is a feeling of immersion.
+
+By placing your scene around your users they are engaged like never before.
+
+They literally cannot look away.
+
+A VR headset works by tracking your head rotation and position and showing to each eye what it would see in the virtual space.
+
+> ![Samsung Gear VR](images/gear-vr_kv-trim.jpg)
+
 # Why VR and the web go and in hand
+
+The world wide web is the most prominent content delivery platform, it has unparalelled reach and grants us the ability to share and stream content.
+
+Its network model allows us to enjoy multimedia experiences such as games and movies without downloading the whole thing.
+
+The web can be enjoyed across a wide variety of platforms from phones to desktops and tvs.
+
+URLs allow for linking and sharing content easily in a format familiar to the three and half billion people who use the internet.
+
+VR for the web, known as WebVR, allows us to make the most of the Web's strongest powers to leverage 3D models, images, videos and audio to produce 3D worlds to immerse our readers in.
+
+Recently the WebVR spec has become more mature. It can be used in Samsung's Internet Browser for the Gear VR. In addition scripts such as the `WebVR Polyfill` to allow you to use WebVR on phones such as Android and iOS phones.
+
+The proportion of people who access the internet on mobile devices is ever increasing and headsets can be just a piece of cardboard.
+
+*Show Google Cardboard*
+
+> Movie representation of traversing the web.
+> then show google cardboard near the end
+
 
 # Composing scenes with A-Frame
 
