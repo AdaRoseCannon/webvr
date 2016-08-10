@@ -452,7 +452,11 @@ As we are making a real time game for mobile handsets we should keep required re
 
 If this seems like a low limit it is but there are many tricks we can employ to make the most of this.
 
-This is a demo I produced for this talk.
+This is a demo I produced for this talk. It is unfinished.
+
+There are many ways I would take this forward
+
+[HOW WOULD I DO THAT] audio, physics, multiplayer?
 
 <script>window.aSlidesSlideData['slide-fancy-demo'] = window.iframeSlide</script>
 
