@@ -2,7 +2,7 @@
 /* global ASlides, twemoji*/
 
 /**
- * Turns a normal mrkdown blog posti into a slide deck!!
+ * Turns a normal markdown blog post into a slide deck!!
  * amazing right!!
  */
 

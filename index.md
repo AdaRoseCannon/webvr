@@ -56,7 +56,7 @@ The goal if this talk is to get you building a-frame demos to run across browser
 
 Hi I'm Ada from Samsung RnD.
 
-First i'd like to ask some questions:
+First I would like to ask some questions:
 
 * Who here has used VR borrowed a friends or had a go?
 * Who has a VR headset whether a Google Cardobard or GearVR?
@@ -132,23 +132,70 @@ It is extensible because my components will be based on other A-Frame components
 
 You are not required to write a single line of JavaScript unless you want to make your own components.
 
-Position is "Left/Right Up/Down In/Out"
-
->```html
-	<a-scene>
-		<a-sphere position="0 1.25 -1" radius="1.25" color="#EF2D5E"></a-sphere>
-		<a-cube position="-1 0.5 1" rotation="0 45 0" width="1" height="1" depth="1" color="#4CC3D9"></a-cube>
-		<a-cylinder position="1 0.75 1" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-		<a-plane rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-		<a-sky color="#ECECEC"></a-sky>
-	</a-scene>
->```
+> ```html
+<a-scene>
+	<a-sphere position="0 1.25 -1" radius="1.25" color="#EF2D5E"></a-sphere>
+	<a-cube position="-1 0.5 1" rotation="0 45 0" width="1" height="1" depth="1" color="#4CC3D9"></a-cube>
+	<a-cylinder position="1 0.75 1" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
+	<a-plane rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+	<a-sky color="#ECECEC"></a-sky>
+</a-scene>
+```
 
 # a-frame-basic-demo
+
+This html from the previous slide gives us this.
+
+But A-Frame gives us lots of hidden extras, all the basics to get started:
+
+* The scene already has lighting
+* It has a Camera
+* That camera can be moved around by using the Arrow keys and clicking and dragging
+* If you open it on your phone it is controlled by moving your phone
+* It even has in built VR support, for both Cardboard devices and VR Headsets like the Samsung Gear VR
+
+All of this functionality can be overridden if you don't like it or if you want more control.
+
 <script>window.aSlidesSlideData['slide-a-frame-basic-demo'] = window.iframeSlide</script>
 
-> # A-Frame Hello World
-> <iframe src="basic.html"></iframe>
+> <iframe src="basic.html" seamless="seamless"></iframe>
+>
+> ## {{ site.url }}/basic.html
+
+The Gear VR does not run VR websites out of the box it needs to be turned on.
+
+This is a bit annoying and confusing because my demos wouldn't work and I didn't know why.
+
+to do that go here:
+
+> # internet://webvr-enable
+
+Then you will see this:
+
+> # Picture of WebVR being enabled, now your headset is set up to make the most of VR in the web!!!
+
+You can test it here, if it hasn't worked you will see this message
+
+View the page in Gear VR open up the page in Samsung Internet.
+
+if it works you will see a cool demo
+
+> Test it here: url and image of THREE.js squares demo
+>
+> http://threejs.org/examples/webvr_cubes.html
+
+
+
+
+# Actually building something.
+
+The first thing a lot of people build is a 360 degree photo/video Viewer.
+
+So we'll look at that first as it is a very simple demo.
+
+
+
+
 
 # Producing content with 360 Cameras
 

@@ -3,10 +3,11 @@
 # 2. config.build.yml
 # 3. config.yml
 
-aslide: https://cdn.rawgit.com/AdaRoseEdwards/a-slides/master/build
+aslide: https://cdn.rawgit.com/AdaRoseEdwards/a-slides/v1.3.4/build
 name: Getting started with WebVR
 description: Introduction to A-Frame
 color: lavenderblush
+url: https://ada.is/getting-started-with-webvr
 author:
   name: Ada Rose Edwards
   email: ada@ada.is
