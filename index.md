@@ -231,19 +231,35 @@ There are many tools and libaries for producing publishing graphics for the Web:
 > * THREE.js - JavaScript library for building scenes. Has a nice API.
 > * A-Frame - What I talk about here.
 
+# What is A-Frame
+
 These are all really good solutions and if you are already familiar with one of these then don't feel pressured to change.
 
-Why do I like A-Frame? it is Webby.
+Why do I like A-Frame?
 
-What does Webby mean?
+* A-Frame allows you to compose scenes with 3D models, Videos, Audio, Images by writing html.
+* [MORE REASONS]
+
+
+> ![Aframe](images/aframevr.png)
+>
+> # https://aframe.io/
 
 # Composing scenes with A-Frame
 
+A-Frame is webby.
+
 Well for one it looks like html and can be written directly into your markup.
+
+It gives new html elements for building virtual reality
 
 *Who here has built a website by typing out html before?*
 
-It is also modular and extensible. This means that I can write a component for example. A component to give a heads up display or fancy lighting.
+It is much the same. Like HTML you can do an awful lot without writing a single line of javascript. But you can still use JavaScript to add extra functionality of you want.
+
+It is also modular and extensible.
+
+Modular means that I can write a component. For example. A component to give a heads up display or fancy lighting.
 
 Then anyone can include it in their scenes without needing to write complex JavaScript.
 
@@ -252,13 +268,20 @@ It is extensible because my components will be based on other A-Frame components
 You are not required to write a single line of JavaScript unless you want to make your own components.
 
 > ```html
-<a-scene>
-	<a-sphere position="0 1.25 -1" radius="1.25" color="#EF2D5E"></a-sphere>
-	<a-cube position="-1 0.5 1" rotation="0 45 0" width="1" height="1" depth="1" color="#4CC3D9"></a-cube>
-	<a-cylinder position="1 0.75 1" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-	<a-plane rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-	<a-sky color="#ECECEC"></a-sky>
-</a-scene>
+	<html>
+		<head>
+			<script src="js/a-frame.js"></script>
+		</head>
+		<body>
+			<a-scene>
+				<a-sphere position="0 1.25 -1" radius="1.25" color="#EF2D5E"></a-sphere>
+				<a-cube position="-1 0.5 1" rotation="0 45 0" width="1" height="1" depth="1" color="#4CC3D9"></a-cube>
+				<a-cylinder position="1 0.75 1" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
+				<a-plane rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+				<a-sky color="#ECECEC"></a-sky>
+			</a-scene>
+		</body>
+	</html>
 ```
 
 # a-frame-basic-demo
