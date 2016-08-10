@@ -15,15 +15,10 @@ scripts: [
 			var iframe = this.querySelector('iframe');
 			iframe.src = iframe.dataset.src;
 		},
-		action: window.FakeGenerator([
-			function() {}
-		]),
-		teardown: function () {
-			this.querySelector('iframe').src = 'about: blank';
-		}
-	}
+		action: window.FakeGenerator([ function() {} ]),
+		teardown: function () { this.querySelector('iframe').src = 'about:blank'; }
+	};
 	window.aSlidesSlideData = {};
-
 </script>
 
 <!-- Define slide animation generators -->
@@ -193,15 +188,87 @@ The first thing a lot of people build is a 360 degree photo/video Viewer.
 
 So we'll look at that first as it is a very simple demo.
 
+<script>window.aSlidesSlideData['slide-actually-building-something'] = window.iframeSlide</script>
 
+> <iframe src="360-simple.html" seamless="seamless"></iframe>
+>
+> ## {{ site.url }}/360-simple.html
 
+Here I have some images I want to use.
 
+These go into the a-assets tag, this tells a-frame to preload these for later.
 
-# Producing content with 360 Cameras
+We override the camera, by defining our own with the keyboard controls disabled. We don't want too let the user move around in the scene.
 
-Samsung Gear 360 and A-Sky
+The final piece is the sky, the sky is an evenly lit inside out sphere. We give it the image we want to display and it shows it off.
+
+This has all the features we want from a 360 image viewer, you can rotate the camera, view it immersively in vr and all in 7 lines of html
+
+The image itself looks like this:
+
+> ```html
+<a-scene>
+	<a-assets>
+		<img id="img1" src="a-frame-assets/SAM_100_0042_SMALL.jpg" />
+	</a-assets>
+>
+	<a-camera wasd-controls="enabled: false;"></a-camera>
+>
+	<a-sky src="#img1"></a-sky>
+>
+</a-scene>
+```
+
+The image itself looks like this:
+
+> ![A 360 image taken with the gear VR](a-frame-assets/SAM_100_0042_SMALL.jpg)
+
+I took it with my 360 camera (no reason to post this I just think it is adorable):
+
+> ![The adorable Gear360](images/gear360.jpg)
+
+If you want to do something more advanced you can, you can use JavaScript to control a-frame just as normal.
+
+Here I have written a small script to rotate through some images whenever I click.
+
+> ```html
+<a-scene>
+	<a-assets>
+		<img id="img1" src="a-frame-assets/SAM_100_0046_SMALL.jpg" />
+		<img id="img2" src="a-frame-assets/SAM_100_0063_SMALL.jpg" />
+		<img id="img3" src="a-frame-assets/SAM_100_0042_SMALL.jpg" />
+	</a-assets>
+>
+	<a-camera wasd-controls="enabled: false;"></a-camera>
+	<a-sky src="#img1"></a-sky>
+>
+</a-scene>
+>
+<script>
+	var index = 0;
+	var images = document.querySelectorAll('a-assets img');
+	var sky = document.querySelector('a-sky');
+	window.addEventListener('click', function () {
+		index = (index + 1) % images.length;
+		sky.setAttribute('src', '#' + images[index].id);
+	});
+</script>
+```
+
+# Demo 360 Slideshow
+
+<script>window.aSlidesSlideData['slide-demo-360-slideshow'] = window.iframeSlide</script>
+
+> <iframe src="360.html" seamless="seamless"></iframe>
+>
+> ## {{ site.url }}/360.html
+
 
 # Introduce some tools for making 3d content
+
+Enough showing you my holiday photos, what if you want to actually include a more complex 3D object:
+
+
 
 # Introduce some physics
 
