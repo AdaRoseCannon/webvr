@@ -78,13 +78,12 @@ body.post {
 	}
 
 	img {
-		max-width: 80%;
+		max-width: 30em;
 		max-height: 50vmax;
 	}
 
 	blockquote {
 		background-color: white;
-		box-shadow: 0 0 2em -0.5em;
 		border: 1px solid grey;
 		display: flex;
 		flex-direction: column;
@@ -111,14 +110,14 @@ iframe {
 	right: 0;
 	bottom: 0;
 
-    box-shadow: 0 0 2em grey;
+    box-shadow: 0 0 0.5em grey;
     padding: 0.5em;
 
 	&.blank {
 		left: 50%;
 		bottom: 50%;
 		transform: translate(-50%, 50%);
-    	font-size: 3em;
+    	font-size: 2em;
 	}
 
 	.a-slides_slide & {

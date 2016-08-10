@@ -76,7 +76,7 @@ function fire(node, name, detail) {
 
 function init() {
 	return Promise.all([
-			addScript('https://cdn.rawgit.com/AdaRoseEdwards/a-slides/v1.3.4/build/a-slides.js').promise
+			addScript('https://cdn.rawgit.com/AdaRoseEdwards/a-slides/v1.3.6/build/a-slides.js').promise
 	])
 	.then(function () {
 

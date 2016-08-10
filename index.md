@@ -19,11 +19,64 @@ scripts: [
 		teardown: function () { this.querySelector('iframe').src = 'about:blank'; }
 	};
 	window.aSlidesSlideData = {};
+
+	window.contentSlide = function (...slides) {
+		var oldContent;
+
+		return {
+			setup() {
+				oldContent = Array.from(this.children);
+			},
+			action: function* () {
+
+				const t = slides.slice();
+
+				if (t.length === 0) {
+					yield;
+					return;
+				}
+
+				while(t.length) {
+
+					this.empty();
+					let i = t.shift();
+					if (i) {
+						switch(Object.keys(i)[0]) {
+							case 'video':
+								this.innerHTML = `<video src="${i.video}" autoplay loop style="object-fit: contain; flex: 1 0;" />`;
+								break;
+							case 'image':
+								this.innerHTML = `<image src="${i.image}" />`;
+								break;
+							case 'markdown':
+								this.addMarkdown(i.markdown);
+								break;
+							case 'html':
+								this.innerHTML = i.html;
+								break;
+							case 'iframe':
+								this.innerHTML = `<iframe src="${i.iframe}" frameborder="none" style="flex: 1 0;" /></iframe>`;
+								break;
+						}
+						if (i.caption) {
+							this.addMarkdown(i.caption);
+						}
+						if (i.url  || i.iframe) {
+							this.addHTML(`<div class="slide-url">${i.url || i.iframe || ''}</div>`);
+						}
+					}
+					yield;
+				}
+			},
+			teardown() {
+				if (oldContent) {
+					this.empty();
+					oldContent.forEach(c => this.appendChild(c));
+				}
+			}
+		};
+	};
 </script>
-
-<!-- Define slide animation generators -->
-
-<!-- contents -->
 
 # Getting started with WebVR
 
@@ -32,6 +85,17 @@ scripts: [
 
 <span>Length should be <span id="a-frame-clock">45</span> minutes.</span>
 
+Hi, I'm Ada from Samsung.
+
+I am really irritating at dinner parties.
+
+I am perpetually bringing out VR headsets and trying to put them on peoples' faces.
+
+I love building and showing off cool VR demos and it's now easier than ever before.
+
+My favourite moment is when I show someone a sick VR demo and they make this face:
+
+
 <!-- This slide uses information from _config.yml -->
 <blockquote class="dark" id="splash-slide" style="background-image: url('images/pattern.svg');">
 <h1>{{ site.name }}</h1>
@@ -39,7 +103,68 @@ scripts: [
 <h2>{{site.author.name}} - {{site.author.company}}</h2>
 </blockquote>
 
-The goal if this talk is to get you building a-frame demos to run across browsers.
+# Faces
+
+I love that face.
+
+My goal is to get you building stuff so you can wow people like this.
+
+<script>window.aSlidesSlideData['slide-faces'] = window.contentSlide(
+	{image: 'images/face1.jpg'},
+	{image: 'images/face2.jpg'},
+	{image: 'images/face3.jpg'},
+	{image: 'images/face4.jpg'},
+	{image: 'images/face5.jpg'}
+);</script>
+> ![Face](images/face1.jpg)
+
+# My love for vr
+
+When I was a child this was my favourite TV show:
+
+[Jonny Quest]
+
+The characters would use virtual reality to travel to fully immersive worlds and have amazing adventures.
+
+and the love of virtual reality has stayed with me ever since.
+
+Through numerous scifi books
+
+Movies
+
+and Anime
+
+What really stuck with VR is
+
+the ability to step fully into another role.
+
+to travel any where on this world
+
+or off it
+
+----------- Who has experienced VR before? -----------
+
+---------- Who has their own VR heaset? --------------
+
+It is an unreal experience, a good VR experience can transport you entirely, giving a feeling known as immersion.
+
+** In this talk I aim to inspire you to produce VR content **
+
+for the Web
+
+even if you have never developed or worked with 3d before.
+
+<script>window.aSlidesSlideData['slide-my-love-for-vr'] = window.contentSlide(
+	{image: 'images/Jonny-Quest-the-real-adventures-of-jonny-quest.jpg'},
+	{image: 'images/accelerando.jpg'},
+	{image: 'images/neuromancer.jpg'},
+	{image: 'images/matrix.gif'},
+	{image: 'images/sao.jpg'},
+	{image: 'images/market.jpg'},
+	{image: 'images/iss.jpg'}
+);</script>
+> ![Jonny Quest](images/Jonny-Quest-the-real-adventures-of-jonny-quest.jpg)
+
 
 # Contents
 
@@ -47,14 +172,7 @@ The goal if this talk is to get you building a-frame demos to run across browser
 >
 > * Introduction
 
-# Introduction - The Illusion of 3D
-
-Hi I'm Ada from Samsung RnD.
-
-First I would like to ask some questions:
-
-* Who here has used VR borrowed a friends or had a go?
-* Who has a VR headset whether a Google Cardobard or GearVR?
+# Introduction
 
 For those who haven't experienced VR yet. You can have a go on my Gear VR at the end.
 
@@ -68,7 +186,7 @@ A VR headset works by tracking your head rotation and position and showing to ea
 
 > ![Samsung Gear VR](images/gear-vr_kv-trim.jpg)
 
-# Why VR and the web go and in hand
+# Why VR and the web go hand in hand
 
 The world wide web is the most prominent content delivery platform, it has unparalelled reach and grants us the ability to share and stream content.
 
@@ -80,14 +198,20 @@ URLs allow for linking and sharing content easily in a format familiar to the th
 
 VR for the web, known as WebVR, allows us to make the most of the Web's strongest powers to leverage 3D models, images, videos and audio to produce 3D worlds to immerse our readers in.
 
-Recently the WebVR spec has become more mature. It can be used in Samsung's Internet Browser for the Gear VR. In addition scripts such as the `WebVR Polyfill` to allow you to use WebVR on phones such as Android and iOS phones.
+Recently the WebVR spec has become more mature. It can be used in Samsung's Internet Browser for the Gear VR. In addition scripts such as the `WebVR Polyfill` to allow you to use WebVR with Google Cardboard on other mobile browsers such as Chrome and Safari.
 
 The proportion of people who access the internet on mobile devices is ever increasing and headsets can be just a piece of cardboard.
 
 *Show Google Cardboard*
 
-> Movie representation of traversing the web.
-> then show google cardboard near the end
+Cardboard devices are just cardboard and plastic lenses and are often cheap enough that newspapers will give them away. The FT did a give away recently.
+
+<script>window.aSlidesSlideData['slide-why-vr-and-the-web-go-hand-in-hand'] = window.contentSlide(
+	{image: 'images/MobileBroadbandInternetPenetrationWorldMap.svg', caption: 'Mobile Broadband Internet Saturation'},
+	{image: 'images/cardboard.jpg'}
+);</script>
+> ![Internet Penetration World Map](images/MobileBroadbandInternetPenetrationWorldMap.svg)
+
 
 # Doing graphics in the Web
 
@@ -169,18 +293,17 @@ This is a bit annoying and confusing because my demos wouldn't work and I didn't
 
 Now your headset is set up to make the most of VR in the web!!!
 
+Try that previous url again and you will see a cool demo, or try out any of the A-Frame demos.
+
+Now we have WebVR set up lets actually build something.
+
 > To enable webvr in GearVR open this URL in the WebVR browser
 >
 > # Picture of WebVR being enabled
 >
 > # internet://webvr-enable
 
-
-Try that previous url again and you will see a cool demo, or try out any of the A-Frame demos.
-
-Now we have WebVR set up lets actually build something.
-
-# Actually building something.
+# Actually building something
 
 The first thing a lot of people build is a 360 degree photo/video Viewer.
 
@@ -270,16 +393,50 @@ Enough showing you my holiday photos, what if you want to actually include a mor
 
 A-Frame comes with a whole bunch of geometric primitives.
 
+> * Box
+> * Circle (One sided)
+> * Cone
+> * Cylinder Primitive
+> * Plane
+> * Ring
+> * Sphere
+> * Torus (A donut)
+> * Torus Knot
 
+But that is usually not enough there are a bunch of 3D modelling tools out there:
 
+These all have a steep learning curve but if you are still in education you may have access to these through your school.
 
-# Introduce some physics
+> * Maya (Expensive)
+> * Z-Brush (Expensive, great for organics)
+> * Cinema4D (Expensive)
+> * Clara.io (Free, online)
+> * Blender (Open Source, Difficult to use)
 
-# Show the Javascript API
+Because of the difficulty of making my own I tend to buy models from Turbo Squid.
 
-# Best Practises
+3D assets come in many sizes some large for producing videos or still images. Or small for realtime work such as video games.
 
-* Avoid creating Objects and Arrays in 'tick' functions. Will reduce garbage collection.
+As we are making a real time game for mobile handsets we should keep required resources to a minimum.
+
+> # 1000s of polygons
+>
+> # Around 10 of Megapixels of textures
+>
+> ## 'Game Ready' or 'Low Poly'
+
+# Fancy Demo
+
+If this seems like a low limit it is but there are many tricks we can employ to make the most of this.
+
+This is a demo I produced for this talk.
+
+<script>window.aSlidesSlideData['slide-fancy-demo'] = window.iframeSlide</script>
+
+> <iframe src="track.html" seamless="seamless"></iframe>
+>
+> ## {{ site.url }}/track.html
+
 
 # Resources
 
