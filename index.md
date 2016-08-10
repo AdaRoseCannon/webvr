@@ -161,30 +161,30 @@ The Gear VR does not run VR websites out of the box it needs to be turned on.
 
 This is a bit annoying and confusing because my demos wouldn't work and I didn't know why.
 
-to do that go here:
+> # Testing if WebVR is available
+>
+> ![No Web VR](images/nowebvr.jpg)
+>
+> ## http://threejs.org/examples/webvr_cubes.html
 
+Now your headset is set up to make the most of VR in the web!!!
+
+> To enable webvr in GearVR open this URL in the WebVR browser
+>
+> # Picture of WebVR being enabled
+>
 > # internet://webvr-enable
 
-Then you will see this:
 
-> # Picture of WebVR being enabled, now your headset is set up to make the most of VR in the web!!!
+Try that previous url again and you will see a cool demo, or try out any of the A-Frame demos.
 
-You can test it here, if it hasn't worked you will see this message
-
-View the page in Gear VR open up the page in Samsung Internet.
-
-if it works you will see a cool demo
-
-> Test it here: url and image of THREE.js squares demo
->
-> http://threejs.org/examples/webvr_cubes.html
-
-
-
+Now we have WebVR set up lets actually build something.
 
 # Actually building something.
 
 The first thing a lot of people build is a 360 degree photo/video Viewer.
+
+It makes a great first project as it has very few components/
 
 So we'll look at that first as it is a very simple demo.
 
@@ -267,6 +267,9 @@ Here I have written a small script to rotate through some images whenever I clic
 # Introduce some tools for making 3d content
 
 Enough showing you my holiday photos, what if you want to actually include a more complex 3D object:
+
+A-Frame comes with a whole bunch of geometric primitives.
+
 
 
 
