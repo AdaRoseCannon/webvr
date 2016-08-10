@@ -148,6 +148,8 @@ or off it
 
 It is an unreal experience, a good VR experience can transport you entirely, giving a feeling known as immersion.
 
+I have always dreamed of a unified VR world full of experiences we can just step into.
+
 ** In this talk I aim to inspire you to produce VR content **
 
 for the Web
@@ -220,20 +222,33 @@ There are many tools and libaries for producing publishing graphics for the Web:
 * Goo Create - Web bas
 * Unity - Can be compiled for the Web
 * Unreal - Can also be compiled for the Web
-* THREE.js - JavaScript library for building scenes
-* A-Frame - What I talk about here
+* THREE.js - JavaScript library for building scenes. Has nice API
+* A-Frame - What I talk about here, built on THREE.js
 
 > A non-exhaustive list:
 >
 > * Goo Create - Cool web based editor
 > * Unity - Can compile for the Web
 > * Unreal - Can also compile for the Web
-> * THREE.js - JavaScript library for building scenes. Has a nice API.
+> * THREE.js - JavaScript library for 3D graphics. Has a nice API.
 > * A-Frame - What I talk about here.
 
-# What is A-Frame
 
 These are all really good solutions and if you are already familiar with one of these then don't feel pressured to change.
+
+A-Frame is built on top of THREE.js and comes with the WebVR polyfill.
+
+The WebVR polyfill allows smartphones to be WebVR capable.
+
+THREE.js provides a nice way to work with 3D rendering.
+
+A-Frame simplifies everything and abstracts away the more difficult bits.
+
+Allowing us to get started straight away!
+
+> ![WebVR](images/VR-Requirements.svg)
+
+# What is A-Frame
 
 Why do I like A-Frame?
 
@@ -480,6 +495,8 @@ There are many ways I would take this forward
 > WebVR enable url: internet://webvr-enable
 >
 > https://github.com/aframevr/aframe-boilerplates
+>
+> A Frame Blog loads of fun examples - https://aframe.io/blog/
 
 <script>
 	var iframes = Array.from(document.querySelectorAll('iframe'));
