@@ -77,6 +77,7 @@
 			z-index: 4;
 		}
 
+		// used almost entirely for image containers
 		& > p {
 			min-width: 20%;
 			max-height: 100%;
@@ -84,6 +85,7 @@
 			display: flex;
 			flex-grow: 1;
 			flex-shrink: 0;
+			flex-basis: 0;
 		}
 
 		& h1,

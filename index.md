@@ -89,11 +89,15 @@ Hi, I'm Ada from Samsung.
 
 I am really irritating at dinner parties.
 
-I am perpetually bringing out VR headsets and trying to put them on peoples' faces.
+I am perpetually bringing out VR headsets and trying to get people to have a go.
 
-I love building and showing off cool VR demos and it's now easier than ever before.
+I love building and showing off cool VR demos.
 
-My favourite moment is when I show someone a sick VR demo and they make this face:
+Now it is now easier than ever before.
+
+When they do give it a go though
+
+my favourite moment is when they get wowed by the immersion and they make this face:
 
 
 <!-- This slide uses information from _config.yml -->
@@ -107,7 +111,11 @@ My favourite moment is when I show someone a sick VR demo and they make this fac
 
 I love that face.
 
-My goal is to get you building stuff so you can wow people like this.
+My goal is to get you building stuff
+
+so you can make your friends and relatives have the same
+
+awed expression
 
 <script>window.aSlidesSlideData['slide-faces'] = window.contentSlide(
 	{image: 'images/face1.jpg'},
@@ -134,13 +142,28 @@ Movies
 
 and Anime
 
-What really stuck with VR is
+For me what really mesmerised me with VR is
 
 the ability to step fully into another role.
+
+someone elses shoes
 
 to travel any where on this world
 
 or off it
+
+<script>window.aSlidesSlideData['slide-my-love-for-vr'] = window.contentSlide(
+	{image: 'images/Jonny-Quest-the-real-adventures-of-jonny-quest.jpg'},
+	{image: 'images/accelerando.jpg'},
+	{image: 'images/neuromancer.jpg'},
+	{image: 'images/matrix.gif'},
+	{image: 'images/sao.jpg'},
+	{image: 'images/market.jpg'},
+	{image: 'images/iss.jpg'}
+);</script>
+> ![Jonny Quest](images/Jonny-Quest-the-real-adventures-of-jonny-quest.jpg)
+
+# Introduction
 
 ----------- Who has experienced VR before? -----------
 
@@ -156,26 +179,6 @@ for the Web
 
 even if you have never developed or worked with 3d before.
 
-<script>window.aSlidesSlideData['slide-my-love-for-vr'] = window.contentSlide(
-	{image: 'images/Jonny-Quest-the-real-adventures-of-jonny-quest.jpg'},
-	{image: 'images/accelerando.jpg'},
-	{image: 'images/neuromancer.jpg'},
-	{image: 'images/matrix.gif'},
-	{image: 'images/sao.jpg'},
-	{image: 'images/market.jpg'},
-	{image: 'images/iss.jpg'}
-);</script>
-> ![Jonny Quest](images/Jonny-Quest-the-real-adventures-of-jonny-quest.jpg)
-
-
-# Contents
-
-> # Contents
->
-> * Introduction
-
-# Introduction
-
 For those who haven't experienced VR yet. You can have a go on my Gear VR at the end.
 
 What you get from VR as opposed to a computer monitor or TV screen is a feeling of immersion.
@@ -187,6 +190,15 @@ They literally cannot look away.
 A VR headset works by tracking your head rotation and position and showing to each eye what it would see in the virtual space.
 
 > ![Samsung Gear VR](images/gear-vr_kv-trim.jpg)
+
+
+# Contents
+
+This is what I aim to cover in this talk:
+
+> # Contents
+>
+> * Why VR and the Web
 
 # Why VR and the web go hand in hand
 
@@ -215,7 +227,7 @@ Cardboard devices are just cardboard and plastic lenses and are often cheap enou
 > ![Internet Penetration World Map](images/MobileBroadbandInternetPenetrationWorldMap.svg)
 
 
-# Doing graphics in the Web
+# Doing 3D graphics in the Web
 
 There are many tools and libaries for producing publishing graphics for the Web:
 
@@ -224,6 +236,8 @@ There are many tools and libaries for producing publishing graphics for the Web:
 * Unreal - Can also be compiled for the Web
 * THREE.js - JavaScript library for building scenes. Has nice API
 * A-Frame - What I talk about here, built on THREE.js
+
+These are all really good solutions and if you are already familiar with one of these then don't feel pressured to change.
 
 > ## A non-exhaustive list:
 >
@@ -234,11 +248,15 @@ There are many tools and libaries for producing publishing graphics for the Web:
 > * A-Frame - What I talk about here.
 
 
-These are all really good solutions and if you are already familiar with one of these then don't feel pressured to change.
+# What is A-Frame
 
-A-Frame is built on top of THREE.js and comes with the WebVR polyfill.
+A-Frame a is a JavaScript library to abstract away the difficult and the rote parts of Virtual Reality.
 
-The WebVR polyfill allows smartphones to be WebVR capable.
+A-Frame is built on top of another library called THREE.js
+
+It also includes the WebVR polyfill.
+
+The WebVR polyfill allows all smartphones to be VR capable with Google Cardboard
 
 THREE.js provides a nice way to work with 3D rendering.
 
@@ -247,8 +265,6 @@ A-Frame simplifies everything and abstracts away the more difficult bits.
 Allowing us to get started straight away!
 
 > ![WebVR](images/VR-Requirements.svg)
-
-# What is A-Frame
 
 Why do I like A-Frame?
 
@@ -288,18 +304,18 @@ You are not required to write a single line of JavaScript unless you want to mak
 
 > ```html
 	<html>
-		<head>
-			<script src="js/a-frame.js"></script>
-		</head>
-		<body>
-			<a-scene>
-				<a-sphere position="0 1.25 -1" radius="1.25" color="#EF2D5E"></a-sphere>
-				<a-cube position="-1 0.5 1" rotation="0 45 0" width="1" height="1" depth="1" color="#4CC3D9"></a-cube>
-				<a-cylinder position="1 0.75 1" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-				<a-plane rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-				<a-sky color="#ECECEC"></a-sky>
-			</a-scene>
-		</body>
+	<head>
+		<script src="js/a-frame.js"></script>
+	</head>
+	<body>
+		<a-scene>
+			<a-sphere position="0 1.25 -1" radius="1.25" color="#EF2D5E"></a-sphere>
+			<a-box position="-1 0.5 1" rotation="0 45 0" color="#4CC3D9"></a-box>
+			<a-cylinder position="1 0.75 1" radius="0.5" color="#FFC65D"></a-cylinder>
+			<a-plane rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+			<a-sky color="#ECECEC"></a-sky>
+		</a-scene>
+	</body>
 	</html>
 ```
 
@@ -339,11 +355,11 @@ Try that previous url again and you will see a cool demo, or try out any of the 
 
 Now we have WebVR set up lets actually build something.
 
-> To enable webvr in GearVR open this URL in the WebVR browser
->
-> ![WebVR being enabled](images/webvr-enable.jpg)
->
-> # internet://webvr-enable
+
+<blockquote class="dark" style="background-image: url('images/webvr-enable.jpg');">
+	<h2>To enable webvr in GearVR open this URL in the WebVR browser</h2>
+	<h1>internet://webvr-enable</h1>
+</blockquote>
 
 # Actually building something
 
@@ -392,7 +408,9 @@ I took it with my 360 camera (no reason to post this I just think it is adorable
 
 > ![The adorable Gear360](images/gear360.jpg)
 
-If you want to do something more advanced you can, you can use JavaScript to control a-frame just as normal.
+If you are comfortable writing JavaScript and want to do something more advanced
+
+You can, you can use JavaScript to control a-frame just like you would use it on normal html
 
 Here I have written a small script to rotate through some images whenever I click.
 
@@ -453,6 +471,10 @@ In 3D unless specified otherwise flat shapes are one sided
 
 By one sided I mean that if you were to view it from the back you don't see anything.
 
+But there is only so much you can do with primitives.
+
+We can make them a little more complex by attatching them together.
+
 <script>window.aSlidesSlideData['slide-one-sided'] = window.iframeSlide</script>
 
 > <iframe src="one-sided.html" seamless="seamless"></iframe>
@@ -485,7 +507,7 @@ This keeps them stuck together.
 
 # Scene Graphs
 
-This behaviour is known as a scene graphics
+This behaviour is known as a scene graphs
 
 It creates a heirarchy of items in the scene. So you can reuse models and attach them to other objects.
 
@@ -533,11 +555,14 @@ Because of the difficulty of making my own I tend to buy models from Turbo Squid
 
 As we are making a real time game for mobile handsets we should keep required resources to a minimum.
 
-> # 1000s of polygons
+> # 'Game Ready' or 'Low Poly'
 >
-> # Around 10 of Megapixels of textures
+> ## In total a scene should contain no more than:
 >
-> ## 'Game Ready' or 'Low Poly'
+> ## 1000s of polygons
+>
+> ## Around 10 of Megapixels of textures
+
 
 
 # Including Custom Models
@@ -555,18 +580,17 @@ In this example it was really big and facing the wrong direction so I shrunk it 
 <script>window.aSlidesSlideData['slide-including-custom-models'] = window.contentSlide(
 	{image: 'images/turbosquid.png'},
 	{markdown: `
-* .DAE - Collada
-* .OBJ - Object
-* .GLTF - glTF (New format for the web support comping soon)
+* .OBJ - OBJ format just does geometry and textures
+* .DAE - Collada can include animations, character skeletons, lighting,... lots of things.
 `},
 {markdown: '```' + `
 <a-scene>
-<a-assets>
-	<a-asset-item id="Feisar-ship-obj" src="a-frame-assets/Feisar_Ship_OBJ/Feisar_Ship.obj"></a-asset-item>
-	<a-asset-item id="Feisar-ship-mtl" src="a-frame-assets/Feisar_Ship_OBJ/Feisar_Ship.mtl"></a-asset-item>
-</a-assets>
+	<a-assets>
+		<a-asset-item id="obj" src="Feisar_Ship.obj"></a-asset-item>
+		<a-asset-item id="mtl" src="Feisar_Ship.mtl"></a-asset-item>
+	</a-assets>
 
-<a-obj-model src="#Feisar-ship-obj" mtl="#Feisar-ship-mtl" id="ship"></a-obj-model>
+	<a-obj-model src="#obj" mtl="#mtl" id="ship"></a-obj-model>
 </a-scene>
 ` + '```'
 },{
@@ -594,7 +618,7 @@ This really allowed me to get to grips with how A-Frame works.
 
 > ![https://aframe.io/community/](images/aframecommunity.png)
 >
-> https://aframe.io/community/
+> ## https://aframe.io/community/
 
 
 # What can Components do?
@@ -611,16 +635,16 @@ For example we can take the 'wasd-controls' off the camera and attach them to ou
 
 > ```html
 <a-scene>
-
+>
 	<!-- controls  disabled -->
 	<a-camera wasd-controls="enabled: false;"></a-camera>
-
-
+>
+>
 	<!-- controls  enabled -->
 	<a-entity wasd-controls="enabled: true;">
 		<a-obj-model src="#Feisar-ship-obj" mtl="#Feisar-ship-mtl" id="ship"></a-obj-model>
 	</a-entity>
-
+>
 </a-scene>
 ```
 
@@ -658,7 +682,7 @@ This is all stuff you can do with A-Frame, it gets easier and easier as the comm
 
 We will stand on the shoulders of giants and together we build great things.
 
-<script>window.aSlidesSlideData['slide-fancy-demo'] = window.iframeSlide</script>
+<script>window.aSlidesSlideData['slide-fancy-demo-and-conculsion'] = window.iframeSlide</script>
 
 > <iframe src="track.html" seamless="seamless"></iframe>
 >
