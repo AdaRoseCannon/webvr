@@ -688,6 +688,16 @@ We will stand on the shoulders of giants and together we build great things.
 >
 > ## {{ site.url }}/track.html
 
+# The future?
+
+I would like to finish up with this youtube video. By Boris Smus who has done a lot of work towards WebVR.
+
+It is a demo he put out yesterday of co-presence in the browser making the most of web technology.
+
+<script>window.aSlidesSlideData['slide-the-future-'] = window.iframeSlide</script>
+
+> <iframe src="https://www.youtube.com/embed/FPJDNQJt2DQ?start=26" frameborder="0" allowfullscreen></iframe>
+
 # Resources
 
 > # Resources
