@@ -2,7 +2,7 @@
 layout: post
 title: Getting Started with WebVR
 description: Touching on A-Frame and tools for authoring content.
-image: https://ada.is/progressive-web-apps-talk/images/FinancialTimes_G-FTUS_Balloon_LordMayorsAppeal.jpg
+image: https://ada.is/getting-started-with-webvr/aframevr.png
 scripts: [
 	'https://cdn.rawgit.com/aframevr/aframe/679a5d9fa501e81f5fdfa36d162580a116946fd1/dist/aframe.min.js',
 	'https://cdn.rawgit.com/AdaRoseEdwards/dirty-dom/v1.3.1/build/dirty-dom-lib.min.js'
@@ -341,7 +341,7 @@ Now we have WebVR set up lets actually build something.
 
 > To enable webvr in GearVR open this URL in the WebVR browser
 >
-> # Picture of WebVR being enabled
+> ![WebVR being enabled](images/webvr-enable.jpg)
 >
 > # internet://webvr-enable
 
@@ -542,31 +542,127 @@ As we are making a real time game for mobile handsets we should keep required re
 
 # Including Custom Models
 
+I found this model on turbosquid, I want to use it for a game.
 
+It has 889 polygons and a 1024x1024 texture that looks pretty good to me.
+
+I changed the texture from a bitmap to a jpeg to make it faster to download.
+
+It is available in OBJ format, one of the formats that can be imported into A-Frame
+
+In this example it was really big and facing the wrong direction so I shrunk it and rotated it to place it in front of the camera.
+
+<script>window.aSlidesSlideData['slide-including-custom-models'] = window.contentSlide(
+	{image: 'images/turbosquid.png'},
+	{markdown: `
+* .DAE - Collada
+* .OBJ - Object
+* .GLTF - glTF (New format for the web support comping soon)
+`},
+{markdown: '```' + `
+<a-scene>
+<a-assets>
+	<a-asset-item id="Feisar-ship-obj" src="a-frame-assets/Feisar_Ship_OBJ/Feisar_Ship.obj"></a-asset-item>
+	<a-asset-item id="Feisar-ship-mtl" src="a-frame-assets/Feisar_Ship_OBJ/Feisar_Ship.mtl"></a-asset-item>
+</a-assets>
+
+<a-obj-model src="#Feisar-ship-obj" mtl="#Feisar-ship-mtl" id="ship"></a-obj-model>
+</a-scene>
+` + '```'
+},{
+	iframe: 'obj.html'
+})</script>
+
+> ![turbosquid](images/turbosquid.png)
 
 # Making new components
 
+There is a lot to take in when learning A-Frame for the first time.
 
-# Fancy Demo
+I was totally lost.
 
-If this seems like a low limit it is but there are many tricks we can employ to make the most of this.
+I reached out to A-Frame community by joining the A-Frame slack channel.
 
-This is a demo I produced for this talk. It is unfinished.
+They are really friendly and very helpful.
+
+I asked where to begin and some of the best advice I recieved was to create your own component.
+
+This seemed daunting at first but once I got stuck in and asked for some help it began to make sense.
+
+This really allowed me to get to grips with how A-Frame works.
+
+
+> ![https://aframe.io/community/](images/aframecommunity.png)
+>
+> https://aframe.io/community/
+
+
+# What can Components do?
+
+Components are the discreet bits of logic which power A-Frame.
+
+Each attribute on the html elements we write is a component.
+
+For example the position component just sets the objects position in 3D space.
+
+They are usually totally agnostic to what they get attatched to.
+
+For example we can take the 'wasd-controls' off the camera and attach them to our racing ship from earlier.
+
+> ```html
+<a-scene>
+
+	<!-- controls  disabled -->
+	<a-camera wasd-controls="enabled: false;"></a-camera>
+
+
+	<!-- controls  enabled -->
+	<a-entity wasd-controls="enabled: true;">
+		<a-obj-model src="#Feisar-ship-obj" mtl="#Feisar-ship-mtl" id="ship"></a-obj-model>
+	</a-entity>
+
+</a-scene>
+```
+
+# Component move demo
+
+As you can see now the camera does not move but the ship does
+
+I'm beginning to think we could do something cool with this...
+
+This gets a bit more JavaScript-y now. Let's build a component.
+
+I don't like how the ship just sits there like a rock lets make it drift about a bit to show that it is hovering.
+
+<script>window.aSlidesSlideData['slide-component-move-demo'] = window.iframeSlide</script>
+
+> <iframe src="moving-the-wasd-controller.html" seamless="seamless"></iframe>
+>
+> ## {{ site.url }}/moving-the-wasd-controller.html
+
+# Fancy Demo and Conculsion
+
+I started playing with A-Frame a week ago, all of the demos in this slide deck I built yesterday.
+
+This final demo is a litle on going project where I am experimenting with what can be done with a-frame.
 
 There are many ways I would take this forward
 
-[HOW WOULD I DO THAT] audio, physics, multiplayer?
+I would like to add audio with the sound component to give engine noise to my ship and background music to the game in general.
+
+I would like to take advantage of the Webs peer to peer networking capabilities to add multiplayer
+
+I would like to add an elevated track which uses a physics engine to handle jumps and crashes.
+
+This is all stuff you can do with A-Frame, it gets easier and easier as the community grows and we use each others components.
+
+We will stand on the shoulders of giants and together we build great things.
 
 <script>window.aSlidesSlideData['slide-fancy-demo'] = window.iframeSlide</script>
 
 > <iframe src="track.html" seamless="seamless"></iframe>
 >
 > ## {{ site.url }}/track.html
-
-
-# Conclusion
-
-
 
 # Resources
 
@@ -584,7 +680,9 @@ There are many ways I would take this forward
 >
 > https://github.com/aframevr/aframe-boilerplates
 >
-> A Frame Blog loads of fun examples - https://aframe.io/blog/
+> A-Frame Blog loads of fun examples - https://aframe.io/blog/
+>
+> A-Frame slack channel https://aframevr-slack.herokuapp.com/
 
 <script>
 	var iframes = Array.from(document.querySelectorAll('iframe'));

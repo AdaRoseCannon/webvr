@@ -1,0 +1,27 @@
+---
+layout: a-frame
+title: Robot
+description: A scene graph example
+image: images/scene-graph-screenshot.jpg
+scripts: [
+	'https://cdn.rawgit.com/aframevr/aframe/679a5d9fa501e81f5fdfa36d162580a116946fd1/dist/aframe-v0.2.0.min.js', # master at the time of writing
+]
+---
+
+<a-scene>
+
+	<a-assets>
+		<a-asset-item id="Feisar-ship-obj" src="a-frame-assets/Feisar_Ship_OBJ/Feisar_Ship.obj"></a-asset-item>
+		<a-asset-item id="Feisar-ship-mtl" src="a-frame-assets/Feisar_Ship_OBJ/Feisar_Ship.mtl"></a-asset-item>
+	</a-assets>
+
+	<a-camera wasd-controls="enabled: false;" position="0 2 4"></a-camera>
+
+	<a-entity wasd-controls="enabled: true;">
+		<a-obj-model src="#Feisar-ship-obj" mtl="#Feisar-ship-mtl" id="ship" rotation="0 90 0" scale="0.01 0.01 0.01"></a-obj-model>
+	</a-entity>
+
+	<a-plane rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+
+	<a-sky color="maroon"></a-sky>
+</a-scene>
