@@ -229,24 +229,23 @@ Cardboard devices are just cardboard and plastic lenses and are often cheap enou
 
 # Doing 3D graphics in the Web
 
-There are many tools and libaries for producing publishing graphics for the Web:
+There are many tools and libaries for producing publishing 3D graphics for the Web:
 
-* Goo Create - Web bas
-* Unity - Can be compiled for the Web
-* Unreal - Can also be compiled for the Web
-* THREE.js - JavaScript library for building scenes. Has nice API
-* A-Frame - What I talk about here, built on THREE.js
+* Goo Create - Web based
+* Unity - Can be made to build 3D scenes for the Web
+* Unreal Engine - Can also be compiled to run the Web
+* THREE.js - JavaScript library for building 3D scenes in the Web. Is nice to program in.
+* A-Frame - What I talk about here, built on THREE.js, allows us to make 3D scenes the same way we would make a HTML document.
 
 These are all really good solutions and if you are already familiar with one of these then don't feel pressured to change.
 
 > ## A non-exhaustive list:
 >
-> * Goo Create - Cool web based editor
-> * Unity - Can compile for the Web
-> * Unreal - Can also compile for the Web
-> * THREE.js - JavaScript library for 3D graphics. Has a nice API.
-> * A-Frame - What I talk about here.
-
+> * Goo Create - Web based
+> * Unity - Can be made to build 3D scenes for the Web
+> * Unreal Engine - Can also be compiled to run the Web
+> * THREE.js - JavaScript library for building 3D scenes in the Web. Is nice to program in.
+> * A-Frame - What I talk about here, built on top of THREE.js.
 
 # What is A-Frame
 
@@ -301,6 +300,8 @@ Then anyone can include it in their scenes without needing to write complex Java
 It is extensible because my components will be based on other A-Frame components and you can release components that depend on mine.
 
 You are not required to write a single line of JavaScript unless you want to make your own components.
+
+* Walk through this line by line *
 
 > ```html
 	<html>
@@ -654,15 +655,119 @@ As you can see now the camera does not move but the ship does
 
 I'm beginning to think we could do something cool with this...
 
-This gets a bit more JavaScript-y now. Let's build a component.
-
-I don't like how the ship just sits there like a rock lets make it drift about a bit to show that it is hovering.
-
 <script>window.aSlidesSlideData['slide-component-move-demo'] = window.iframeSlide</script>
 
 > <iframe src="moving-the-wasd-controller.html" seamless="seamless"></iframe>
 >
 > ## {{ site.url }}/moving-the-wasd-controller.html
+
+# Other projects and User Interfaces
+
+The really interesting state we are in now is that we are in a green field of interface design.
+
+Nothing is set in stone.
+
+Interactions tend to fall somewhere on this graph.
+
+Building interactions in the top right is where most people jump to.
+
+Although familiar and quick to be grasped they limit what could be done to what is already doable.
+
+Interactions in the top left square can be quirky and fun because they subvert are expectations of reality.
+
+The bottom right tend to be more minimalist, they make sense when that interaction is not something which needs to be special. This kind of interface is probably familiar to those used to playing first person roleplaying games.
+
+Click on this, click on that. Simple potentially restrictive.
+
+The bottom left square is where the VR magic will happen. Unconstrained by both reality and pre-existing assumptions and expectations a new User interface language will be formed.
+
+Thinking of icons we are familiar with
+
+* E.g. Hamburger icon would sit in the bottom left
+* Save icon is top right if you are born in the 80s
+* Or bottom right if you were born in the 90s 00s
+
+A new generation has grown up where every screen is a touch screen
+
+Who are familiar with the visual language of those screens.
+
+We designing user interfaces for the VR generation.
+
+VR gives us new tools for design
+
+A sense of scale, we can build interfaces at a familiar scale to the user or with no extra work make them tiny or huge.
+
+Things can be relateable or familiar but behave by different rules.
+
+VR can be at once both familiar and Surreal,
+
+> ![Diagram of interaactions](images/vr-interactions.svg)
+
+People get used to new interactions really quickly.
+
+Minesweeper was invented to teach people to use right click.
+
+As we settle on new design languages for VR people are going to need a similar step up
+
+> ![Minesweeper](images/mines.gif)
+
+Over the past year I have seen some really interesting user interface elements in VR.
+
+* Exit Burrito
+* Going through links by putting something on your head
+* Tilt Head to Exit
+* Click links by staring
+* Ribbon Sliders
+* 3D printed save icon
+
+> Videos of examples
+
+# A-Frame Examples
+
+Each week A-Frame do a blog post highlighting development of the platform and interesting projects from the community.
+
+Check it out really interesting and exciting to see what is upcoming in A-Frame
+
+> ![a-frame-blog](images/a-frame-blog.png)
+>
+> https://aframe.io/blog/
+
+# Google's Daydream Experiments
+
+Google are regularly giving feedback from their experiments into VR interaction
+
+> # Google's Daydream Experiments
+>
+> <video src="images/simpleavatars.mp4" mute="true" autoplay loop></video>
+>
+> http://uploadvr.com/google-shares-lessons-60-vr-experiments/
+
+# Google VR Videos
+
+They have lots of examples on their website
+
+This recent one is interesting, an experiment in diffusing situations where one player might get irate by reducing their agency if not playing nice.
+
+<script>window.aSlidesSlideData['slide-google-vr-videos'] = window.iframeSlide</script>
+
+> <iframe width="560" height="315" src="https://www.youtube.com/embed/BoOVVx9CnL8" frameborder="0" allowfullscreen></iframe>
+>
+> ## https://www.youtube.com/channel/UCkUZagbGbewp3bZQLXGzkmA
+
+# Some rules for what you should not do
+
+* Don't teleport the user it will just confuse them.
+* Don't accelerate or rotate the camera unless in well expected smooth fashion, you will make them seasick.
+* Don't do something which runs laggy, it may make them ill.
+* Do have interactive elements give a wiggle when the user glances at it.
+
+Some guides to building good expereinces:
+
+My slides are online if you want to find this later
+
+> https://developer.leapmotion.com/assets/Leap%20Motion%20VR%20Best%20Practices%20Guidelines.pdf
+>
+> https://developer.oculus.com/documentation/intro-vr/latest/concepts/bp_intro/
 
 # Fancy Demo and Conculsion
 
@@ -681,6 +786,8 @@ I would like to add an elevated track which uses a physics engine to handle jump
 This is all stuff you can do with A-Frame, it gets easier and easier as the community grows and we use each others components.
 
 We will stand on the shoulders of giants and together we build great things.
+
+Btw if you build something cool, send it to me.
 
 <script>window.aSlidesSlideData['slide-fancy-demo-and-conculsion'] = window.iframeSlide</script>
 
