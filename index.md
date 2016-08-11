@@ -740,7 +740,7 @@ Google are regularly giving feedback from their experiments into VR interaction
 >
 > <video src="images/simpleavatars.mp4" mute="true" autoplay loop></video>
 >
-> http://uploadvr.com/google-shares-lessons-60-vr-experiments/
+> ## http://uploadvr.com/google-shares-lessons-60-vr-experiments/
 
 # Google VR Videos
 
@@ -759,7 +759,12 @@ This recent one is interesting, an experiment in diffusing situations where one 
 * Don't teleport the user it will just confuse them.
 * Don't accelerate or rotate the camera unless in well expected smooth fashion, you will make them seasick.
 * Don't do something which runs laggy, it may make them ill.
+
+# Stuff you should
+
 * Do have interactive elements give a wiggle when the user glances at it.
+* Do make any text large, thick and clear
+* Do have fun making something
 
 Some guides to building good expereinces:
 
