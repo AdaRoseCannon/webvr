@@ -730,7 +730,7 @@ Check it out really interesting and exciting to see what is upcoming in A-Frame
 
 > ![a-frame-blog](images/a-frame-blog.png)
 >
-> https://aframe.io/blog/
+> ## https://aframe.io/blog/
 
 # Google's Daydream Experiments
 
