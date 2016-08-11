@@ -225,7 +225,7 @@ There are many tools and libaries for producing publishing graphics for the Web:
 * THREE.js - JavaScript library for building scenes. Has nice API
 * A-Frame - What I talk about here, built on THREE.js
 
-> A non-exhaustive list:
+> ## A non-exhaustive list:
 >
 > * Goo Create - Cool web based editor
 > * Unity - Can compile for the Web
@@ -252,9 +252,13 @@ Allowing us to get started straight away!
 
 Why do I like A-Frame?
 
-* A-Frame allows you to compose scenes with 3D models, Videos, Audio, Images by writing html.
-* [MORE REASONS]
+A-Frame allows you to compose scenes with 3D models, Videos, Audio, Images by writing html.
 
+It handles a lot of the heavy lifting and edge cases.
+
+The fundamentals of a scene are already set up so don't need to be written out again and again and again
+
+I can get started making something straight away with no faffing about.
 
 > ![Aframe](images/aframevr.png)
 >
@@ -431,17 +435,89 @@ Enough showing you my holiday photos, what if you want to actually include a mor
 
 A-Frame comes with a whole bunch of geometric primitives.
 
+By one sided I mean that if you were to view it from the back you don't see anything.
+
 > * Box
 > * Circle (One sided)
 > * Cone
 > * Cylinder Primitive
-> * Plane
+> * Plane (One sided)
 > * Ring
 > * Sphere
 > * Torus (A donut)
 > * Torus Knot
 
-But that is usually not enough there are a bunch of 3D modelling tools out there:
+# One Sided
+
+In 3D unless specified otherwise flat shapes are one sided
+
+By one sided I mean that if you were to view it from the back you don't see anything.
+
+<script>window.aSlidesSlideData['slide-one-sided'] = window.iframeSlide</script>
+
+> <iframe src="one-sided.html" seamless="seamless"></iframe>
+>
+> ## {{ site.url }}/one-sided.html
+
+# Models from Primitives
+
+By making one object a child of another they become attached together.
+
+The child is transformed in the same way as the parent.
+
+By transformed I mean the way it is scaled, rotated or positioned.
+
+This keeps them stuck together.
+
+<script>window.aSlidesSlideData['slide-models-from-primitives'] = window.iframeSlide</script>
+
+> ```html
+	<a-box position="0 2 0" color="red">
+>
+		<!-- This blue box is a child of the red box -->
+		<a-box position = "0.5 0.5 0.5" color="blue"></a-box>
+>
+		<!-- Spin the red box -->
+		<a-animation repeat="indefinite" attribute="rotation" easing="linear" to="0 360 0" dur="2000"></a-animation>
+	</a-box>
+```
+> <iframe src="two-boxes.html" seamless="seamless"></iframe>
+
+# Scene Graphs
+
+This behaviour is known as a scene graphics
+
+It creates a heirarchy of items in the scene. So you can reuse models and attach them to other objects.
+
+E.g. A model bus only needs one chair which can then be reused and attatched to the bus again and again.
+
+This is good because each model is expensive but reusing it is cheap.
+
+The example behind me is just a more elaborate version of the last slide.
+
+* The eyes are children of the head
+* Which is a child of the body
+* Which is a child of the robot
+
+It is being transformed elaborately
+
+* The robot is being shrunk and grown
+* the head is being rotated
+* Through all this the eyes stay in place
+
+<script>window.aSlidesSlideData['slide-scene-graphs'] = window.iframeSlide</script>
+
+> <iframe src="scene-graph.html" seamless="seamless"></iframe>
+>
+> ## {{ site.url }}/scene-graph.html
+
+# Getting Models
+
+But that is still usually not enough we want custom models.
+
+You can make your own or buy them.
+
+there are a bunch of 3D modelling tools out there:
 
 These all have a steep learning curve but if you are still in education you may have access to these through your school.
 
@@ -463,6 +539,14 @@ As we are making a real time game for mobile handsets we should keep required re
 >
 > ## 'Game Ready' or 'Low Poly'
 
+
+# Including Custom Models
+
+
+
+# Making new components
+
+
 # Fancy Demo
 
 If this seems like a low limit it is but there are many tricks we can employ to make the most of this.
@@ -478,6 +562,10 @@ There are many ways I would take this forward
 > <iframe src="track.html" seamless="seamless"></iframe>
 >
 > ## {{ site.url }}/track.html
+
+
+# Conclusion
+
 
 
 # Resources
