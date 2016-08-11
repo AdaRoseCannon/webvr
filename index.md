@@ -829,6 +829,8 @@ It is a demo he put out yesterday of co-presence in the browser making the most 
 > A-Frame Blog loads of fun examples - https://aframe.io/blog/
 >
 > A-Frame slack channel https://aframevr-slack.herokuapp.com/
+>
+> Images of people wearing HMDs - http://mashable.com/2015/06/18/vr-face/
 
 <script>
 	var iframes = Array.from(document.querySelectorAll('iframe'));
