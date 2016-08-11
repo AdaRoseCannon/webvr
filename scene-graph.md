@@ -2,7 +2,7 @@
 layout: a-frame
 title: Robot
 description: A scene graph example
-image: ./images/track-screenshot.jpg
+image: images/scene-graph-screenshot.jpg
 scripts: [
 	'https://cdn.rawgit.com/aframevr/aframe/679a5d9fa501e81f5fdfa36d162580a116946fd1/dist/aframe-v0.2.0.min.js', # master at the time of writing
 ]
