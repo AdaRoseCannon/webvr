@@ -20,6 +20,14 @@ scripts: [
 	};
 	window.aSlidesSlideData = {};
 
+	window.playVideo = {
+		setup: function () {
+			this.querySelector('video').play();
+		},
+		action: window.FakeGenerator([ function() {} ]),
+		teardown: function () { }
+	}
+
 	window.contentSlide = function (...slides) {
 		var oldContent;
 
@@ -43,7 +51,7 @@ scripts: [
 					if (i) {
 						switch(Object.keys(i)[0]) {
 							case 'video':
-								this.innerHTML = `<video src="${i.video}" autoplay loop style="object-fit: contain; flex: 1 0;" />`;
+								this.innerHTML = `<video src="${i.video}" preload autoplay autostart loop style="object-fit: contain; flex: 1 0;" />`;
 								break;
 							case 'image':
 								this.innerHTML = `<image src="${i.image}" />`;
@@ -196,9 +204,17 @@ A VR headset works by tracking your head rotation and position and showing to ea
 
 This is what I aim to cover in this talk:
 
-> # Contents
->
-> * Why VR and the Web
+> * Why Virtual Reality and the Web Go Hand in Hand
+> * What is A-Frame, how does it allow us to do Virtual Reality
+> * A-Frame Hello World, our first 3D scene.
+> * Activating VR on Gear VR
+> * Making something useful, a 360 image viewer
+> * Adding some interactivity
+> * Using more complex shapes and game assets
+> * Inventing new VR user interfaces
+> * Some interesting experiments
+> * What I am building and final thoughts
+> * Questions
 
 # Why VR and the web go hand in hand
 
@@ -344,11 +360,12 @@ The Gear VR does not run VR websites out of the box it needs to be turned on.
 
 This is a bit annoying and confusing because my demos wouldn't work and I didn't know why.
 
-> # Testing if WebVR is available
->
-> ![No Web VR](images/nowebvr.jpg)
->
-> ## http://threejs.org/examples/webvr_cubes.html
+
+<blockquote class="dark" style="background-image: url('images/nowebvr.jpg');">
+	<h1>Testing if WebVR is available</h1>
+	<p><br />&nbsp;</p>
+	<h1>http://threejs.org/examples/webvr_cubes.html</h1>
+</blockquote>
 
 Now your headset is set up to make the most of VR in the web!!!
 
@@ -359,6 +376,7 @@ Now we have WebVR set up lets actually build something.
 
 <blockquote class="dark" style="background-image: url('images/webvr-enable.jpg');">
 	<h2>To enable webvr in GearVR open this URL in the WebVR browser</h2>
+	<p><br />&nbsp;</p>
 	<h1>internet://webvr-enable</h1>
 </blockquote>
 
@@ -408,6 +426,8 @@ The image itself looks like this:
 I took it with my 360 camera (no reason to post this I just think it is adorable):
 
 > ![The adorable Gear360](images/gear360.jpg)
+
+# Adding some interactivity
 
 If you are comfortable writing JavaScript and want to do something more advanced
 
@@ -733,7 +753,7 @@ These are a few of my faves. The a forementioned exit burrito.
 }
 )</script>
 
-> <video src="images/juicy-sliders.mp4" mute="true" autoplay loop></video>
+> <video src="images/juicy-sliders.mp4" muted preload autoplay autostart loop></video>
 
 # A-Frame Examples
 
@@ -753,9 +773,11 @@ Also the wide variety of demos and projects are great if you are stumped for ide
 
 Google are regularly giving feedback from their experiments into VR interaction
 
+<script>window.aSlidesSlideData['slide-google-s-daydream-experiments'] = window.playVideo</script>
+
 > # Google's Daydream Experiments
 >
-> <video src="images/simpleavatars.mp4" mute="true" autoplay loop></video>
+> <video src="images/simpleavatars.mp4" muted autoplay autostart loop preload></video>
 >
 > ## http://uploadvr.com/google-shares-lessons-60-vr-experiments/
 
