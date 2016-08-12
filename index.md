@@ -221,7 +221,7 @@ The proportion of people who access the internet on mobile devices is ever incre
 Cardboard devices are just cardboard and plastic lenses and are often cheap enough that newspapers will give them away. The FT did a give away recently.
 
 <script>window.aSlidesSlideData['slide-why-vr-and-the-web-go-hand-in-hand'] = window.contentSlide(
-	{image: 'images/MobileBroadbandInternetPenetrationWorldMap.svg', caption: 'Mobile Broadband Internet Saturation'},
+	{image: 'images/MobileBroadbandInternetPenetrationWorldMap.svg', caption: '## Mobile Broadband Internet Saturation'},
 	{image: 'images/cardboard.jpg'}
 );</script>
 > ![Internet Penetration World Map](images/MobileBroadbandInternetPenetrationWorldMap.svg)
@@ -723,13 +723,13 @@ These are a few of my faves. The a forementioned exit burrito.
 
 <script>window.aSlidesSlideData['slide-my-faves'] = window.contentSlide({
 	video: 'images/juicy-sliders.mp4',
-	caption: 'https://twitter.com/Cabbibo/status/758792984095621120'
+	caption: '## https://twitter.com/Cabbibo/status/758792984095621120'
 },{
 	video: 'images/exit-burrito.mp4',
-	caption: 'Owlchemy Labs’ Job Simulator 2050'
+	caption: '## Owlchemy Labs’ Job Simulator 2050'
 },{
 	video: 'images/a-frame-link-traversal.mp4',
-	caption: 'Link traversal in the next release of A-Frame'
+	caption: '## Link traversal in the next release of A-Frame'
 }
 )</script>
 
