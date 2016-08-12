@@ -711,22 +711,39 @@ As we settle on new design languages for VR people are going to need a similar s
 
 > ![Minesweeper](images/mines.gif)
 
+# My Faves
+
 Over the past year I have seen some really interesting user interface elements in VR.
 
+These are a few of my faves. The a forementioned exit burrito.
+
+* Juicy Sliders
 * Exit Burrito
 * Going through links by putting something on your head
-* Tilt Head to Exit
-* Click links by staring
-* Ribbon Sliders
-* 3D printed save icon
 
-> Videos of examples
+<script>window.aSlidesSlideData['slide-component-move-demo'] = window.contentSlide({
+	video: 'images/juicy-sliders.mp4'
+	caption: https://twitter.com/Cabbibo/status/758792984095621120
+},{
+	video: 'images/exit-burrito.mp4'
+	caption: 'Owlchemy Labs’ Job Simulator 2050'
+},{
+	video: 'images/a-frame-link-traversal.mp4'
+	caption: 'Link traversal in the next release of A-Frame'
+}
+)</script>
+
+> <video src="images/juicy-sliders.mp4" mute="true" autoplay loop></video>
 
 # A-Frame Examples
 
+That last one I found on the A-Frame blog.
+
 Each week A-Frame do a blog post highlighting development of the platform and interesting projects from the community.
 
-Check it out really interesting and exciting to see what is upcoming in A-Frame
+Check it out really interesting and exciting to see what is upcoming in A-Frame.
+
+Also the wide variety of demos and projects are great if you are stumped for ideas
 
 > ![a-frame-blog](images/a-frame-blog.png)
 >
