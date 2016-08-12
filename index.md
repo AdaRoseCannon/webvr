@@ -721,14 +721,14 @@ These are a few of my faves. The a forementioned exit burrito.
 * Exit Burrito
 * Going through links by putting something on your head
 
-<script>window.aSlidesSlideData['slide-component-move-demo'] = window.contentSlide({
-	video: 'images/juicy-sliders.mp4'
-	caption: https://twitter.com/Cabbibo/status/758792984095621120
+<script>window.aSlidesSlideData['slide-my-faves'] = window.contentSlide({
+	video: 'images/juicy-sliders.mp4',
+	caption: 'https://twitter.com/Cabbibo/status/758792984095621120'
 },{
-	video: 'images/exit-burrito.mp4'
+	video: 'images/exit-burrito.mp4',
 	caption: 'Owlchemy Labs’ Job Simulator 2050'
 },{
-	video: 'images/a-frame-link-traversal.mp4'
+	video: 'images/a-frame-link-traversal.mp4',
 	caption: 'Link traversal in the next release of A-Frame'
 }
 )</script>
@@ -787,9 +787,9 @@ Some guides to building good expereinces:
 
 My slides are online if you want to find this later
 
-> https://developer.leapmotion.com/assets/Leap%20Motion%20VR%20Best%20Practices%20Guidelines.pdf
+> ### https://developer.leapmotion.com/assets/ Leap%20Motion%20VR%20Best%20Practices%20Guidelines.pdf
 >
-> https://developer.oculus.com/documentation/intro-vr/latest/concepts/bp_intro/
+> ## https://developer.oculus.com/documentation/intro-vr/latest/concepts/bp_intro/
 
 # Fancy Demo and Conculsion
 
