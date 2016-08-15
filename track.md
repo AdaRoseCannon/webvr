@@ -28,6 +28,10 @@ scripts: [
 	<a-assets>
 		<a-asset-item id="Feisar-ship-obj" src="a-frame-assets/Feisar_Ship_OBJ/Feisar_Ship.obj"></a-asset-item>
 		<a-asset-item id="Feisar-ship-mtl" src="a-frame-assets/Feisar_Ship_OBJ/Feisar_Ship.mtl"></a-asset-item>
+
+		<a-asset-item id="race-track-obj" src="a-frame-assets/race-track/race-track.obj"></a-asset-item>
+		<a-asset-item id="race-track-mtl" src="a-frame-assets/race-track/race-track.mtl"></a-asset-item>
+
 		<img id="water-normal" src="https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/waternormals.jpg" crossorigin="anonymous" />
 
 		<!-- Sky is free sample sky from cgskies, buy one for commecial use -->
@@ -78,7 +82,8 @@ scripts: [
 	</a-curve>
 
 	<a-draw-curve curve="#track" material="shader: line; color: red;"></a-draw-curve>
-	<a-clone-along-curve geometry="primitive: box;" curve="#track" spacing="5"></a-clone-along-curve>
+
+	<a-clone-along-curve a-obj-model="src: #race-track-obj; mtl: #race-track-mtl;" curve="#track" spacing="5"></a-clone-along-curve>
 
 </a-scene>
 
