@@ -22,6 +22,7 @@ This is a little layout for blog posts which can turn into slides using a-slides
 
 ```bash
 sudo apt-get install bundler zlib1g-dev libxml2-dev nodejs
+bundle config build.nokogiri --use-system-libraries
 bundle install
 bundle exec jekyll serve
 ```
