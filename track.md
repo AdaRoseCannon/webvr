@@ -21,7 +21,7 @@ scripts: [
 ]
 ---
 
-<a-scene inspector>
+<a-scene inspector stats>
 
 	<!-- Assets -->
 
@@ -71,13 +71,14 @@ scripts: [
 		<a-entity light="color: #FFFFFF; intensity: 1.5" position="0 1 50"></a-entity>
 	</a-sky>
 
-	<a-ada-ocean position="0 0 0" src="#water-normal" width="1000" depth="1000" light="#sun"></a-ada-ocean>
+	<a-ada-ocean position="0 0 0" src="#water-normal" opacity="0.6" width="1000" depth="1000" light="#sun"></a-ada-ocean>
 
 	<!-- TRACK -->
 
 	<a-curve id="track" curve="CatmullRom">
+		<a-curve-point position="30 -10 0"></a-curve-point>
 		<a-curve-point position="0 0 0"></a-curve-point>
-		<a-curve-point position="-60 4 0"></a-curve-point>
+		<a-curve-point position="-60 4 30"></a-curve-point>
 		<a-curve-point position="-60 10 60"></a-curve-point>
 		<a-curve-point position="-60 10 120"></a-curve-point>
 		<a-curve-point position="-60 50 180"></a-curve-point>
@@ -86,7 +87,7 @@ scripts: [
 
 	<a-draw-curve curve="#track" material="shader: line; color: red;"></a-draw-curve>
 
-	<a-entity clone-along-curve="curve: #track; spacing: 6; rotation: 0 0 0; scale: 2 2 2;" obj-model="obj: #race-track-obj; mtl: #race-track-mtl;"></a-entity>
+	<a-entity clone-along-curve="curve: #track; spacing: 7; rotation: 0 0 0; scale: 6 5 2;" obj-model="obj: #race-track-obj; mtl: #race-track-mtl;"></a-entity>
 
 </a-scene>
 
