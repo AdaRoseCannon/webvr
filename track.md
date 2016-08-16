@@ -6,7 +6,7 @@ image: ./images/track-screenshot.jpg
 scripts: [
 	'https://cdn.rawgit.com/aframevr/aframe/679a5d9fa501e81f5fdfa36d162580a116946fd1/dist/aframe.min.js', # master at the time of writing
 
-	'https://rawgit.com/ngokevin/aframe-look-at-component/master/dist/aframe-look-at-component.min.js', # look at component
+	'https://cdn.rawgit.com/ngokevin/aframe-look-at-component/master/dist/aframe-look-at-component.min.js', # look at component
 
 	'https://cdn.rawgit.com/mrdoob/three.js/r75/examples/js/Mirror.js', # For a-ada-ocean
 	'https://cdn.rawgit.com/mrdoob/three.js/r75/examples/js/WaterShader.js', # For a-ada-ocean
@@ -75,15 +75,18 @@ scripts: [
 
 	<!-- TRACK -->
 
-	<a-curve id="track" type="CatmullRom">
+	<a-curve id="track" curve="CatmullRom">
 		<a-curve-point position="0 0 0"></a-curve-point>
-		<a-curve-point position="1 0 0"></a-curve-point>
-		<a-curve-point position="0 0 1"></a-curve-point>
+		<a-curve-point position="-60 4 0"></a-curve-point>
+		<a-curve-point position="-60 10 60"></a-curve-point>
+		<a-curve-point position="-60 10 120"></a-curve-point>
+		<a-curve-point position="-60 50 180"></a-curve-point>
+		<a-curve-point position="-60 10 240"></a-curve-point>
 	</a-curve>
 
 	<a-draw-curve curve="#track" material="shader: line; color: red;"></a-draw-curve>
 
-	<a-clone-along-curve a-obj-model="src: #race-track-obj; mtl: #race-track-mtl;" curve="#track" spacing="5"></a-clone-along-curve>
+	<a-entity clone-along-curve="curve: #track; spacing: 6; rotation: 0 0 0; scale: 2 2 2;" obj-model="obj: #race-track-obj; mtl: #race-track-mtl;"></a-entity>
 
 </a-scene>
 
