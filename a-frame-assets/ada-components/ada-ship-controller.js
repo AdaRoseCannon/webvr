@@ -57,7 +57,7 @@ AFRAME.registerComponent('ada-ship-controller', {
 		var position = el.getComputedAttribute('position');
 		var rotation = (this.data.turnTarget || el).getComputedAttribute('rotation');
 
-		this.roll += this.el.sceneEl.camera.el.getComputedAttribute('rotation').z * (Math.PI/180) * delta * this.data.rollAcceleration;
+		this.roll -= this.el.sceneEl.camera.el.getComputedAttribute('rotation').z * (Math.PI/180) * delta * this.data.rollAcceleration;
 		rotation.y += this.roll * this.data.rollEasing * delta * -velocity.z * 0.05;
 		this.roll -= this.roll * this.data.rollEasing * delta;
 		velocity.x -= velocity.x * easing * delta;
