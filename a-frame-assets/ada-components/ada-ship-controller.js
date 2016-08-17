@@ -42,10 +42,10 @@ AFRAME.registerComponent('ada-ship-controller', {
 		var prevTime = this.prevTime = this.prevTime || Date.now();
 		var time = window.performance.now();
 		var delta = (time - prevTime) / 1000;
+		this.prevTime = time;
 		var keys = this.keys;
 		var movementVector;
 		var el = this.el;
-		this.prevTime = time;
 
 		// If data changed or FPS too low, reset velocity.
 		if (previousData || delta > MAX_DELTA) {

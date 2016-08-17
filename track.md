@@ -41,7 +41,7 @@ scripts: [
 	<!-- CAMERA -->
 
 	<a-entity look-at="#ship" follow="target: #ship-camera-target;">
-		<a-entity position="0 6 0" rotation="0 180 0">
+		<a-entity position="0 3 0" rotation="0 180 0">
 
 			<!-- Disable the default wasd controls we are using those to control the ship -->
 			<a-camera wasd-controls="enabled: false;"></a-camera>
@@ -50,14 +50,14 @@ scripts: [
 
 
 	<!-- this is moved by the controller, it's rotation is set to the normal of ther service it is on' -->
-	<a-entity ada-ship-controller="easing: 2; acceleration: 100; rollTarget: #ship; turnTarget: #controller-target;">
+	<a-entity ada-ship-controller="easing: 2; acceleration: 40; rollTarget: #ship; turnTarget: #controller-target;">
 
 		<!-- This is rotated by the controller -->
 		<a-entity id="controller-target" rotation="0 -90 0">
-			<a-entity  id="ship-camera-target" position="0 0 -15"></a-entity>
+			<a-entity  id="ship-camera-target" position="0 0 -5"></a-entity>
 
 			<!-- this rolled by the controller -->
-			<a-obj-model src="#Feisar-ship-obj" mtl="#Feisar-ship-mtl" position="0 1 0" rotation id="ship"></a-obj-model>
+			<a-obj-model src="#Feisar-ship-obj" mtl="#Feisar-ship-mtl" position="0 0.2 0" scale="0.3 0.3 0.3" rotation id="ship"></a-obj-model>
 		</a-entity>
 	</a-entity>
 
@@ -89,9 +89,9 @@ scripts: [
 		<a-curve-point position="-60 10 240"></a-curve-point>
 	</a-curve>
 
-	<a-draw-curve curve="#track" material="shader: line; color: red;"></a-draw-curve>
+	<!--<a-draw-curve curve="#track" material="shader: line; color: red;"></a-draw-curve>-->
 
-	<a-entity floor-track clone-along-curve="curve: #track; spacing: 7; scale: 6 5 2;" obj-model="obj: #race-track-obj; mtl: #race-track-mtl;"></a-entity>
+	<a-entity floor-track clone-along-curve="curve: #track; spacing: 6; scale: 1.5 1 2;" obj-model="obj: #race-track-obj; mtl: #race-track-mtl;"></a-entity>
 
 </a-scene>
 
@@ -101,7 +101,7 @@ scripts: [
 
 	var shipController = document.querySelector('[ada-ship-controller]').components['ada-ship-controller'];
 	var curves = Array.from(document.querySelectorAll('[floor-track]'));
-	var gravity = 3;
+	var gravity = 20;
 	var __tempVector1 = new THREE.Vector3();
 	var __tempVector2 = new THREE.Vector3();
 	var yAxis = new THREE.Vector3(0, 1, 0);
@@ -118,7 +118,7 @@ scripts: [
 		for (var i in curves) {
 			var d = getCurveFromTrack(curves[i]).closestPointInLocalSpace(p);
 			if (d.distance < 10) {
-				if (d.location.y > currentFloor.height && d.location.y > p.y) {
+				if (d.location.y > currentFloor.height) {
 					currentFloor.height = d.location.y;
 					currentFloor.normal.copy(d.normal);
 				}
@@ -127,31 +127,43 @@ scripts: [
 	}
 
 	AFRAME.registerSystem('custom-fuzzy-physics', {
+		init: function () {
+			this.restoreNormalAmount = 0.01;
+		},
 		tick: function () {
+			var output = output || document.querySelector('.rs-container *');
+			var prevTime = this.prevTime = this.prevTime || Date.now();
+			var time = window.performance.now();
+			var delta = (time - prevTime) / 1000;
+			this.prevTime = time;
 			var p = shipController.el.getComputedAttribute('position');
 			updateCurrentFloor(p);
-			if (p.y > currentFloor.height + 1) {
-				shipController.velocity.y -= gravity;
+
+			if (p.y > currentFloor.height + 0.5) {
+				shipController.velocity.y -= gravity * delta;
 			}
 
 			// Smoothly rotate the ship to the current floor normal
 			__tempQuaternion.setFromUnitVectors(yAxis, currentFloor.normal);
-			shipController.el.object3D.quaternion.slerp(__tempQuaternion, 0.03);
+			shipController.el.object3D.quaternion.slerp(__tempQuaternion, this.restoreNormalAmount);
+			this.restoreNormalAmount *= 0.8;
+
+			output.textContent = `${currentFloor.height}`;
 
 			if (p.y < currentFloor.height) {
-				shipController.velocity.y /= 5;
-				shipController.velocity.y = Math.abs(shipController.velocity.y);
-				var underground = currentFloor.height - p.y;
-				if (underground < 2) {
 
-					p.y = currentFloor.height;
-					shipController.el.setAttribute('position', p);
+				p.y = currentFloor.height;
+				shipController.el.setAttribute('position', p);
 
-					currentFloor.normal.multiplyScalar(underground);
-					__tempVector1.copy(shipController.velocity).add(currentFloor.normal);
+				this.restoreNormalAmount = 0.3;
 
-					shipController.velocity.copy(__tempVector1);
-				}
+				__tempVector1.copy(shipController.velocity);
+
+				__tempVector1.y = 0;
+
+				__tempVector1.add(currentFloor.normal.multiplyScalar(0.1));
+
+				shipController.velocity.copy(__tempVector1);
 			}
 		}
 	});
