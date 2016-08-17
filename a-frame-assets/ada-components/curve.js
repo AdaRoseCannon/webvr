@@ -92,23 +92,34 @@ AFRAME.registerComponent('curve', {
 		var b = this.curve.getPointAt(bTest);
 		var aDistance = a.distanceTo(point);
 		var bDistance = b.distanceTo(point);
-		if (aDistance < bDistance) {
+		var aSmaller = aDistance < bDistance;
+		if (currentRes < resolution) {
+
+			var tangent = this.curve.getTangentAt(aSmaller ? aTest : bTest);
 			if (currentRes < resolution) return {
-				result: aTest,
-				location: a,
-				distance: aDistance
+				result: aSmaller ? aTest : bTest,
+				location: aSmaller ? a : b,
+				distance: aSmaller ? aDistance : bDistance,
+				normal: normalFromTangent(tangent),
+				tangent: tangent
 			};
+		}
+		if (aDistance < bDistance) {
 			return this.closestPointInLocalSpace(point, resolution, aTest, currentRes);
 		} else {
-			if (currentRes < resolution) return {
-				result: bTest,
-				location: b,
-				distance: bDistance
-			};
 			return this.closestPointInLocalSpace(point, resolution, bTest, currentRes);
 		}
 	}
 });
+
+
+var tempQuaternion = new THREE.Quaternion();
+function normalFromTangent(tangent) {
+	var lineEnd = new THREE.Vector3(0, 1, 0);
+	tempQuaternion.setFromUnitVectors(zAxis, tangent);
+	lineEnd.applyQuaternion(tempQuaternion);
+	return lineEnd;
+}
 
 AFRAME.registerShader('line', {
 	schema: {},
@@ -125,7 +136,8 @@ AFRAME.registerComponent('draw-curve', {
 	schema: {
 		curve: { type: 'selector' },
 		spacing: { default: 1 },
-		tangent: { default: false }
+		tangent: { default: false },
+		normal: { default: true }
 	},
 
 	update: function () {
@@ -143,6 +155,7 @@ AFRAME.registerComponent('draw-curve', {
 			var line;
 			var lineEnd;
 			var tangentGeometry;
+			var normalGeometry;
 			var mesh = this.el.getOrCreateObject3D('mesh', THREE.Line);
 			var geometry = mesh.geometry = new THREE.Geometry();
 
@@ -168,7 +181,24 @@ AFRAME.registerComponent('draw-curve', {
 					);
 
 					mesh.add(line);
-					mesh.visible = false;
+				}
+
+				if (this.data.normal) {
+					normalGeometry = new THREE.Geometry();
+					lineEnd = normalFromTangent(this.curve.getTangentAt(counter / length).normalize());
+					lineEnd.add(p);
+
+					normalGeometry.vertices.push(new THREE.Vector3().copy(p));
+					normalGeometry.vertices.push(lineEnd);
+
+					line = new THREE.Line(
+						normalGeometry,
+						new THREE.LineBasicMaterial({
+							color: 'white'
+						})
+					);
+
+					mesh.add(line);
 				}
 
 				counter += this.data.spacing;

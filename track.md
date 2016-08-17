@@ -49,10 +49,15 @@ scripts: [
 	</a-entity>
 
 
+	<!-- this is moved by the controller, it's rotation is set to the normal of ther service it is on' -->
 	<a-entity ada-ship-controller="easing: 5; acceleration: 100; rollTarget: #ship; turnTarget: #controller-target;">
-		<a-entity id="controller-target" rotation="0 0 0">
+
+		<!-- This is rotated by the controller -->
+		<a-entity id="controller-target" rotation="0 -90 0">
 			<a-entity  id="ship-camera-target" position="0 0 -15"></a-entity>
-			<a-obj-model src="#Feisar-ship-obj" mtl="#Feisar-ship-mtl" position="0 1 0" id="ship"></a-obj-model>
+
+			<!-- this rolled by the controller -->
+			<a-obj-model src="#Feisar-ship-obj" mtl="#Feisar-ship-mtl" position="0 1 0" rotation id="ship"></a-obj-model>
 		</a-entity>
 	</a-entity>
 
@@ -96,8 +101,11 @@ scripts: [
 
 	var shipController = document.querySelector('[ada-ship-controller]').components['ada-ship-controller'];
 	var curves = Array.from(document.querySelectorAll('[floor-track]'));
-	var gravity = 9.8;
-	var __temp = new THREE.Vector3();
+	var gravity = 3;
+	var __tempVector1 = new THREE.Vector3();
+	var __tempVector2 = new THREE.Vector3();
+	var yAxis = new THREE.Vector3(0, 1, 0);
+	var __tempQuaternion = new THREE.Quaternion();
 
 	var currentFloor = {
 		height: 0,
@@ -105,35 +113,44 @@ scripts: [
 	}
 
 	function updateCurrentFloor(p) {
-		var h = 0;
+		currentFloor.height = 0;
+		currentFloor.normal.copy(yAxis);
 		for (var i in curves) {
 			var d = getCurveFromTrack(curves[i]).closestPointInLocalSpace(p);
 			if (d.distance < 10) {
-				h = Math.max(d.location.y, h);
+				if (d.location.y > currentFloor.height) {
+					currentFloor.height = d.location.y;
+					currentFloor.normal.copy(d.normal);
+				}
 			}
 		}
-		return h;
 	}
 
 	AFRAME.registerSystem('custom-fuzzy-physics', {
 		tick: function () {
-			var p = document.querySelector('[ada-ship-controller]').getComputedAttribute('position');
+			var p = shipController.el.getComputedAttribute('position');
 			updateCurrentFloor(p);
-			if (p.y > currentFloor.height) {
+			if (p.y > currentFloor.height + 1) {
 				shipController.velocity.y -= gravity;
 			}
+
+			// Smoothly rotate the ship to the current floor normal
+			__tempQuaternion.setFromUnitVectors(yAxis, currentFloor.normal);
+			shipController.el.object3D.quaternion.slerp(__tempQuaternion, 0.03);
+
 			if (p.y < currentFloor.height) {
 				shipController.velocity.y /= 5;
 				shipController.velocity.y = Math.abs(shipController.velocity.y);
-				if (currentFloor.height - p.y < 10) {
+				var underground = currentFloor.height - p.y;
+				if (underground < 2) {
 
-					var magnitude = __temp.copy(shipController.velocity).length();
+					p.y = currentFloor.height;
+					shipController.el.setAttribute('position', p);
 
-					__temp.y += (currentFloor.height - p.y);
+					currentFloor.normal.multiplyScalar(underground);
+					__tempVector1.copy(shipController.velocity).add(currentFloor.normal);
 
-					__temp.normalize().multiplyScalar(magnitude);
-
-					shipController.velocity.copy(__temp);
+					shipController.velocity.copy(__tempVector1);
 				}
 			}
 		}
