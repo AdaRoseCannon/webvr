@@ -50,7 +50,7 @@ scripts: [
 
 
 	<!-- this is moved by the controller, it's rotation is set to the normal of ther service it is on' -->
-	<a-entity ada-ship-controller="easing: 5; acceleration: 100; rollTarget: #ship; turnTarget: #controller-target;">
+	<a-entity ada-ship-controller="easing: 2; acceleration: 100; rollTarget: #ship; turnTarget: #controller-target;">
 
 		<!-- This is rotated by the controller -->
 		<a-entity id="controller-target" rotation="0 -90 0">
@@ -118,7 +118,7 @@ scripts: [
 		for (var i in curves) {
 			var d = getCurveFromTrack(curves[i]).closestPointInLocalSpace(p);
 			if (d.distance < 10) {
-				if (d.location.y > currentFloor.height) {
+				if (d.location.y > currentFloor.height && d.location.y > p.y) {
 					currentFloor.height = d.location.y;
 					currentFloor.normal.copy(d.normal);
 				}
