@@ -4,7 +4,7 @@
 var __tempVector1 = new THREE.Vector3();
 var __tempVector2 = new THREE.Vector3();
 
-AFRAME.registerComponent('ada-follow', {
+AFRAME.registerComponent('follow', {
 
 	schema: {
 		strength: { default: 0.03 },
