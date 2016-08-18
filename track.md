@@ -60,7 +60,7 @@ scripts: [
 
 			<!-- this rolled by the controller -->
 			<a-obj-model src="#Feisar-ship-obj" mtl="#Feisar-ship-mtl" position="0 0.2 0" scale="0.3 0.3 0.3" rotation id="ship">
-				<a-torus-knot position="0 4 -5" material="shader: super-standard; sphericalEnvMap: #cgsky; normalMap: #water-normal; metalness: 0.8; roughness: 0.4;"></a-torus-knot>
+				<a-torus-knot position="0 4 -5" material="shader: super-standard; sphericalEnvMap: #cgsky; metalness: 0.8; roughness: 0.4;"></a-torus-knot>
 			</a-obj-model>
 		</a-entity>
 	</a-entity>
@@ -76,8 +76,8 @@ scripts: [
 	<a-sky src="#cgsky" position="0 -1 0" rotation="0 -90 0"></a-sky>
 	<a-entity light="color: #fffab7; intensity: 1.0" position="0 1 -5" id="sun"></a-entity>
 
-	// <!--<a-ada-ocean position="0 0 0" src="#water-normal" opacity="0.6" width="1000" depth="1000"></a-ada-ocean>-->
-	<a-entity geometry="primitive: plane; height: 10000; width: 10000" rotation="-90 0 0" material="shader: super-standard; sphericalEnvMap: #cgsky; color: #001e0f; normalMap: #water-normal; metalness: 1; roughness: 0.2; normalTextureRepeat: 50 50 50; opacity: 0.8;"></a-entity>
+	<a-ada-ocean position="0 0 0" src="#water-normal" opacity="0.6" width="1000" depth="1000"></a-ada-ocean>
+	<!--<a-entity geometry="primitive: plane; height: 10000; width: 10000" rotation="-90 0 0" material="shader: super-standard; sphericalEnvMap: #cgsky; color: #001e0f; normalMap: #water-normal; metalness: 1; roughness: 0.2; normalTextureRepeat: 50 50 50; opacity: 0.8;"></a-entity>-->
 
 	<!-- TRACK -->
 
