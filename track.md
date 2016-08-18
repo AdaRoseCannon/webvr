@@ -74,7 +74,7 @@ scripts: [
 
 	<!-- Prerendered for performance -->
 	<a-sky src="#cgsky" position="0 -1 0" rotation="0 -90 0"></a-sky>
-	<a-entity light="color: #fffab7; intensity: 1.0" position="0 1 -5" id="sun"></a-entity>
+	<a-entity light="color: #fffab7; intensity: 1.5" position="0 1 -5" id="sun"></a-entity>
 
 	<!--<a-ada-ocean position="0 0 0" src="#water-normal" opacity="0.6" width="1000" depth="1000"></a-ada-ocean>-->
 	<a-ocean-plane material="normalMap: #water-normal; sphericalEnvMap: #cgsky;"></a-ocean-plane>

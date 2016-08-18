@@ -50,10 +50,10 @@ AFRAME.registerShader('super-standard', {
 		envMap: {default: ''},
 		sphericalEnvMap: {default: ''},
 		normalMap: {default: ''},
-		normalScale: { type: 'vec3' },
+		normalScale: { type: 'vec2' },
 		normalTextureWrap: { default: 'repeat' }, // one of 'repeat', 'clamp', 'mirrored'
-		normalTextureOffset: { type: 'vec3'},
-		normalTextureRepeat: { type: 'vec3'},
+		normalTextureOffset: { type: 'vec2'},
+		normalTextureRepeat: { type: 'vec2'},
 		fog: {default: true},
 		height: {default: 256},
 		metalness: {default: 0.0, min: 0.0, max: 1.0},
