@@ -4,7 +4,7 @@ title: Track
 description: A-Frame Demo
 image: ./images/track-screenshot.jpg
 scripts: [
-	'https://cdn.rawgit.com/aframevr/aframe/679a5d9fa501e81f5fdfa36d162580a116946fd1/dist/aframe.min.js', # A-Frame master at the time of writing
+	'https://cdn.rawgit.com/aframevr/aframe/v0.3.0/dist/aframe.min.js', # A-Frame 0.3
 
 	'https://cdn.rawgit.com/ngokevin/aframe-look-at-component/ddcf223e7fdeec3b536bbc43a233b994cd6d4653/dist/aframe-look-at-component.min.js', # look at component
 
@@ -17,9 +17,11 @@ scripts: [
 
 	'a-frame-assets/ada-components/follow.js',
 	'a-frame-assets/ada-components/ada-ship-controller.js',
-	'a-frame-assets/ada-components/curve.js'
+	'a-frame-assets/ada-components/curve.js',
+	'a-frame-assets/ada-components/super-standard-material.js'
 ]
 ---
+
 
 <a-scene inspector stats physics="debug: true">
 
@@ -41,7 +43,7 @@ scripts: [
 	<!-- CAMERA -->
 
 	<a-entity look-at="#ship" follow="target: #ship-camera-target;">
-		<a-entity position="0 3 0" rotation="0 180 0">
+		<a-entity position="0 2 0" rotation="0 180 0">
 
 			<!-- Disable the default wasd controls we are using those to control the ship -->
 			<a-camera wasd-controls="enabled: false;"></a-camera>
@@ -54,28 +56,28 @@ scripts: [
 
 		<!-- This is rotated by the controller -->
 		<a-entity id="controller-target" rotation="0 -90 0">
-			<a-entity  id="ship-camera-target" position="0 0 -5"></a-entity>
+			<a-entity	id="ship-camera-target" position="0 0 -8"></a-entity>
 
 			<!-- this rolled by the controller -->
-			<a-obj-model src="#Feisar-ship-obj" mtl="#Feisar-ship-mtl" position="0 0.2 0" scale="0.3 0.3 0.3" rotation id="ship"></a-obj-model>
+			<a-obj-model src="#Feisar-ship-obj" mtl="#Feisar-ship-mtl" position="0 0.2 0" scale="0.3 0.3 0.3" rotation id="ship">
+				<a-torus-knot position="0 4 -5" material="shader: super-standard; sphericalEnvMap: #cgsky; normalMap: #water-normal; metalness: 0.8; roughness: 0.4;"></a-torus-knot>
+			</a-obj-model>
 		</a-entity>
 	</a-entity>
 
 	<!-- ENVIRONMENT -->
 
-	<a-entity light="color: #FFFFFF; intensity: 0.3; type: ambient;"></a-entity>
+	<a-entity light="color: #4c7cc2; intensity: 0.4; type: ambient;"></a-entity>
 
-	<!-- SKY SHADER, not very performant :(  -->
-	<!--<a-ada-sky control="#sun" inclination="0.49">
-		<a-entity light="color: #FFFFFF; intensity: 1.5" id="sun"></a-entity>
-	</a-ada-sky>-->
+	<!-- SKY SHADER, not very performant :(	-->
+	<!--<a-ada-sky control="#sun" inclination="0.49"></a-ada-sky>-->
 
 	<!-- Prerendered for performance -->
-	<a-sky src="#cgsky" position="0 -1 0" rotation="0 -90 0">
-		<a-entity light="color: #FFFFFF; intensity: 1.5" position="0 1 50"></a-entity>
-	</a-sky>
+	<a-sky src="#cgsky" position="0 -1 0" rotation="0 -90 0"></a-sky>
+	<a-entity light="color: #fffab7; intensity: 1.0" position="0 1 -5" id="sun"></a-entity>
 
-	<a-ada-ocean position="0 0 0" src="#water-normal" opacity="0.6" width="1000" depth="1000" light="#sun"></a-ada-ocean>
+	// <!--<a-ada-ocean position="0 0 0" src="#water-normal" opacity="0.6" width="1000" depth="1000"></a-ada-ocean>-->
+	<a-entity geometry="primitive: plane; height: 10000; width: 10000" rotation="-90 0 0" material="shader: super-standard; sphericalEnvMap: #cgsky; color: #001e0f; normalMap: #water-normal; metalness: 1; roughness: 0.2; normalTextureRepeat: 50 50 50; opacity: 0.8;"></a-entity>
 
 	<!-- TRACK -->
 
@@ -99,7 +101,7 @@ scripts: [
 
 	function getCurveFromTrack(a) { return a.components['clone-along-curve'].data.curve.components.curve; }
 
-	var shipController = document.querySelector('[ada-ship-controller]').components['ada-ship-controller'];
+	var shipControllerEl = document.querySelector('[ada-ship-controller]');
 	var curves = Array.from(document.querySelectorAll('[floor-track]'));
 	var gravity = 20;
 	var __tempVector1 = new THREE.Vector3();
@@ -136,7 +138,8 @@ scripts: [
 			var time = window.performance.now();
 			var delta = (time - prevTime) / 1000;
 			this.prevTime = time;
-			var p = shipController.el.getComputedAttribute('position');
+			var shipController = shipControllerEl.components['ada-ship-controller'];
+			var p = shipControllerEl.getComputedAttribute('position');
 			updateCurrentFloor(p);
 
 			if (p.y > currentFloor.height + 0.5) {
@@ -145,7 +148,7 @@ scripts: [
 
 			// Smoothly rotate the ship to the current floor normal
 			__tempQuaternion.setFromUnitVectors(yAxis, currentFloor.normal);
-			shipController.el.object3D.quaternion.slerp(__tempQuaternion, this.restoreNormalAmount);
+			shipControllerEl.object3D.quaternion.slerp(__tempQuaternion, this.restoreNormalAmount);
 			this.restoreNormalAmount *= 0.8;
 
 			output.textContent = `${currentFloor.height}`;
@@ -153,7 +156,7 @@ scripts: [
 			if (p.y < currentFloor.height) {
 
 				p.y = currentFloor.height;
-				shipController.el.setAttribute('position', p);
+				shipControllerEl.setAttribute('position', p);
 
 				this.restoreNormalAmount = 0.3;
 
