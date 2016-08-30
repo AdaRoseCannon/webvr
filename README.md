@@ -98,6 +98,7 @@ window.aSlidesSlideData = {'slide-this-h1-is-what-defines-the-slide-name': {
 	window.aSlidesSlideData['slide-demo'] = {
 		setup: function () {
 			this.innerHTML = '';
+			this.addMarkdown('# Hello');
 		},
 
 		// action: function *() {
@@ -111,7 +112,7 @@ window.aSlidesSlideData = {'slide-this-h1-is-what-defines-the-slide-name': {
 		// This fake generator is an a-slides compatible
 		// es5 shim, from post-to-slides.js
 		action: window.FakeGenerator([
-			function() {this.addMarkdown('# Hello');},
+			function() {},
 			function() {this.addMarkdown('# World');},
 			function() {this.addMarkdown('## - From Ada');},
 			function() {},
