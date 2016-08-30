@@ -28,7 +28,17 @@ h2 a {
 }
 
 p, h1, h2, h3, h4, h5, h6 {
-	padding: 0 32px;
+	padding-left: 32px;
+	padding-right: 32px;
+}
+
+ul {
+	padding-top: 1em;
+	padding-bottom: 1em;
+
+	ul {
+		padding: 0 0 0 1em;
+	}
 }
 
 video {
@@ -47,7 +57,6 @@ body.post {
 
 	p, ul {
 		max-width: 80em;
-		margin: auto;
 	}
 
 	& > h2, & > h3, & > h1 {
@@ -69,13 +78,12 @@ body.post {
 	}
 
 	img {
-		max-width: 80%;
+		max-width: 30em;
 		max-height: 50vmax;
 	}
 
 	blockquote {
 		background-color: white;
-		box-shadow: 0 0 2em -0.5em;
 		border: 1px solid grey;
 		display: flex;
 		flex-direction: column;
@@ -88,6 +96,32 @@ body.post {
 
 	footer {
 		position: relative;
+	}
+}
+
+iframe {
+	width: 60%;
+	height: 40vh;
+	border: 0;
+}
+
+.iframe-button {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+
+    box-shadow: 0 0 0.5em grey;
+    padding: 0.5em;
+
+	&.blank {
+		left: 50%;
+		bottom: 50%;
+		transform: translate(-50%, 50%);
+    	font-size: 2em;
+	}
+
+	.a-slides_slide & {
+		display: none;
 	}
 }
 
@@ -108,9 +142,9 @@ pre {
 }
 
 img:not(.emoji) {
-	border: 1px solid #ccc;
+	// border: 1px solid #ccc;
 	margin: 0.5em;
-	box-shadow: 0 0 0.5em rgba(0,0,0,0.2);
+	// box-shadow: 0 0 0.5em rgba(0,0,0,0.2);
 }
 
 footer {

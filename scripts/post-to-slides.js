@@ -2,7 +2,7 @@
 /* global ASlides, twemoji*/
 
 /**
- * Turns a normal mrkdown blog posti into a slide deck!!
+ * Turns a normal markdown blog post into a slide deck!!
  * amazing right!!
  */
 
@@ -76,7 +76,7 @@ function fire(node, name, detail) {
 
 function init() {
 	return Promise.all([
-			addScript('https://cdn.rawgit.com/AdaRoseEdwards/a-slides/v1.2.8/build/a-slides.js').promise
+			addScript('https://cdn.rawgit.com/AdaRoseEdwards/a-slides/v1.3.6/build/a-slides.js').promise
 	])
 	.then(function () {
 
@@ -123,20 +123,18 @@ function init() {
 
 		var slideData = window.aSlidesSlideData || {};
 		var slideContainer = document.querySelector('.a-slides_slide-container');
-		var finishAt = Date.now() + 900 * 1000;
-		var clock = document.createElement('div');
 
 		new ASlides(slideData, {
 			slideContainer: slideContainer,
 			plugins: [
-				ASlides.prototype.plugins.markdownTransform, // needs to be run first
-				ASlides.prototype.plugins.slideController, // needs to be run before buttons are added to it.
-				ASlides.prototype.plugins.deepLinking,
-				ASlides.prototype.plugins.interactionKeyboard,
-				ASlides.prototype.plugins.interactionTouch({ // has configuration
+				ASlides.plugins.markdownTransform, // needs to be run first
+				ASlides.plugins.slideController, // needs to be run before buttons are added to it.
+				ASlides.plugins.deepLinking,
+				ASlides.plugins.interactionKeyboard,
+				ASlides.plugins.interactionTouch({ // has configuration
 					use: ['swipe-back']
 				}),
-				ASlides.prototype.plugins.bridgeServiceWorker
+				ASlides.plugins.bridgeServiceWorker
 			]
 		});
 
@@ -148,19 +146,24 @@ function init() {
 			slideContainer.classList.add('hide-presentation');
 		}
 
-		slideContainer.appendChild(clock);
-		clock.className = 'a-slides_clock';
-		setInterval(function () {
-				clock.textContent = (new Date(Math.max(finishAt - Date.now(), 0)))
-				.toLocaleTimeString(undefined, { timeZone: 'UTC' }).match(/^\d\d:(\d\d:\d\d)/)[1]
-		}, 200);
+		var clock = document.querySelector('#a-frame-clock');
+		if (clock) {
+			var clockLength = parseInt(Number(clock.textContent) * 60);
+			var finishAt = Date.now() + clockLength * 1000;
+			slideContainer.appendChild(clock);
+			clock.className = 'a-slides_clock';
+			setInterval(function () {
+					clock.textContent = (new Date(Math.max(finishAt - Date.now(), 0)))
+					.toLocaleTimeString(undefined, { timeZone: 'UTC' }).match(/^\d\d:(\d\d:\d\d)/)[1]
+			}, 200);
+			clock.addEventListener('click', function (e) {
+				e.preventDefault();
+				e.stopPropagation();
+				finishAt = Date.now() + clockLength*1000;
+			});
+		}
 
-		clock.addEventListener('click', function (e) {
-			e.preventDefault();
-			finishAt = Date.now() + 900*1000;
-		});
-
-		slideContainer.addEventListener('a-slides_slide-setup', function () {
+		slideContainer.addEventListener('a-slides_slide-show', function () {
 			var notes = slideContainer.querySelector('.a-slides_slide.active .a-slides_notes');
 			if (notes) notes.focus();
 		});
