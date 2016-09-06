@@ -106,12 +106,11 @@ I am perpetually bringing out VR headsets and trying to get people to have a go.
 
 I love building and showing off cool VR demos.
 
-Now it is now easier than ever before.
+Now it is now easier than ever before with A-Frame.
 
 When they do give it a go though
 
 my favourite moment is when they get wowed by the immersion and they make this face:
-
 
 <!-- This slide uses information from _config.yml -->
 <blockquote class="dark" id="splash-slide" style="background-image: url('images/pattern.svg');">
@@ -124,7 +123,7 @@ my favourite moment is when they get wowed by the immersion and they make this f
 
 I love that face.
 
-My goal is to get you building stuff
+My goal is to get you building stuff with A-Frame
 
 so you can make your friends and relatives have the same
 
@@ -138,135 +137,6 @@ awed expression
 	{image: 'images/face5.jpg'}
 );</script>
 > ![Face](images/face1.jpg)
-
-# My love for vr
-
-When I was a child this was my favourite TV show:
-
-[Jonny Quest]
-
-The characters would use virtual reality to travel to fully immersive worlds and have amazing adventures.
-
-and the love of virtual reality has stayed with me ever since.
-
-Through numerous scifi books
-
-Movies
-
-and Anime
-
-For me what really mesmerised me with VR is
-
-the ability to step fully into another role.
-
-someone elses shoes
-
-to travel any where on this world
-
-or off it
-
-<script>window.aSlidesSlideData['slide-my-love-for-vr'] = window.contentSlide(
-	{image: 'images/Jonny-Quest-the-real-adventures-of-jonny-quest.jpg'},
-	{image: 'images/accelerando.jpg'},
-	{image: 'images/neuromancer.jpg'},
-	{image: 'images/matrix.gif'},
-	{image: 'images/sao.jpg'},
-	{image: 'images/market.jpg'},
-	{image: 'images/iss.jpg'}
-);</script>
-> ![Jonny Quest](images/Jonny-Quest-the-real-adventures-of-jonny-quest.jpg)
-
-# Introduction
-
------------ Who has experienced VR before? -----------
-
----------- Who has their own VR heaset? --------------
-
-It is an unreal experience, a good VR experience can transport you entirely, giving a feeling known as immersion.
-
-I have always dreamed of a unified VR world full of experiences we can just step into.
-
-** In this talk I aim to inspire you to produce VR content **
-
-for the Web
-
-even if you have never developed or worked with 3d before.
-
-For those who haven't experienced VR yet. You can have a go on my Gear VR at the end.
-
-What you get from VR as opposed to a computer monitor or TV screen is a feeling of immersion.
-
-By placing your scene around your users they are engaged like never before.
-
-They literally cannot look away.
-
-A VR headset works by tracking your head rotation and position and showing to each eye what it would see in the virtual space.
-
-> ![Samsung Gear VR](images/gear-vr_kv-trim.jpg)
-
-
-# Contents
-
-This is what I aim to cover in this talk:
-
-> * Why Virtual Reality and the Web Go Hand in Hand
-> * What is A-Frame, how does it allow us to do Virtual Reality
-> * A-Frame Hello World, our first 3D scene.
-> * Activating VR on Gear VR
-> * Making something useful, a 360 image viewer
-> * Adding some interactivity
-> * Using more complex shapes and game assets
-> * Inventing new VR user interfaces
-> * Some interesting experiments
-> * What I am building and final thoughts
-> * Questions
-
-# Why VR and the web go hand in hand
-
-The world wide web is the most prominent content delivery platform, it has unparalelled reach and grants us the ability to share and stream content.
-
-Its network model allows us to enjoy multimedia experiences such as games and movies without downloading the whole thing.
-
-The web can be enjoyed across a wide variety of platforms from phones to desktops and tvs.
-
-URLs allow for linking and sharing content easily in a format familiar to the three and half billion people who use the internet.
-
-VR for the web, known as WebVR, allows us to make the most of the Web's strongest powers to leverage 3D models, images, videos and audio to produce 3D worlds to immerse our readers in.
-
-Recently the WebVR spec has become more mature. It can be used in Samsung's Internet Browser for the Gear VR. In addition scripts such as the `WebVR Polyfill` to allow you to use WebVR with Google Cardboard on other mobile browsers such as Chrome and Safari.
-
-The proportion of people who access the internet on mobile devices is ever increasing and headsets can be just a piece of cardboard.
-
-*Show Google Cardboard*
-
-Cardboard devices are just cardboard and plastic lenses and are often cheap enough that newspapers will give them away. The FT did a give away recently.
-
-<script>window.aSlidesSlideData['slide-why-vr-and-the-web-go-hand-in-hand'] = window.contentSlide(
-	{image: 'images/MobileBroadbandInternetPenetrationWorldMap.svg', caption: '## Mobile Broadband Internet Saturation'},
-	{image: 'images/cardboard.jpg'}
-);</script>
-> ![Internet Penetration World Map](images/MobileBroadbandInternetPenetrationWorldMap.svg)
-
-
-# Doing 3D graphics in the Web
-
-There are many tools and libaries for producing publishing 3D graphics for the Web:
-
-* Goo Create - Web based
-* Unity - Can be made to build 3D scenes for the Web
-* Unreal Engine - Can also be compiled to run the Web
-* THREE.js - JavaScript library for building 3D scenes in the Web. Is nice to program in.
-* A-Frame - What I talk about here, built on THREE.js, allows us to make 3D scenes the same way we would make a HTML document.
-
-These are all really good solutions and if you are already familiar with one of these then don't feel pressured to change.
-
-> ## A non-exhaustive list:
->
-> * Goo Create - Web based
-> * Unity - Can be made to build 3D scenes for the Web
-> * Unreal Engine - Can also be compiled to run the Web
-> * THREE.js - JavaScript library for building 3D scenes in the Web. Is nice to program in.
-> * A-Frame - What I talk about here, built on top of THREE.js.
 
 # What is A-Frame
 
@@ -559,72 +429,6 @@ It is being transformed elaborately
 >
 > ## {{ site.url }}/scene-graph.html
 
-# Getting Models
-
-But that is still usually not enough we want custom models.
-
-You can make your own or buy them.
-
-there are a bunch of 3D modelling tools out there:
-
-These all have a steep learning curve but if you are still in education you may have access to these through your school.
-
-> * Maya (Expensive)
-> * Z-Brush (Expensive, great for organics)
-> * Cinema4D (Expensive)
-> * Clara.io (Free, online)
-> * Blender (Open Source, Difficult to use)
-
-Because of the difficulty of making my own I tend to buy models from Turbo Squid.
-
-3D assets come in many sizes some large for producing videos or still images. Or small for realtime work such as video games.
-
-As we are making a real time game for mobile handsets we should keep required resources to a minimum.
-
-> # 'Game Ready' or 'Low Poly'
->
-> ## In total a scene should contain no more than:
->
-> ## 1000s of polygons
->
-> ## Around 10 of Megapixels of textures
-
-
-
-# Including Custom Models
-
-I found this model on turbosquid, I want to use it for a game.
-
-It has 889 polygons and a 1024x1024 texture that looks pretty good to me.
-
-I changed the texture from a bitmap to a jpeg to make it faster to download.
-
-It is available in OBJ format, one of the formats that can be imported into A-Frame
-
-In this example it was really big and facing the wrong direction so I shrunk it and rotated it to place it in front of the camera.
-
-<script>window.aSlidesSlideData['slide-including-custom-models'] = window.contentSlide(
-	{image: 'images/turbosquid.png'},
-	{markdown: `
-* .OBJ - OBJ format just does geometry and textures
-* .DAE - Collada can include animations, character skeletons, lighting,... lots of things.
-`},
-{markdown: '```' + `
-<a-scene>
-	<a-assets>
-		<a-asset-item id="obj" src="Feisar_Ship.obj"></a-asset-item>
-		<a-asset-item id="mtl" src="Feisar_Ship.mtl"></a-asset-item>
-	</a-assets>
-
-	<a-obj-model src="#obj" mtl="#mtl" id="ship"></a-obj-model>
-</a-scene>
-` + '```'
-},{
-	iframe: 'obj.html'
-})</script>
-
-> ![turbosquid](images/turbosquid.png)
-
 # Making new components
 
 There is a lot to take in when learning A-Frame for the first time.
@@ -818,63 +622,22 @@ My slides are online if you want to find this later
 >
 > ## https://developer.oculus.com/documentation/intro-vr/latest/concepts/bp_intro/
 
-# Fancy Demo and Conculsion
-
-I started playing with A-Frame a week ago, all of the demos in this slide deck I built yesterday.
-
-This final demo is a litle on going project where I am experimenting with what can be done with a-frame.
-
-There are many ways I would take this forward
-
-I would like to add audio with the sound component to give engine noise to my ship and background music to the game in general.
-
-I would like to take advantage of the Webs peer to peer networking capabilities to add multiplayer
-
-I would like to add an elevated track which uses a physics engine to handle jumps and crashes.
-
-This is all stuff you can do with A-Frame, it gets easier and easier as the community grows and we use each others components.
-
-We will stand on the shoulders of giants and together we build great things.
-
-Btw if you build something cool, send it to me.
-
-<script>window.aSlidesSlideData['slide-fancy-demo-and-conculsion'] = window.iframeSlide</script>
-
-> <iframe src="track.html" seamless="seamless"></iframe>
->
-> ## {{ site.url }}/track.html
-
-# The future?
-
-I would like to finish up with this youtube video. By Boris Smus who has done a lot of work towards WebVR.
-
-It is a demo he put out yesterday of co-presence in the browser making the most of web technology.
-
-<script>window.aSlidesSlideData['slide-the-future-'] = window.iframeSlide</script>
-
-> <iframe src="https://www.youtube.com/embed/FPJDNQJt2DQ?start=26" frameborder="0" allowfullscreen></iframe>
-
 # Resources
 
-> # Resources
+> ## Give it ago: http://o.ada.is/aframe-jsbin
 >
-> https://developer.leapmotion.com/assets/Leap%20Motion%20VR%20Best%20Practices%20Guidelines.pdf
+> ## Components
 >
-> https://developer.oculus.com/documentation/intro-vr/latest/concepts/bp_intro/
+> * geometry - add 3d shapes
+> * material - sets the material to a geometry
+> * rotation, position, scale
+> * wasd-controls
+> * sound - Example [url]
+> * cursor - Example [url]
 >
-> https://iswebvrready.org
+> ## Primitives
 >
-> WebVR Example: http://threejs.org/examples/webvr_cubes.html
->
-> WebVR enable url: internet://webvr-enable
->
-> https://github.com/aframevr/aframe-boilerplates
->
-> A-Frame Blog loads of fun examples - https://aframe.io/blog/
->
-> A-Frame slack channel https://aframevr-slack.herokuapp.com/
->
-> Images of people wearing HMDs - http://mashable.com/2015/06/18/vr-face/
+> * a-animation - Example [url]
 
 <script>
 	var iframes = Array.from(document.querySelectorAll('iframe'));
