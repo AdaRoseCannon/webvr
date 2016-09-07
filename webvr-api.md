@@ -301,14 +301,16 @@ The default is this kinda grey techno living room.
 
 Probably not applicacble to everyone's site. But you can change it using a small bit of JavaScript.
 
+<script>window.aSlidesSlideData['slide-set-the-skybox'] = window.playVideo;</script>
+
 >
 > ```javascript
 window.SamsungChangeSky({ sphere: 'http://site.com/blue-sky.jpg' });
 ```
 >
-> # [ VIDEO DEMO ]
+> <p><video src="images/vr-skybox.m4v" muted></video></p>
 >
-> ## https://output.jsbin.com/redobi/
+> ### https://output.jsbin.com/redobi/
 
 
 We are planning to standardise these APIs at w3c.
@@ -325,7 +327,9 @@ Through this we will be exporing what standards are needed to make the web the d
 
 If you would like to contribute go here
 
-> ## https://www.w3.org/2016/06/vr-workshop/ - 19-20th October, San Jose CA. Registration closes on the 16th of September (be quick)
+> ## https://www.w3.org/2016/06/vr-workshop/
+>
+> ## 19-20th October, San Jose CA. Registration closes on the 16th of September (be quick)
 
 # A-Frame
 
