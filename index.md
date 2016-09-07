@@ -10,85 +10,7 @@ scripts: [
 ---
 
 <script>
-	window.iframeSlide = {
-		setup: function () {
-			var iframe = this.querySelector('iframe');
-			iframe.src = iframe.dataset.src;
-		},
-		action: window.FakeGenerator([ function() {} ]),
-		teardown: function () { this.querySelector('iframe').src = 'about:blank'; }
-	};
 	window.aSlidesSlideData = {};
-
-	window.playVideo = {
-		setup: function () {
-			this.querySelector('video').currentTime=0;
-			this.querySelector('video').pause();
-		},
-		action: window.FakeGenerator([ function() {
-			this.querySelector('video').play();
-		}]),
-		teardown: function () {
-			this.querySelector('video').pause();
-		}
-	};
-
-	window.contentSlide = function (...slides) {
-		var oldContent;
-
-		return {
-			setup() {
-				oldContent = Array.from(this.children);
-			},
-			action: function* () {
-
-				const t = slides.slice();
-
-				if (t.length === 0) {
-					yield;
-					return;
-				}
-
-				while(t.length) {
-
-					this.empty();
-					let i = t.shift();
-					if (i) {
-						switch(Object.keys(i)[0]) {
-							case 'video':
-								this.innerHTML = `<video src="${i.video}" preload autoplay autostart loop style="object-fit: contain; flex: 1 0;" />`;
-								break;
-							case 'image':
-								this.innerHTML = `<image src="${i.image}" />`;
-								break;
-							case 'markdown':
-								this.addMarkdown(i.markdown);
-								break;
-							case 'html':
-								this.innerHTML = i.html;
-								break;
-							case 'iframe':
-								this.innerHTML = `<iframe src="${i.iframe}" frameborder="none" style="flex: 1 0;" /></iframe>`;
-								break;
-						}
-						if (i.caption) {
-							this.addMarkdown(i.caption);
-						}
-						if (i.url  || i.iframe) {
-							this.addHTML(`<div class="slide-url">${i.url || i.iframe || ''}</div>`);
-						}
-					}
-					yield;
-				}
-			},
-			teardown() {
-				if (oldContent) {
-					this.empty();
-					oldContent.forEach(c => this.appendChild(c));
-				}
-			}
-		};
-	};
 </script>
 
 # Getting started with WebVR
@@ -130,13 +52,13 @@ so you can make your friends and relatives have the same
 
 awed expression
 
-<script>window.aSlidesSlideData['slide-faces'] = window.contentSlide(
+<script>window.aSlidesSlideData['slide-faces'] = window.contentSlide([
 	{image: 'images/face1.jpg'},
 	{image: 'images/face2.jpg'},
 	{image: 'images/face3.jpg'},
 	{image: 'images/face4.jpg'},
 	{image: 'images/face5.jpg'}
-);</script>
+]);</script>
 > ![Face](images/face1.jpg)
 
 # My love for vr
@@ -165,7 +87,7 @@ to travel any where on this world
 
 or off it
 
-<script>window.aSlidesSlideData['slide-my-love-for-vr'] = window.contentSlide(
+<script>window.aSlidesSlideData['slide-my-love-for-vr'] = window.contentSlide([
 	{image: 'images/Jonny-Quest-the-real-adventures-of-jonny-quest.jpg'},
 	{image: 'images/accelerando.jpg'},
 	{image: 'images/neuromancer.jpg'},
@@ -173,7 +95,7 @@ or off it
 	{image: 'images/sao.jpg'},
 	{image: 'images/market.jpg'},
 	{image: 'images/iss.jpg'}
-);</script>
+]);</script>
 > ![Jonny Quest](images/Jonny-Quest-the-real-adventures-of-jonny-quest.jpg)
 
 # Introduction
@@ -241,10 +163,10 @@ The proportion of people who access the internet on mobile devices is ever incre
 
 Cardboard devices are just cardboard and plastic lenses and are often cheap enough that newspapers will give them away. The FT did a give away recently.
 
-<script>window.aSlidesSlideData['slide-why-vr-and-the-web-go-hand-in-hand'] = window.contentSlide(
+<script>window.aSlidesSlideData['slide-why-vr-and-the-web-go-hand-in-hand'] = window.contentSlide([
 	{image: 'images/MobileBroadbandInternetPenetrationWorldMap.svg', caption: '## Mobile Broadband Internet Saturation'},
 	{image: 'images/cardboard.jpg'}
-);</script>
+]);</script>
 > ![Internet Penetration World Map](images/MobileBroadbandInternetPenetrationWorldMap.svg)
 
 
@@ -603,7 +525,7 @@ It is available in OBJ format, one of the formats that can be imported into A-Fr
 
 In this example it was really big and facing the wrong direction so I shrunk it and rotated it to place it in front of the camera.
 
-<script>window.aSlidesSlideData['slide-including-custom-models'] = window.contentSlide(
+<script>window.aSlidesSlideData['slide-including-custom-models'] = window.contentSlide([
 	{image: 'images/turbosquid.png'},
 	{markdown: `
 * .OBJ - OBJ format just does geometry and textures
@@ -621,7 +543,7 @@ In this example it was really big and facing the wrong direction so I shrunk it 
 ` + '```'
 },{
 	iframe: 'obj.html'
-})</script>
+}])</script>
 
 > ![turbosquid](images/turbosquid.png)
 
@@ -746,7 +668,7 @@ These are a few of my faves. The a forementioned exit burrito.
 * Exit Burrito
 * Going through links by putting something on your head
 
-<script>window.aSlidesSlideData['slide-my-faves'] = window.contentSlide({
+<script>window.aSlidesSlideData['slide-my-faves'] = window.contentSlide([{
 	video: 'images/juicy-sliders.mp4',
 	caption: '## https://twitter.com/Cabbibo/status/758792984095621120'
 },{
@@ -756,7 +678,7 @@ These are a few of my faves. The a forementioned exit burrito.
 	video: 'images/a-frame-link-traversal.mp4',
 	caption: '## Link traversal in the next release of A-Frame'
 }
-)</script>
+])</script>
 
 > <video src="images/juicy-sliders.mp4" muted preload autoplay autostart loop></video>
 

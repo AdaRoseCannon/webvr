@@ -197,3 +197,89 @@ function init() {
 		window.addEventListener('hashchange', locationHashChanged);
 	}
 }());
+
+
+/**
+ * Define some useful presetup generators
+ */
+window.iframeSlide = {
+	setup: function () {
+		var iframe = this.querySelector('iframe');
+		iframe.src = iframe.dataset.src;
+	},
+	action: window.FakeGenerator([ function() {} ]),
+	teardown: function () { this.querySelector('iframe').src = 'about:blank'; }
+};
+window.aSlidesSlideData = {};
+
+window.playVideo = {
+	setup: function () {
+		this.querySelector('video').currentTime=0;
+		this.querySelector('video').pause();
+	},
+	action: window.FakeGenerator([ function() {
+		this.querySelector('video').play();
+	}]),
+	teardown: function () {
+		this.querySelector('video').pause();
+	}
+}
+
+window.contentSlide = function (slides) {
+	var oldContent;
+
+	return {
+		setup: function setup() {
+			oldContent = Array.from(this.children);
+		},
+		action: function* () {
+
+			const t = slides.slice();
+
+			if (t.length === 0) {
+				yield;
+				return;
+			}
+
+			while(t.length) {
+
+				this.empty();
+				let i = t.shift();
+				if (i) {
+					switch(Object.keys(i)[0]) {
+						case 'video':
+							this.innerHTML = `<video src="${i.video}" preload autoplay autostart loop style="object-fit: contain; flex: 1 0;" />`;
+							this.querySelector('video').currentTime=0;
+							this.querySelector('video').play();
+							break;
+						case 'image':
+							this.innerHTML = `<image src="${i.image}" />`;
+							break;
+						case 'markdown':
+							this.addMarkdown(i.markdown);
+							break;
+						case 'html':
+							this.innerHTML = i.html;
+							break;
+						case 'iframe':
+							this.innerHTML = `<iframe src="${i.iframe}" frameborder="none" style="flex: 1 0;" /></iframe>`;
+							break;
+					}
+					if (i.caption) {
+						this.addMarkdown(i.caption);
+					}
+					if (i.url  || i.iframe) {
+						this.addHTML(`<div class="slide-url">${i.url || i.iframe || ''}</div>`);
+					}
+				}
+				yield;
+			}
+		},
+		teardown() {
+			if (oldContent) {
+				this.empty();
+				oldContent.forEach(c => this.appendChild(c));
+			}
+		}
+	};
+};
