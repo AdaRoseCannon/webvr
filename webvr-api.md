@@ -308,7 +308,7 @@ Probably not applicacble to everyone's site. But you can change it using a small
 window.SamsungChangeSky({ sphere: 'http://site.com/blue-sky.jpg' });
 ```
 >
-> <p><video src="images/vr-skybox.m4v" muted></video></p>
+> <p><video src="images/vr-skybox.m4v" muted autoplay loop></video></p>
 >
 > ### https://output.jsbin.com/redobi/
 
