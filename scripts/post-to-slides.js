@@ -74,6 +74,10 @@ function fire(node, name, detail) {
 	return node;
 }
 
+function genId(name) {
+	return (name + '').trim().replace(/[^A-Za-z0-9]/ig, '-').toLowerCase();
+}
+
 function init() {
 	return Promise.all([
 			addScript('https://cdn.rawgit.com/AdaRoseEdwards/a-slides/v1.4.0/build/a-slides.js').promise
@@ -105,7 +109,7 @@ function init() {
 			progressBar.style.width = 100*i/noSlides + '%';
 			slide.classList.add('a-slides_slide-content');
 			if (notes[0] && notes[0].tagName.match(/h[0-6]/i)) {
-				name = notes[0].textContent.trim().replace(/[^A-Za-z0-9]/ig, '-').toLowerCase();
+				name = genId(notes[0].textContent);
 				name = name + (slideContainer.querySelectorAll('[data-slide-id="' + name + '"]').length || '');
 			}
 			newSlide.dataset.slideId = 'slide-' + (name || i);
@@ -223,6 +227,47 @@ window.playVideo = {
 	teardown: function () {
 		this.querySelector('video').pause();
 	}
+}
+
+window.elByEl = function () {
+
+	var children;
+	var clone;
+
+	function replaceWithEl(el, target) {
+		target.innerHTML = '';
+		target.appendChild(el);
+	}
+
+	var out = {};
+
+	out.setup = function () {
+		if (!children) {
+			children = Array.from(this.children);
+			var target = this;
+			clone = children.map(function (el) {
+				return function () { replaceWithEl(el, this) };
+			}.bind(this));
+			clone.push(function () {});
+			out.action = window.FakeGenerator(clone);
+		}
+		this.innerHTML = '';
+	};
+
+	out.teardown = function () {
+		this.innerHTML = '';
+	}
+
+	return out;
+};
+
+window.getSlideName = function (el) {
+	var hs = el.prevAll().filter(function (el) {
+		return el.tagName.match(/h[0-6]/i);
+	});
+	if (!hs.length) throw 'No h to find';
+	var h = hs[hs.length - 1];
+	return 'slide-' + genId(h.textContent);
 }
 
 window.contentSlide = function (slides) {

@@ -331,7 +331,7 @@ It creates a heirarchy of items in the scene. So you can reuse models and attach
 
 E.g. A model bus only needs one chair which can then be reused and attatched to the bus again and again.
 
-This is good because each model is expensive but reusing it is cheap.
+This is good because each unique model is expensive but reusing it is cheap.
 
 The example behind me is just a more elaborate version of the last slide.
 
@@ -351,9 +351,30 @@ It is being transformed elaborately
 >
 > ## {{ site.url }}/scene-graph.html
 
+# Third Party components
+
+At this point you are ready to put together some simple scenes and animations.
+
+A-Frame provides lots of components
+
+Which is nice but they probably don't do every thing you want.
+
+There are lots of components built by third parties a prominent library is A-Frame extras
+
+> Third Party components
+>
+> A-Frame extras provides
+>
+> * Dynamic Physics
+> * Some extra primitives such as a grid plane
+
 # Making new components
 
-There is a lot to take in when learning A-Frame for the first time.
+If you do not find a component which does what you want.
+
+You can make your own components as well.
+
+There is a lot to take in when extending A-Frame for the first time.
 
 I was totally lost.
 
@@ -375,11 +396,37 @@ This really allowed me to get to grips with how A-Frame works.
 
 # What can Components do?
 
+The most fundamental element in a-frame is the `<a-entity>`
+
+An `<a-entity>` is an empty THREE.js group with no geometry or material.
+
 Components are the discreet bits of logic which power A-Frame.
 
-Each attribute on the html elements we write is a component.
+They provide the interface between the mark up (HTML) and the 3D rendering engine THREE.js
+
+They are entity agnostic.
+
+They do not care what they are attatched to.
 
 For example the position component just sets the objects position in 3D space.
+
+The rotation component rotates the entity by an angle in degrees.
+
+More complex components such as geometry or material have properties defined like the `style` attribute;
+
+> <code><span style="background: yellow;">&lt;a-entity&gt;&lt;/a-entity&gt;</span></code>
+>
+> <code>&lt;a-entity <span style="background: yellow;">position="0 1 0"</span>&gt;&lt;/a-entity&gt;</code>
+>
+> <code>&lt;a-entity position="0 1 0" <span style="background: yellow;">rotation="0 90 0"</span>&gt;&lt;/a-entity&gt;</code>
+>
+> <code>&lt;a-entity position="0 1 0" rotation="0 90 0" <span style="background: yellow;">geometry="primitive: box; width: 3; height: 2; depth: 2;"</span>&gt;&lt;/a-entity&gt;</code>
+>
+> <code>&lt;a-entity position="0 1 0" rotation="0 90 0" geometry="primitive: box; width: 3; height: 2; depth: 2;" <span style="background: yellow;">material="color: red;"</span>&gt;&lt;/a-entity&gt;</code>
+
+<script>window.aSlidesSlideData[window.getSlideName(document.currentScript)] = window.elByEl()</script>
+
+# Reusing Components
 
 They are usually totally agnostic to what they get attatched to.
 
