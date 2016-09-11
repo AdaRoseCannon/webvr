@@ -9,10 +9,6 @@ scripts: [
 ]
 ---
 
-<script>
-	window.aSlidesSlideData = {};
-</script>
-
 # View Source Workshop
 
 <!-- Link to trigger conversion script -->
@@ -414,6 +410,8 @@ The rotation component rotates the entity by an angle in degrees.
 
 More complex components such as geometry or material have properties defined like the `style` attribute;
 
+<script id="what-can-components-do">window.setDynamicSlide(window.elByEl())</script>
+
 > <code><span style="background: yellow;">&lt;a-entity&gt;&lt;/a-entity&gt;</span></code>
 >
 > <code>&lt;a-entity <span style="background: yellow;">position="0 1 0"</span>&gt;&lt;/a-entity&gt;</code>
@@ -423,8 +421,6 @@ More complex components such as geometry or material have properties defined lik
 > <code>&lt;a-entity position="0 1 0" rotation="0 90 0" <span style="background: yellow;">geometry="primitive: box; width: 3; height: 2; depth: 2;"</span>&gt;&lt;/a-entity&gt;</code>
 >
 > <code>&lt;a-entity position="0 1 0" rotation="0 90 0" geometry="primitive: box; width: 3; height: 2; depth: 2;" <span style="background: yellow;">material="color: red;"</span>&gt;&lt;/a-entity&gt;</code>
-
-<script>window.aSlidesSlideData[window.getSlideName(document.currentScript)] = window.elByEl()</script>
 
 # Reusing Components
 
@@ -458,6 +454,12 @@ I'm beginning to think we could do something cool with this...
 > <iframe src="moving-the-wasd-controller.html" seamless="seamless"></iframe>
 >
 > ## {{ site.url }}/moving-the-wasd-controller.html
+
+# Making a new component
+
+# Primitives
+
+> defining a primitive example
 
 # Other projects and User Interfaces
 

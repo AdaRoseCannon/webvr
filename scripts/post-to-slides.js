@@ -97,18 +97,30 @@ function init() {
 		while (slide = document.querySelector('body > blockquote')) {
 			i++;
 			name = '';
-			notes = prevAll(slide).filter(function (a) { return !a.tagName.match(/^script/i) });
+			notes = prevAll(slide);
+			name = notes.find(function (el) { return el.matches('script[id]') });
+			if (name) {
+				name = genId(name.id);
+			}
+			notes = notes.filter(function (a) {
+				if (a.tagName.match(/^script/i)) {
+					a.remove();
+					return false;
+				} else {
+					return true;
+				}
+			});
 			newSlide = document.createElement('div');
 			newSlide.className = ('a-slides_slide');
 			notesWrapper = document.createElement('div');
 			notesWrapper.className = ('a-slides_notes');
-			notesWrapper.tabIndex = -1; // make not tab able to but receives focus when slides are changing.
+			notesWrapper.tabIndex = -1; // make not tab-to-able to but receives focus when slides are changing.
 			progressBar = document.createElement('div');
 			progressBar.className = ('a-slides_progress');
 
 			progressBar.style.width = 100*i/noSlides + '%';
 			slide.classList.add('a-slides_slide-content');
-			if (notes[0] && notes[0].tagName.match(/h[0-6]/i)) {
+			if (!name && notes[0] && notes[0].tagName.match(/h[0-6]/i)) {
 				name = genId(notes[0].textContent);
 				name = name + (slideContainer.querySelectorAll('[data-slide-id="' + name + '"]').length || '');
 			}
@@ -203,6 +215,12 @@ function init() {
 }());
 
 
+window.aSlidesSlideData = {};
+
+window.setDynamicSlide = function (o) {
+	window.aSlidesSlideData[window.getSlideName(document.currentScript)] = o;
+}
+
 /**
  * Define some useful presetup generators
  */
@@ -214,7 +232,6 @@ window.iframeSlide = {
 	action: window.FakeGenerator([ function() {} ]),
 	teardown: function () { this.querySelector('iframe').src = 'about:blank'; }
 };
-window.aSlidesSlideData = {};
 
 window.playVideo = {
 	setup: function () {
@@ -262,12 +279,18 @@ window.elByEl = function () {
 };
 
 window.getSlideName = function (el) {
-	var hs = el.prevAll().filter(function (el) {
-		return el.tagName.match(/h[0-6]/i);
-	});
-	if (!hs.length) throw 'No h to find';
-	var h = hs[hs.length - 1];
-	return 'slide-' + genId(h.textContent);
+	var name;
+	if (el.matches('script[id]')) {
+		name = genId(el.id);
+	} else {
+		var hs = el.prevAll().filter(function (el) {
+			return el.tagName.match(/h[0-6]/i);
+		});
+		if (!hs.length) throw 'No h to find';
+		var h = hs[hs.length - 1];
+		name =  genId(h.textContent);
+	}
+	return 'slide-' + name;
 }
 
 window.contentSlide = function (slides) {
