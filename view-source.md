@@ -2,7 +2,7 @@
 layout: post
 title: AFrame for View Source
 description: Touching on A-Frame and tools for authoring content.
-image: http://i.imgur.com/1CuaofJ.jpg
+image: https://i.imgur.com/1CuaofJ.jpg
 scripts: [
 	'https://cdn.rawgit.com/AdaRoseEdwards/dirty-dom/v1.3.1/build/dirty-dom-lib.min.js'
 ]
@@ -30,7 +30,7 @@ When they do give it a go though
 my favourite moment is when they get wowed by the immersion and they make this face:
 
 <!-- This slide uses information from _config.yml -->
-<blockquote class="dark" id="splash-slide" style="background-image: url('http://i.imgur.com/1CuaofJ.jpg');">
+<blockquote class="dark" id="splash-slide" style="background-image: url('https://i.imgur.com/1CuaofJ.jpg');">
 <h1>{{ site.name }}</h1>
 <h3>{{ site.description }}</h3>
 <h2>{{site.author.name}} - {{site.author.company}}</h2>
