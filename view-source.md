@@ -584,7 +584,7 @@ Then in about 10 minutes I will then run through some of my favourite examples o
 > ### http://jsbin.com/guxaqi/edit
 >
 > * cursor
-> * <a-animation>
+> * `<a-animation>`
 > * sound
 
 # Other projects and User Interfaces
