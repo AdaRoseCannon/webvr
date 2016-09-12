@@ -575,7 +575,7 @@ And ask me some questions.
 Then in about 10 minutes I will then run through some of my favourite examples of UI interactions.
 
 
-> ## Give it ago: http://o.ada.is/aframe-jsbin
+> ## Give it ago: http://jsbin.com/vemejiy/edit
 >
 > ## Components
 >
