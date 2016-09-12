@@ -357,12 +357,14 @@ Which is nice but they probably don't do every thing you want.
 
 There are lots of components built by third parties a prominent library is A-Frame extras
 
-> Third Party components
+> ## A-Frame extras provides
 >
-> A-Frame extras provides
->
+> * Various ways to get user input
 > * Dynamic Physics
 > * Some extra primitives such as a grid plane
+> * Dynamic Shadows
+>
+> ## https://github.com/donmccurdy/aframe-extras
 
 # Making new components
 
@@ -457,9 +459,92 @@ I'm beginning to think we could do something cool with this...
 
 # Making a new component
 
+A component has two parts a schema and set of call back functions.
+
+The schema defines what data gets passed into the component from the attributes defined in the markup.
+
+It then uses this information to
+
+<script id="defining-a-component">window.setDynamicSlide(window.elByEl())</script>
+
+>
+> ```javascript
+	// Simple one property schema
+	// <a-entity component1="1 2 3"></a-entity>
+	registerComponent('component1', {
+		schema: {type: 'vec3'}
+	});
+>
+	// Multi-property property schema
+	// <a-entity component2="oranges: blah; someEl: #thatEl;"></a-entity>
+	registerComponent('component2', {
+		schema: {
+			apples: {default: 2}, // implied to be a number
+			oranges: {default: ''} // implied to be a string
+			someEl: {type: selector}
+		}
+	});
+>
+	// Built in types:
+	// array, boolean, color, int, number, selector, selectorAll, src, string, time, vec2, vec3, vec4
+```
+>
+>
+>
+> ```javascript
+>
+	registerComponent('component2', {
+		schema: {},
+		init: function () {
+			// Called only once when component initialised
+		},
+		update: function () {
+			// Called after init and whenever attributes on the element are changed
+		},
+		tick: function () {
+			// Called once per frame
+		},
+		remove: function () {
+			// Use this to undo the effects of the component
+			// Called when the component is removed
+			// also when the attatched el is deleted.
+		}
+	})
+```
+>
+>
+> ```javascript
+// Copy-pasted from the A-Frame source code.
+>
+registerComponent('position', {
+  schema: {type: 'vec3'},
+>
+  update: function () {
+    var object3D = this.el.object3D;
+    var data = this.data;
+    object3D.position.set(data.x, data.y, data.z);
+  }
+});
+```
+
 # Primitives
 
 > defining a primitive example
+
+> ## Give it ago: http://o.ada.is/aframe-jsbin
+>
+> ## Components
+>
+> * geometry - add 3d shapes
+> * material - sets the material to a geometry
+> * rotation, position, scale
+> * wasd-controls
+> * sound
+> * cursor
+>
+> ## Primitives
+>
+> * a-animation
 
 # Other projects and User Interfaces
 
@@ -592,23 +677,6 @@ My slides are online if you want to find this later
 > ### https://developer.leapmotion.com/assets/ Leap%20Motion%20VR%20Best%20Practices%20Guidelines.pdf
 >
 > ## https://developer.oculus.com/documentation/intro-vr/latest/concepts/bp_intro/
-
-# Resources
-
-> ## Give it ago: http://o.ada.is/aframe-jsbin
->
-> ## Components
->
-> * geometry - add 3d shapes
-> * material - sets the material to a geometry
-> * rotation, position, scale
-> * wasd-controls
-> * sound - Example [url]
-> * cursor - Example [url]
->
-> ## Primitives
->
-> * a-animation - Example [url]
 
 <script>
 	var iframes = Array.from(document.querySelectorAll('iframe'));

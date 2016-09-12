@@ -258,7 +258,7 @@ window.elByEl = function () {
 
 	var out = {};
 
-	out.setup = function () {
+	function init() {
 		if (!children) {
 			children = Array.from(this.children);
 			var target = this;
@@ -268,10 +268,15 @@ window.elByEl = function () {
 			clone.push(function () {});
 			out.action = window.FakeGenerator(clone);
 		}
+	}
+
+	out.setup = function () {
+		init.bind(this)();
 		this.innerHTML = '';
 	};
 
 	out.teardown = function () {
+		init.bind(this)();
 		this.innerHTML = '';
 	}
 
