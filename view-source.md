@@ -4,7 +4,6 @@ title: AFrame for View Source
 description: Touching on A-Frame and tools for authoring content.
 image: http://i.imgur.com/1CuaofJ.jpg
 scripts: [
-	'https://cdn.rawgit.com/aframevr/aframe/679a5d9fa501e81f5fdfa36d162580a116946fd1/dist/aframe.min.js',
 	'https://cdn.rawgit.com/AdaRoseEdwards/dirty-dom/v1.3.1/build/dirty-dom-lib.min.js'
 ]
 ---
