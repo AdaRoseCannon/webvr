@@ -2,7 +2,7 @@
 layout: post
 title: AFrame for View Source
 description: Touching on A-Frame and tools for authoring content.
-image: https://ada.is/getting-started-with-webvr/aframevr.png
+image: http://i.imgur.com/1CuaofJ.jpg
 scripts: [
 	'https://cdn.rawgit.com/aframevr/aframe/679a5d9fa501e81f5fdfa36d162580a116946fd1/dist/aframe.min.js',
 	'https://cdn.rawgit.com/AdaRoseEdwards/dirty-dom/v1.3.1/build/dirty-dom-lib.min.js'
@@ -529,7 +529,51 @@ registerComponent('position', {
 
 # Primitives
 
-> defining a primitive example
+Primitives are just `a-entity`s with a bunch of preset components.
+
+For example this is a very large plane which looks like an ocean.
+
+It uses 3 components, `geometry`, `rotation` and `material`
+
+The mappings section allow  easy ways to control some comoonents.
+
+> ```javascript
+// <a-ocean-plane width="100" height="100"></a-ocean-plane>
+AFRAME.registerPrimitive('a-ocean-plane', {
+	defaultComponents: {
+		geometry: {
+			primitive: 'plane',
+			height: 10000,
+			width: 10000
+		},
+		rotation: '-90 0 0',
+		material: {
+			shader: 'standard',
+			color: '#8ab39f',
+			metalness: 1,
+			roughness: 0.2,
+			opacity: 0.8
+		}
+	},
+	mappings: {
+		width: 'geometry.width',
+		height: 'geometry.depth',
+		color: 'material.color',
+		opacity: 'material.opacity'
+	}
+});
+```
+
+# Workshop
+
+So I am going to step aside for a bit.
+
+To leave you to play with some demos and get some inspiration.
+
+And ask me some questions.
+
+Then in about 10 minutes I will then run through some of my favourite examples of UI interactions.
+
 
 > ## Give it ago: http://o.ada.is/aframe-jsbin
 >
@@ -700,5 +744,25 @@ My slides are online if you want to find this later
 		button.classList.add('blank');
 		button.textContent = "Load iFrame";
 		iframe.after(button);
+	});
+
+	var blockquote = Array.from(document.querySelectorAll('blockquote'));
+	var newSpans = [];
+	blockquote.forEach(function (el) {
+		var span = document.createElement('span');
+		newSpans.push(span);
+		window.removeHashChangeEventListener();
+		span.textContent = ' View Slide';
+		span.addEventListener('click', function onclick() {
+			newSpans.forEach(function (s) {
+				s.removeEventListener('click', onclick);
+				s.remove();
+			});
+			init().then(function () {
+				document.querySelector('.a-slides_slide-container').dispatchEvent(new CustomEvent('a-slides_goto-slide', {detail: {slide: el.parentNode}}));
+			});
+		});
+		span.setAttribute('style', 'position: absolute; bottom: 0; right: 0; background: white; border-radius: 0.5em 0 0 0; border: 1px solid grey; border-width: 1px 0 0 1px; color: darkcyan; padding: 0.25em; cursor: pointer;');
+		el.appendChild(span);
 	});
 </script>

@@ -212,6 +212,10 @@ function init() {
 	} else {
 		window.addEventListener('hashchange', locationHashChanged);
 	}
+
+	window.removeHashChangeEventListener = function () {
+		window.removeEventListener('hashchange', locationHashChanged);
+	}
 }());
 
 

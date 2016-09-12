@@ -408,4 +408,24 @@ With goal of getting everyone building something.
 		button.textContent = "Load iFrame";
 		iframe.after(button);
 	});
+
+	var blockquote = Array.from(document.querySelectorAll('blockquote'));
+	var newSpans = [];
+	blockquote.forEach(function (el) {
+		var span = document.createElement('span');
+		newSpans.push(span);
+		window.removeHashChangeEventListener();
+		span.textContent = ' View Slide';
+		span.addEventListener('click', function onclick() {
+			newSpans.forEach(function (s) {
+				s.removeEventListener('click', onclick);
+				s.remove();
+			});
+			init().then(function () {
+				document.querySelector('.a-slides_slide-container').dispatchEvent(new CustomEvent('a-slides_goto-slide', {detail: {slide: el.parentNode}}));
+			});
+		});
+		span.setAttribute('style', 'position: absolute; bottom: 0; right: 0; background: white; border-radius: 0.5em 0 0 0; border: 1px solid grey; border-width: 1px 0 0 1px; color: darkcyan; padding: 0.25em; cursor: pointer;');
+		el.appendChild(span);
+	});
 </script>
