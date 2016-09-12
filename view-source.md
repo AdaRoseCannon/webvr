@@ -575,20 +575,18 @@ And ask me some questions.
 Then in about 10 minutes I will then run through some of my favourite examples of UI interactions.
 
 
-> ## Give it ago: http://jsbin.com/vemejiy/edit
->
-> ## Components
+> ##  http://jsbin.com/vemejiy/edit
 >
 > * geometry - add 3d shapes
 > * material - sets the material to a geometry
 > * rotation, position, scale
 > * wasd-controls
-> * sound
+>
+> ### http://jsbin.com/guxaqi/edit
+>
 > * cursor
->
-> ## Primitives
->
-> * a-animation
+> * <a-animation>
+> * sound
 
 # Other projects and User Interfaces
 
