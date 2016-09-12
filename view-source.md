@@ -31,7 +31,7 @@ When they do give it a go though
 my favourite moment is when they get wowed by the immersion and they make this face:
 
 <!-- This slide uses information from _config.yml -->
-<blockquote class="dark" id="splash-slide" style="background-image: url('images/pattern.svg');">
+<blockquote class="dark" id="splash-slide" style="background-image: url('http://i.imgur.com/1CuaofJ.jpg');">
 <h1>{{ site.name }}</h1>
 <h3>{{ site.description }}</h3>
 <h2>{{site.author.name}} - {{site.author.company}}</h2>
@@ -749,9 +749,9 @@ My slides are online if you want to find this later
 	blockquote.forEach(function (el) {
 		var span = document.createElement('span');
 		newSpans.push(span);
-		window.removeHashChangeEventListener();
 		span.textContent = ' View Slide';
 		span.addEventListener('click', function onclick() {
+			window.removeHashChangeEventListener();
 			newSpans.forEach(function (s) {
 				s.removeEventListener('click', onclick);
 				s.remove();
@@ -760,7 +760,7 @@ My slides are online if you want to find this later
 				document.querySelector('.a-slides_slide-container').dispatchEvent(new CustomEvent('a-slides_goto-slide', {detail: {slide: el.parentNode}}));
 			});
 		});
-		span.setAttribute('style', 'position: absolute; bottom: 0; right: 0; background: white; border-radius: 0.5em 0 0 0; border: 1px solid grey; border-width: 1px 0 0 1px; color: darkcyan; padding: 0.25em; cursor: pointer;');
+		span.setAttribute('class', 'slide-view-button');
 		el.appendChild(span);
 	});
 </script>
