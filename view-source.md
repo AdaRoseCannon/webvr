@@ -462,7 +462,29 @@ A component has two parts a schema and set of call back functions.
 
 The schema defines what data gets passed into the component from the attributes defined in the markup.
 
-It then uses this information to
+The data is passed into `init` and `update` functions. It is also available on `this.data` in any of the component's functions.
+
+These are functions which are called during the component's life cycle.
+
+you can call any of these by going `el.components.myComponent.foobar()`;
+
+| function name  | When called                                  |
+|----------------|----------------------------------------------|
+| init           | When the component is first used per element |
+| update         | After init and whenever the data is changed  |
+| tick           | Once per frame                               |
+| remove         | when the component needs to be torn down     |
+| foobar         | function available to be called later        |
+
+This example is a real example taken from the a-frame source code.
+
+It is the `position` component it shows that components should be small, single use and reusable.
+
+Think the UNIX philosiphy.
+
+
+
+
 
 <script id="defining-a-component">window.setDynamicSlide(window.elByEl())</script>
 
@@ -495,7 +517,12 @@ It then uses this information to
 	registerComponent('component2', {
 		schema: {},
 		init: function () {
+>
 			// Called only once when component initialised
+			this;            // <= the component
+			this.data;       // <= the data from the dom in the format defined by the schema
+			this.el;         // <= the DOM element
+			this.el.object3D // <= The THREE.js 3D model
 		},
 		update: function () {
 			// Called after init and whenever attributes on the element are changed
@@ -525,6 +552,8 @@ registerComponent('position', {
   }
 });
 ```
+>
+> <h2> Be small, single use and reusable. <blockquote>The unix philosiphy: "Do one thing and do it well."</blockquote></h2>
 
 # Primitives
 
@@ -705,7 +734,7 @@ This recent one is interesting, an experiment in diffusing situations where one 
 * Don't accelerate or rotate the camera unless in well expected smooth fashion, you will make them seasick.
 * Don't do something which runs laggy, it may make them ill.
 
-# Stuff you should
+# Stuff you should do
 
 * Do have interactive elements give a wiggle when the user glances at it.
 * Do make any text large, thick and clear
