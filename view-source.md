@@ -774,6 +774,13 @@ My slides are online if you want to find this later
 
 	var blockquote = Array.from(document.querySelectorAll('blockquote'));
 	var newSpans = [];
+	document.querySelector('a[href="#aslides"]').addEventListener('click', function () {
+		newSpans.forEach(function (s) {
+			s.removeEventListener('click', onclick);
+			s.remove();
+		});
+		newSpans.splice(0);
+	});
 	blockquote.forEach(function (el) {
 		var span = document.createElement('span');
 		newSpans.push(span);
