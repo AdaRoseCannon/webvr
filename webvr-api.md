@@ -6,13 +6,6 @@ image: http://www.hypergridbusiness.com/wp-content/uploads/2016/08/Obama-Yosemit
 script: https://cdn.rawgit.com/AdaRoseEdwards/dirty-dom/v1.3.1/build/dirty-dom-lib.min.js
 ---
 
-
-<!-- Define slide animation generators -->
-
-<script>
-	window.aSlidesSlideData = {};
-</script>
-
 <!-- contents -->
 
 # Introducing the WebVR API
@@ -64,7 +57,11 @@ This seems like a lot of work and fortunately the WebVR APIs handle this for us 
 ## Contents
 
 > * Where is it supported natively
-> * The polyfill
+> * Building a 3D scene
+> * High level overview
+> * API details
+> * Samsung Specific APIs
+> * WebVR for Humans
 
 ## Where is it supported natively
 
@@ -411,12 +408,19 @@ With goal of getting everyone building something.
 
 	var blockquote = Array.from(document.querySelectorAll('blockquote'));
 	var newSpans = [];
+	document.querySelector('a[href="#aslides"]').addEventListener('click', function () {
+		newSpans.forEach(function (s) {
+			s.removeEventListener('click', onclick);
+			s.remove();
+		});
+		newSpans.splice(0);
+	});
 	blockquote.forEach(function (el) {
 		var span = document.createElement('span');
 		newSpans.push(span);
-		window.removeHashChangeEventListener();
 		span.textContent = ' View Slide';
 		span.addEventListener('click', function onclick() {
+			window.removeHashChangeEventListener();
 			newSpans.forEach(function (s) {
 				s.removeEventListener('click', onclick);
 				s.remove();
@@ -425,7 +429,7 @@ With goal of getting everyone building something.
 				document.querySelector('.a-slides_slide-container').dispatchEvent(new CustomEvent('a-slides_goto-slide', {detail: {slide: el.parentNode}}));
 			});
 		});
-		span.setAttribute('style', 'position: absolute; bottom: 0; right: 0; background: white; border-radius: 0.5em 0 0 0; border: 1px solid grey; border-width: 1px 0 0 1px; color: darkcyan; padding: 0.25em; cursor: pointer;');
+		span.setAttribute('class', 'slide-view-button');
 		el.appendChild(span);
 	});
 </script>
