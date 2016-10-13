@@ -5,12 +5,6 @@ description: Building a slide deck from a single page
 script: https://cdn.rawgit.com/AdaRoseEdwards/dirty-dom/v1.3.1/build/dirty-dom-lib.min.js
 ---
 
-<!-- Define slide animation generators -->
-<script>
-	window.aSlidesSlideData = {};
-</script>
-<!-- contents -->
-
 # README
 
 This is a little layout for blog posts which can turn into slides using a-slides
