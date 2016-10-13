@@ -57,6 +57,7 @@ body.post {
 
 	p, ul {
 		max-width: 80em;
+		margin-bottom: 0.25em;
 	}
 
 	& > h2, & > h3, & > h1 {
@@ -87,7 +88,7 @@ body.post {
 		border: 1px solid grey;
 		display: flex;
 		flex-direction: column;
-		align-items: center;
+		align-items: stretch;
 		min-height: 4em;
 		position: relative;
 		overflow: hidden;
@@ -141,6 +142,21 @@ pre {
 	tab-size: 2;
 }
 
+table {
+	border-spacing: 0;
+	margin: 1em auto;
+	border-width: 0 0 1px 1px;
+	td, th {
+		padding: 0.3em 1.5em;
+		border-width: 1px 1px 0 0;
+	}
+
+	&, td, th {
+		border-color: grey;
+		border-style: solid;
+	}
+}
+
 img:not(.emoji) {
 	// border: 1px solid #ccc;
 	margin: 0.5em;
@@ -166,4 +182,21 @@ footer {
 
 .hide-after ~ * {
 	display: none;
+}
+
+.slide-view-button {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	background: white;
+	border-radius: 0.5em 0 0 0;
+	border: 1px solid grey;
+	border-width: 1px 0 0 1px;
+	color: darkcyan;
+	padding: 0.25em;
+	cursor: pointer;
+
+	.presentation & {
+		display: none;
+	}
 }

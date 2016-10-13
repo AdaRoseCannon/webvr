@@ -30,11 +30,11 @@
 	{% else %}
 	  <meta name="twitter:description" content="{{ site.description }}">
 	{% endif %}
-	<link rel="stylesheet" href="{{ site.aslide }}/a-slides.css">
+	<link rel="stylesheet" href="https://cdn.rawgit.com/AdaRoseEdwards/a-slides/v1.4.0/build/a-slides.css">
 	<link rel="stylesheet" href="{{page.prefix}}styles/slides.css">
 	<link rel="stylesheet" href="{{page.prefix}}styles/post.css">
 	<link rel="stylesheet" href="{{page.prefix}}styles/highlight.css">
-	<script src="https://cdn.polyfill.io/v2/polyfill.js?features=Array.isArray,Array.from,default-3.6,Element.prototype.before"></script>
+	<script src="https://cdn.polyfill.io/v2/polyfill.js?features=Array.isArray,Array.from,default-3.6,Element.prototype.before,Array.prototype.find"></script>
 	{% if page.script %}
 	<script src="{{page.script}}"></script>
 	{% endif %}

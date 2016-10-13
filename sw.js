@@ -20,4 +20,18 @@ self.addEventListener('message', function(event) {
 	reply(event.data);
 });
 
-toolbox.router.default = (location.protocol === 'http:' || location.hostname === 'localhost') ? toolbox.networkFirst : toolbox.fastest;
+// Recieve messages from the client and reply back onthe same port
+self.addEventListener('fetch', function (event) {
+	const request = event.request;
+	const handler = (request.url.match(/^http:\/\/localhost/) && location.protocol === 'http:' || location.hostname === 'localhost') ? toolbox.networkFirst : toolbox.fastest;
+	if (
+		!(
+			request.url.match(/(\.mp4|\.webm|\.avi|\.wmv|\.m4v)$/i) ||
+			request.url.match(/data:/i)
+		)
+	) {
+		event.respondWith(handler(request, [], {
+			networkTimeoutSeconds: 3
+		}));
+	}
+});

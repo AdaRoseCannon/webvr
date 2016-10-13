@@ -74,9 +74,13 @@ function fire(node, name, detail) {
 	return node;
 }
 
+function genId(name) {
+	return (name + '').trim().replace(/[^A-Za-z0-9]/ig, '-').toLowerCase();
+}
+
 function init() {
 	return Promise.all([
-			addScript('https://cdn.rawgit.com/AdaRoseEdwards/a-slides/v1.3.6/build/a-slides.js').promise
+		addScript('https://cdn.rawgit.com/AdaRoseEdwards/a-slides/v1.4.0/build/a-slides.js').promise
 	])
 	.then(function () {
 
@@ -93,19 +97,31 @@ function init() {
 		while (slide = document.querySelector('body > blockquote')) {
 			i++;
 			name = '';
-			notes = prevAll(slide).filter(function (a) { return !a.tagName.match(/^script/i) });
+			notes = prevAll(slide);
+			name = notes.find(function (el) { return el.matches('script[id]') });
+			if (name) {
+				name = genId(name.id);
+			}
+			notes = notes.filter(function (a) {
+				if (a.tagName.match(/^script/i)) {
+					a.remove();
+					return false;
+				} else {
+					return true;
+				}
+			});
 			newSlide = document.createElement('div');
 			newSlide.className = ('a-slides_slide');
 			notesWrapper = document.createElement('div');
 			notesWrapper.className = ('a-slides_notes');
-			notesWrapper.tabIndex = -1; // make not tab able to but receives focus when slides are changing.
+			notesWrapper.tabIndex = -1; // make not tab-to-able to but receives focus when slides are changing.
 			progressBar = document.createElement('div');
 			progressBar.className = ('a-slides_progress');
 
 			progressBar.style.width = 100*i/noSlides + '%';
 			slide.classList.add('a-slides_slide-content');
-			if (notes[0] && notes[0].tagName.match(/h[0-6]/i)) {
-				name = notes[0].textContent.trim().replace(/[^A-Za-z0-9]/ig, '-').toLowerCase();
+			if (!name && notes[0] && notes[0].tagName.match(/h[0-6]/i)) {
+				name = genId(notes[0].textContent);
 				name = name + (slideContainer.querySelectorAll('[data-slide-id="' + name + '"]').length || '');
 			}
 			newSlide.dataset.slideId = 'slide-' + (name || i);
@@ -196,4 +212,151 @@ function init() {
 	} else {
 		window.addEventListener('hashchange', locationHashChanged);
 	}
+
+	window.removeHashChangeEventListener = function () {
+		window.removeEventListener('hashchange', locationHashChanged);
+	}
 }());
+
+
+window.aSlidesSlideData = {};
+
+window.setDynamicSlide = function (o) {
+	window.aSlidesSlideData[window.getSlideName(document.currentScript)] = o;
+}
+
+/**
+ * Define some useful presetup generators
+ */
+window.iframeSlide = {
+	setup: function () {
+		var iframe = this.querySelector('iframe');
+		iframe.src = iframe.dataset.src;
+	},
+	action: window.FakeGenerator([ function() {} ]),
+	teardown: function () { this.querySelector('iframe').src = 'about:blank'; }
+};
+
+window.playVideo = {
+	setup: function () {
+		this.querySelector('video').currentTime=0;
+		this.querySelector('video').pause();
+	},
+	action: window.FakeGenerator([ function() {
+		this.querySelector('video').play();
+	}]),
+	teardown: function () {
+		this.querySelector('video').pause();
+	}
+}
+
+window.elByEl = function () {
+
+	var children;
+	var clone;
+
+	function replaceWithEl(el, target) {
+		target.innerHTML = '';
+		target.appendChild(el);
+	}
+
+	var out = {};
+
+	function init() {
+		if (!children) {
+			children = Array.from(this.children);
+			var target = this;
+			clone = children.map(function (el) {
+				return function () { replaceWithEl(el, this) };
+			}.bind(this));
+			clone.push(function () {});
+			out.action = window.FakeGenerator(clone);
+		}
+	}
+
+	out.setup = function () {
+		init.bind(this)();
+		this.innerHTML = '';
+	};
+
+	out.teardown = function () {
+		init.bind(this)();
+		this.innerHTML = '';
+	}
+
+	return out;
+};
+
+window.getSlideName = function (el) {
+	var name;
+	if (el.matches('script[id]')) {
+		name = genId(el.id);
+	} else {
+		var hs = el.prevAll().filter(function (el) {
+			return el.tagName.match(/h[0-6]/i);
+		});
+		if (!hs.length) throw 'No h to find';
+		var h = hs[hs.length - 1];
+		name =  genId(h.textContent);
+	}
+	return 'slide-' + name;
+}
+
+window.contentSlide = function (slides) {
+	var oldContent;
+
+	return {
+		setup: function setup() {
+			oldContent = Array.from(this.children);
+		},
+		action: function* () {
+
+			const t = slides.slice();
+
+			if (t.length === 0) {
+				yield;
+				return;
+			}
+
+			while(t.length) {
+
+				this.empty();
+				let i = t.shift();
+				if (i) {
+					switch(Object.keys(i)[0]) {
+						case 'video':
+							this.innerHTML = `<video src="${i.video}" preload autoplay autostart loop style="object-fit: contain; flex: 1 0;" />`;
+							this.querySelector('video').currentTime=0;
+							this.querySelector('video').play();
+							break;
+						case 'image':
+							this.innerHTML = `<image src="${i.image}" />`;
+							break;
+						case 'markdown':
+							this.addMarkdown(i.markdown);
+							break;
+						case 'html':
+							this.innerHTML = i.html;
+							break;
+						case 'iframe':
+							this.innerHTML = `<iframe src="${i.iframe}" frameborder="none" style="flex: 1 0;" /></iframe>`;
+							break;
+					}
+					if (i.caption) {
+						this.addMarkdown(i.caption);
+					}
+					if (i.url  || i.iframe) {
+						this.addHTML(`<div class="slide-url">${i.url || i.iframe || ''}</div>`);
+					}
+				}
+				yield;
+			}
+		},
+		teardown() {
+			if (oldContent) {
+				this.empty();
+				oldContent.forEach(c => this.appendChild(c));
+			}
+		}
+	};
+};

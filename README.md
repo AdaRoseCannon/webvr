@@ -2,16 +2,13 @@
 layout: post
 title: Readme
 description: Building a slide deck from a single page
-image: https://ada.is/progressive-web-apps-talk/images/FinancialTimes_G-FTUS_Balloon_LordMayorsAppeal.jpg
 script: https://cdn.rawgit.com/AdaRoseEdwards/dirty-dom/v1.3.1/build/dirty-dom-lib.min.js
 ---
 
 <!-- Define slide animation generators -->
-
 <script>
 	window.aSlidesSlideData = {};
 </script>
-
 <!-- contents -->
 
 # README
@@ -24,7 +21,7 @@ This is a little layout for blog posts which can turn into slides using a-slides
 ## Set up
 
 ```bash
-sudo apt-get install bundler zlib1g-dev libxml2-dev
+sudo apt-get install bundler zlib1g-dev libxml2-dev nodejs
 bundle install
 bundle exec jekyll serve
 ```
@@ -149,3 +146,33 @@ These get fired on the slide container
 > slideContainer.fire('a-slides_goto-slide', {slide: document.querySelector('.a-slide')});
 > ```
 
+<script>
+
+	// Add links to deep link into slides
+	var blockquote = Array.from(document.querySelectorAll('blockquote'));
+	var newSpans = [];
+	document.querySelector('a[href="#aslides"]').addEventListener('click', function () {
+		newSpans.forEach(function (s) {
+			s.removeEventListener('click', onclick);
+			s.remove();
+		});
+		newSpans.splice(0);
+	});
+	blockquote.forEach(function (el) {
+		var span = document.createElement('span');
+		newSpans.push(span);
+		span.textContent = ' View Slide';
+		span.addEventListener('click', function onclick() {
+			window.removeHashChangeEventListener();
+			newSpans.forEach(function (s) {
+				s.removeEventListener('click', onclick);
+				s.remove();
+			});
+			init().then(function () {
+				document.querySelector('.a-slides_slide-container').dispatchEvent(new CustomEvent('a-slides_goto-slide', {detail: {slide: el.parentNode}}));
+			});
+		});
+		span.setAttribute('class', 'slide-view-button');
+		el.appendChild(span);
+	});
+</script>
