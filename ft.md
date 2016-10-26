@@ -649,15 +649,15 @@ To leave you to play with some demos and get some inspiration.
 
 And ask me some questions.
 
-> ##  [Demo of a basic scene with a photograph, shows off some fancy materials](https://jsbin.com/fugatar/edit)
+> ##  [https://jsbin.com/fugatar/edit](https://jsbin.com/fugatar/edit)
 >
-> Basic Demo
+> Basic Demo, geometry, material, sky
 >
-> ## [Piano Demo](https://jsbin.com/xilaja/edit)
+> ## [https://jsbin.com/xilaja/edit](https://jsbin.com/xilaja/edit)
 >
 > 3D Sound and Interactions
 >
-> ## [Simple Physics Demo](https://jsbin.com/dunipu/edit)
+> ## [https://jsbin.com/dunipu/edit](https://jsbin.com/dunipu/edit)
 >
 > Physics
 
