@@ -443,7 +443,39 @@ The goal of this workshop was to:
 * Discuss how to solve for VR use cases that are difficult or impossible today on the Web.
 * Identify potential future standards and establish timelines to enable the Web to be a successful VR platform.
 
+What are my takeaways?
+
+The WebVr is currently focused around WebGL because WebGL was the path of least resistence to getting VR in the Web.
+
+It has been very successful in showing how the web can be used for VR and will remain the way of doing the most immersive scenes.
+
+But it has a downside that due to technical reasons it breaks off from the tradional web.
+
+It has a reliance on libraries and the content is often large to download.
+
+This is against the goals of the internet as it stands today of being light, fast and accessible to all.
+
+We now stand with two paths before us:
+
+1. To follow the immersive scenes, with increased fidelity and better audio and render speed.
+
+2. To enable VR to be a progressive enhancement to web as it stands today.
+
+Neither of these paths are incorrect and fortunately we can walk both at once.
+
+The push for immersive scenes - enabled by technologies like `Web Assembly` will bring us the metaverse of shared experiences.
+
+On the other hand
+
+By treating the VR Web as a new platform like the mobile was we can bring the Web's 25 years of History to a VR future.
+
+Bringing it forward and enhancing it with features only possible in VR.
+
+<script>window.setDynamicSlide(window.elByEl());</script>
 > ![VR Future](images/face5.jpg)
+>
+> ## *"If visual fidelity was all that mattered we would be watching blu-rays not Netflix"* -- Josh Carpenter
+
 
 ## Resources
 
