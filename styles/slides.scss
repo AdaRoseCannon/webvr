@@ -38,6 +38,9 @@
 		top: auto;
 		border-top-right-radius: 1em;
 		box-shadow: 0em -0.2em 0.7em -0.25em rgba(0,0,0,0.6);
+	}
+
+	.presentation & .a-slides_progress {
 		z-index: 5;
 	}
 
@@ -79,16 +82,6 @@
 			flex-grow: 1;
 			flex-shrink: 1;
 			max-height: calc(100vh - 8em);
-		}
-
-		& > img:not(.emoji), & > video {
-			width: auto;
-			height: 0;
-		}
-
-		& video {
-			width: auto;
-			height: 0;
 		}
 
 		& iframe {
