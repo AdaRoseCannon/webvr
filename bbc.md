@@ -471,6 +471,8 @@ By treating the VR Web as a new platform like the mobile was we can bring the We
 
 Bringing it forward and enhancing it with features only possible in VR.
 
+
+
 <script>window.setDynamicSlide(window.elByEl());</script>
 > ![VR Future](images/face5.jpg)
 >
