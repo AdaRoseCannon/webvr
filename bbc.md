@@ -52,6 +52,8 @@ Or can never visit.
 
 Or places that cannot exist.
 
+*I've told you what I want to see, what kind of VR experiences would you guys like to see happen in this VR revolution?*
+
 <script>window.setDynamicSlide(window.elByEl());</script>
 > ![People on Phones](images/phones.jpg)
 >
@@ -407,7 +409,17 @@ A-Frame allows you to produce WebVR ready 3D scenes using HTML!!
 
 ## a-frame-example
 
-A-Frame relys on
+A-Frame is based upon `Custom Elements`.
+
+It sits upon THREE.js where THREE.js is akin to the Shadow Dom.
+
+By writing HTML like we are used to we can produce 3D scenes.
+
+This also means that we can control A-Frame scenes exactly as if they were DOM components.
+
+**DEMO**
+
+Wow!!
 
 <script>window.aSlidesSlideData['slide-a-frame-example'] = window.iframeSlide</script>
 
@@ -415,9 +427,21 @@ A-Frame relys on
 >
 > ## https://ada.is/webvr/basic.html
 
+# Live Code
+
+> # Live Code
+>
+> <h2><a href="https://jsbin.com/yekider/2/edit?html,output" target="_blank">https://jsbin.com/yekider/2/edit?html,output</a></h2>
+
 ## The future of WebVR
 
->
+Last week I attended the first W3C Workshop for WebVR.
+
+The goal of this workshop was to:
+
+* Share experiences between practitioners in VR and related fields.
+* Discuss how to solve for VR use cases that are difficult or impossible today on the Web.
+* Identify potential future standards and establish timelines to enable the Web to be a successful VR platform.
 
 > ![VR Future](images/face5.jpg)
 
