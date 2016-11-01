@@ -8,12 +8,12 @@ script: https://cdn.rawgit.com/AdaRoseEdwards/dirty-dom/v1.3.1/build/dirty-dom-l
 
 <!-- contents -->
 
-# Introducing the WebVR API
+# {{ page.title }}
 
 <!-- Link to trigger conversion script -->
 [Convert to Slide Deck](#aslides)
 
-<span id="a-frame-clock">60</span> Mins with time for questions at the end.
+<span id="a-frame-clock">60</span> Minutes with time for questions at the end.
 
 ## About me
 
@@ -27,22 +27,26 @@ opportunity to shape the medium during it's formative years.
 
 <!-- This slide uses information from _config.yml -->
 <blockquote class="dark" id="splash-slide" style="background-image: url('images/pattern.svg');">
-<h1>{{ site.name }}</h1>
-<h3>{{ site.description }}</h3>
+<h1>{{ page.title }}</h1>
+<h3>{{ page.description }}</h3>
 <h2>{{site.author.name}} - {{site.author.company}}</h2>
 </blockquote>
 
 ## Introduction
 
+VR is often considered a lonely experience.
+
 Today on the train we will often see people looking at their phones.
 
-Naively one may think that this is a very lonely world.
+Naively one may think that this too is a very lonely world.
 
 But what we don't see are all the ties from their devices to the people they love.
 
-There is certainly nothing I enjoy more than seeing and sharing the happy times of my friends and lvoed ones.
+There is certainly nothing I enjoy more than seeing and sharing the happy times of my friends and loved ones.
 
-I see VR in the Web being a further extension of this, allowing us to share virtual spaces without being co-located.
+I see VR in the Web being a further extension of this
+
+VR allows us to share virtual spaces without being co-located. Enabling personal interactions across vast distances through avatars.
 
 To revisit places of our past, or virtually visit a friends holiday destination.
 
@@ -67,9 +71,10 @@ Or places that cannot exist.
 >
 > ![Escher Painting](images/escher.jpg)
 
+
 ## Goals
 
-The goal of this talk is to be a technical introduction to the web's new virtual reality apis.
+The goal of this talk is to be a technical introduction to the Web's new virtual reality APIs.
 
 As a heads up this will be in depth and technical it will help if you have had experience with developing on the web and some experience with dealing with 3D rendering.
 
@@ -85,21 +90,35 @@ There are also many libraries and tools to handle 3D rendering in the web which 
 
 ## How does VR work?
 
-Virtual reality headsets present sensory information to the user from a virtual envrionment. This technique relies on accurate head tracking. Requiring precise rotational detection and optionally positional detection.
+Virtual reality headsets present sensory information to the user from a virtual environment.
+
+An example of a basic form of virtual reality.
+
+* Sit someone in a chair.
+* Blindfold them
+* Place their feet into sand
+* Give them some drift wood to hold an smell
+* Play the sounds of the ocean
+
+You will send them away on a beach vacation by fooling their senses.
+
+For greater immersion we can replace what their eyes and ears sense. With 3D Video and Audio.
+
+This technique relies on accurate head tracking. Requiring precise rotational detection and optionally positional detection.
 
 Accurate simulation and tracking results in a feeling of immersion.
 
-Primarily these headsets takes the form of a visual experience although 3D audio adds further immersion.
-
-VR headsets acheive 3D by presenting each eye an image which has been rendered from it's equivalent point of view much as it is in real life.
+VR headsets achieve 3D by presenting each eye an image which has been rendered from it's equivalent point of view much as it is in real life.
 
 The VR headsets usually consist of a high pixel density screen and two lenses to increase the field of view.
 
-The high dpi screen shows two predistorted images. Distorted so that they squeeze in a greater field of view.
+The high dpi screen shows two pre-distorted images. Distorted so that they squeeze in a greater field of view.
 
 The lens then do the opposite transformation to make an undistorted image in the eye.
 
-This seems like a lot of work and fortunately the WebVR APIs handle this for us so we can get focussed on the task of producing good content.
+This seems like a lot of work and fortunately the WebVR APIs handle most of this heavy lifting for us.
+
+allowing us so to focus on the task of producing good content.
 
 > ![Pre distorted VR image](images/webvr-polyfill.png)
 
@@ -114,6 +133,12 @@ This seems like a lot of work and fortunately the WebVR APIs handle this for us 
 
 ## Where is it supported natively
 
+Samsung Internet for GearVR is a full browser for Virtual Reality on mobile 3 more have been announced:
+
+* Chrome for Day Dream
+* Mozilla's Servo
+* Occulus's Carmel Browser
+
 > * Samsung Internet for Gear VR
 >   * Enable on internet://webvr-enable
 >   * Supports GearVR
@@ -127,6 +152,8 @@ This seems like a lot of work and fortunately the WebVR APIs handle this for us 
 > ![Enabling WebVR on GearVR](images/webvr-enable.jpg)
 >
 > ## Turning on WebVR in the GearVR: `internet://webvr-enable`
+
+This is the current state of the WebVR APIs support in popular browsers.
 
 > ![iswebvrready.png](images/iswebvrready.png)
 >
@@ -153,6 +180,7 @@ THREE.js has examples included
 >
 > http://threejs.org/examples/webvr_cubes.html
 
+
 ## High level overview
 
 This scene is being rendered to a `<canvas>` element.
@@ -161,13 +189,15 @@ You will need to add a VR button to the scene as one can only present on a user 
 
 The WebVR APIs give you information about how you should render your scene.
 
-Such as the position and rotation of TWO cameras one in the virtual position of where the user's eyes should be.
+Such as the position and rotation of TWO cameras
+
+corresponding to the virtual position of where the user's eyes should be.
 
 Each frame at the framerate of the headset you will need to render the scene from each eye
 
 And submit the final composite image to headset
 
-Note the final scene we submit does not have distortion applied
+Note the final scene we submit does not have any distortion applied
 
 The headset will handle that.
 
@@ -189,9 +219,9 @@ Getting a VR Display
 
 `navigator.getVRDisplays` - returns a promise, resolves a list of `VRDisplay`s
 
-These are the headsets that are attatched to the computer.
+These are the headsets that are attached to the computer.
 
-It provides apis to retrieve data on the headset such as field of view or the current position in space.
+It provides APIs to retrieve data on the headset such as field of view or the current position in space.
 
 It also provides the ability to send images to the headset to be displayed to the user.
 
@@ -206,7 +236,6 @@ navigator.getVRDisplays()
 
 The WebVR Api is still under development so these may change.
 
-
 requestPresent is a VR flavoured `Element.requestFullscreen()` it requests that the device goes fullscreen on that display without requiring user's permission although it can only be called on a user interaction such as a click.
 
 You give it a canvas element and this is what is sent to the headset each frame.
@@ -217,7 +246,6 @@ You give it a canvas element and this is what is sent to the headset each frame.
 vrDisplay.requestAnimationFrame is a VR flavoured `requestAnimationFrame()` like the native equivalent it is called each time the display is ready to be updated. Although unlike the browser this display usually runs faster than 60hz, perhaps even 90hz or 120hz.
 
 **`VRDisplay.requestAnimationFrame()`**
-
 
 getEyeParameters gives you the information needed for setting up your stereoscopic camera's viewing frustrum.
 
@@ -231,6 +259,7 @@ getEyeParameters gives you the information needed for setting up your stereoscop
 > ## **`VRDisplay.getEyeParameters()`**
 >
 > ## https://developer.mozilla.org/en-US/docs/Web/API/VRDisplay
+
 
 ## VREyeParameters
 
@@ -288,6 +317,10 @@ https://developer.mozilla.org/en-US/docs/Web/API/VRDisplay
 
 ## Pose Video
 
+This may seem like a lot of work but work through it and it can be accomplished in a couple of hours.
+
+Using any 3D library. Hopefully any you choose to use handles it for you as it is something which can be reused again and again.
+
 <script>
 window.aSlidesSlideData['slide-pose-video'] = window.playVideo;
 </script>
@@ -309,6 +342,20 @@ It derives the lens information from the specificaitons of the Google Cardboard 
 > ![images/cardboard.jpg](images/cardboard.jpg)
 >
 > ## https://github.com/borismus/webvr-polyfill
+
+## Break
+
+Everything we have covered above has the goal of producing a 3D rendered scene which is what the state of the art focuses upon today.
+
+This is until very recently there has only been one VR web browser, ours.
+
+Samsung Internet for GearVR has been around for around a year.
+
+During this time we have been able to experiment with additional features to the tradional web.
+
+These are great for enhancing a tradional 2D website with 3D content.
+
+> ![Google on Samsung Internet for GearVR](images/google.jpg)
 
 ## Samsung Internet specific APIs
 
@@ -360,7 +407,7 @@ window.SamsungChangeSky({ sphere: 'http://site.com/blue-sky.jpg' });
 
 We are planning to standardise these APIs in W3C.
 
-They were well recieved at the W3C WebVR Workshop held last week in San Jose.
+They were well received at the W3C WebVR Workshop held last week in San Jose.
 
 # Debugging your scenes
 
@@ -368,11 +415,15 @@ If you are a building a 3D experience you probably want to test it.
 
 But wearing a headset whilst tethered to a computer is pretty awkward.
 
-Also the earlier GearVR headets only had a USB port for power not data.
+Also the earlier GearVR headsets only had a USB port for power not data.
 
 An android app called ADB wireless allows you to test your web site in the
 
 GearVR browser over a wireless connection.
+
+It also displays what user is seeing on the screen, great for working out where user's
+
+may be struggling to engage with your scene during user testing.
 
 > ![Remote Debug on Samsung Internet with ADB Wireless](images/adb-wireless.jpg)
 >
@@ -382,13 +433,15 @@ GearVR browser over a wireless connection.
 
 The last thing I would like to introduce is A-Frame.
 
-It sits above THREE.js and includes a polyfill to allow phones to behave like VR headsets.
+A-Frame is a librry encapsulates THREE.js and the polyfill to allow phones to behave like VR headsets.
 
 It abstracts away the boilerplate of THREE.js to allow one ot start prototyping straight away.
 
 A-Frame allows you to produce WebVR ready 3D scenes using HTML!!
 
 > ![WebVR](images/VR-Requirements-2.svg)
+
+Boom
 
 > ```html
 	<html>
@@ -445,11 +498,11 @@ The goal of this workshop was to:
 
 What are my takeaways?
 
-The WebVr is currently focused around WebGL because WebGL was the path of least resistence to getting VR in the Web.
+The WebVR is currently focused around WebGL because WebGL was the path of least resistance to getting VR in the Web.
 
 It has been very successful in showing how the web can be used for VR and will remain the way of doing the most immersive scenes.
 
-But it has a downside that due to technical reasons it breaks off from the tradional web.
+But it has a downside that due to technical reasons it breaks off from the traditional web.
 
 It has a reliance on libraries and the content is often large to download.
 
@@ -470,8 +523,6 @@ On the other hand
 By treating the VR Web as a new platform like the mobile was we can bring the Web's 25 years of History to a VR future.
 
 Bringing it forward and enhancing it with features only possible in VR.
-
-
 
 <script>window.setDynamicSlide(window.elByEl());</script>
 > ![VR Future](images/face5.jpg)
