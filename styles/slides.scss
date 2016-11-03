@@ -77,7 +77,6 @@
 
 		& img:not(.emoji),
 		& video {
-			width: 0;
 			object-fit: contain;
 			flex-grow: 1;
 			flex-shrink: 1;

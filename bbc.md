@@ -202,11 +202,11 @@ Note the final scene we submit does not have any distortion applied
 The headset will handle that.
 
 <script>
-window.aSlidesSlideData['slide-from-web-to-vr-introducing-the-new-apis-'] = window.contentSlide([
+window.setDynamicSlide(window.contentSlide([
   {image: 'images/render1.png'},
   {image: 'images/render2.png'},
   {image: 'images/render3.png'}
-]);
+]));
 </script>
 
 > ![images/render1.png](images/render1.png)
