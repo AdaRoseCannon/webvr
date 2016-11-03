@@ -31,7 +31,7 @@ function addScript (url) {
 }
 
 // Add a fake generator which accepts arrays of functions
-// to interface with a-slides on platforms which don't support
+// to interface with a-slides on platofrms which don't support
 // generators
 window.FakeGenerator = function FakeGenerator(arr) {
 	return function () {
@@ -80,7 +80,7 @@ function genId(name) {
 
 function init() {
 	return Promise.all([
-		addScript('https://cdn.rawgit.com/AdaRoseEdwards/a-slides/v1.4.0/build/a-slides.js').promise
+			addScript('https://cdn.rawgit.com/AdaRoseEdwards/a-slides/v1.4.0/build/a-slides.js').promise
 	])
 	.then(function () {
 
@@ -145,7 +145,7 @@ function init() {
 			plugins: [
 				ASlides.plugins.markdownTransform, // needs to be run first
 				ASlides.plugins.slideController, // needs to be run before buttons are added to it.
-				// ASlides.plugins.deepLinking, // Handling deeplinking myself
+				ASlides.plugins.deepLinking,
 				ASlides.plugins.interactionKeyboard,
 				ASlides.plugins.interactionTouch({ // has configuration
 					use: ['swipe-back']
@@ -192,11 +192,9 @@ function init() {
 	function locationHashChanged() {
 		if (location.hash === '#aslides') {
 			window.removeEventListener('hashchange', locationHashChanged);
-			if (oldHash) window.location.hash = oldHash;
+			window.location.hash = oldHash;
 			init().then(function(slideContainer) {
-				fire(slideContainer, 'a-slides_goto-slide', {
-					slide: oldHash ? slideContainer.querySelector('[data-slide-id="' + oldHash.substr(1, Infinity) + '"]') : 0
-				});
+				fire(slideContainer, 'a-slides_goto-slide', {slide: oldHash ? slideContainer.querySelector('[data-slide-id="' + oldHash.substr(1,Infinity) + '"]') : 0});
 			});
 		}
 	}
@@ -208,9 +206,7 @@ function init() {
 			if (location.hash === '#aslides' || oldHash === false) {
 				fire(slideContainer, 'a-slides_goto-slide', {slide: 0});
 			} else {
-				fire(slideContainer, 'a-slides_goto-slide', {
-					slide: slideContainer.querySelector('[data-slide-id="' + oldHash.substr(1, Infinity) + '"]') || 0
-				});
+				fire(slideContainer, 'a-slides_goto-slide', {slide: slideContainer.querySelector('[data-slide-id="' + oldHash.substr(1,Infinity) + '"]')});
 			}
 		});
 	} else {

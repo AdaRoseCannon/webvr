@@ -5,7 +5,7 @@ description: Building a slide deck from a single page
 script: https://cdn.rawgit.com/AdaRoseEdwards/dirty-dom/v1.3.1/build/dirty-dom-lib.min.js
 ---
 
-# README
+# {{ title }}
 
 This is a little layout for blog posts which can turn into slides using a-slides
 
@@ -39,8 +39,8 @@ It should work with slide remotes and a wii mote on supported platforms
 
 <!-- This slide uses information from _config.yml -->
 <blockquote class="dark" id="splash-slide" style="background-image: url('images/pattern.svg');">
-<h1>{{ site.name }}</h1>
-<h3>{{ site.description }}</h3>
+<h1>{{ page.title }}</h1>
+<h3>{{ page.description }}</h3>
 <h2>{{site.author.name}} - {{site.author.company}}</h2>
 </blockquote>
 
@@ -89,7 +89,6 @@ window.aSlidesSlideData = {'slide-this-h1-is-what-defines-the-slide-name': {
 	window.aSlidesSlideData['slide-demo'] = {
 		setup: function () {
 			this.innerHTML = '';
-			this.addMarkdown('# Hello');
 		},
 
 		// action: function *() {
@@ -103,7 +102,7 @@ window.aSlidesSlideData = {'slide-this-h1-is-what-defines-the-slide-name': {
 		// This fake generator is an a-slides compatible
 		// es5 shim, from post-to-slides.js
 		action: window.FakeGenerator([
-			function() {},
+			function() {this.addMarkdown('# Hello');},
 			function() {this.addMarkdown('# World');},
 			function() {this.addMarkdown('## - From Ada');},
 			function() {},
@@ -140,33 +139,3 @@ These get fired on the slide container
 > slideContainer.fire('a-slides_goto-slide', {slide: document.querySelector('.a-slide')});
 > ```
 
-<script>
-
-	// Add links to deep link into slides
-	var blockquote = Array.from(document.querySelectorAll('blockquote'));
-	var newSpans = [];
-	document.querySelector('a[href="#aslides"]').addEventListener('click', function () {
-		newSpans.forEach(function (s) {
-			s.removeEventListener('click', onclick);
-			s.remove();
-		});
-		newSpans.splice(0);
-	});
-	blockquote.forEach(function (el) {
-		var span = document.createElement('span');
-		newSpans.push(span);
-		span.textContent = ' View Slide';
-		span.addEventListener('click', function onclick() {
-			window.removeHashChangeEventListener();
-			newSpans.forEach(function (s) {
-				s.removeEventListener('click', onclick);
-				s.remove();
-			});
-			init().then(function () {
-				document.querySelector('.a-slides_slide-container').dispatchEvent(new CustomEvent('a-slides_goto-slide', {detail: {slide: el.parentNode}}));
-			});
-		});
-		span.setAttribute('class', 'slide-view-button');
-		el.appendChild(span);
-	});
-</script>

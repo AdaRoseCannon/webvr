@@ -3,10 +3,10 @@
 # 2. config.build.yml
 # 3. config.yml
 
-url: https://ada.is/url-goes-here
-name: A-Slides Template
-description: Example usage of a-slides
+name: Getting started with WebVR
+description: Introduction to A-Frame
 color: lavenderblush
+url: https://ada.is/getting-started-with-webvr
 author:
   name: Ada Rose Edwards
   email: ada@ada.is
