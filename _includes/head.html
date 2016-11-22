@@ -4,8 +4,7 @@
 	<link rel="icon" type="image/ico" href="favicon.ico">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,target-densitydpi=device-dpi, user-scalable=no, minimal-ui" />
 	<link rel="icon" sizes="192x192" href="launcher-icon-4x.png">
-	<link href='https://fonts.gstatic.com' rel='preconnect' crossorigin>
-	<link href='https://cdn.rawgit.com/SamsungInternet/podle/master/static/fonts/SamsungOne/fonts.css' rel='stylesheet' type='text/css'>
+	<link href='{{page.prefix}}fonts/SamsungOne/fonts.css' rel='stylesheet' type='text/css'>
 	<link rel="manifest" href="{{page.prefix}}manifest.json">
 	<title>{{ page.title }}</title>
 	{% if page.image %}
@@ -29,11 +28,18 @@
 	{% else %}
 	  <meta name="twitter:description" content="{{ site.description }}">
 	{% endif %}
-	<link rel="stylesheet" href="https://cdn.rawgit.com/AdaRoseEdwards/a-slides/v1.4.0/build/a-slides.css">
 	<link rel="stylesheet" href="{{page.prefix}}styles/slides.css">
 	<link rel="stylesheet" href="{{page.prefix}}styles/post.css">
 	<link rel="stylesheet" href="{{page.prefix}}styles/highlight.css">
 	<script src="https://cdn.polyfill.io/v2/polyfill.js?features=Array.isArray,Array.from,default-3.6,Element.prototype.before,Array.prototype.find"></script>
+	{% if page.style %}
+	<link rel="stylesheet" href="{{page.style}}">
+	{% endif %}
+	{% if page.styles %}
+	{% for item in page.styles %}
+	<link rel="stylesheet" href="{{item}}">
+	{% endfor %}
+	{% endif %}
 	{% if page.script %}
 	<script src="{{page.script}}"></script>
 	{% endif %}
