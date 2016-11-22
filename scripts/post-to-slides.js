@@ -1,10 +1,23 @@
 'use strict';
-/* global ASlides, twemoji*/
+/* global ASlides */
 
 /**
  * Turns a normal markdown blog post into a slide deck!!
  * amazing right!!
  */
+
+'use strict';
+
+// Load the service worker which does not have push notification support.
+if ('serviceWorker' in navigator) {
+	navigator.serviceWorker.register('sw.js', { scope: './' })
+	.then(function(reg) {
+		console.log('sw registered', reg);
+	}).catch(function(error) {
+		console.log('sw registration failed with ' + error);
+	});
+}
+
 
 function addStyle(url){
 	var styles = document.createElement('link');
@@ -13,6 +26,19 @@ function addStyle(url){
 	styles.media = 'screen';
 	styles.href = url;
 	document.getElementsByTagName('head')[0].appendChild(styles);
+}
+
+function fullScreenPlugin(o) {
+	var element = o.slideContainer;
+	ASlides.plugins.slideController.makeAndBindButton('Fullscreen', function () {
+		if (element.requestFullscreen) { // W3C API
+			element.requestFullscreen();
+		} else if (element.mozRequestFullScreen) { // Mozilla current API
+			element.mozRequestFullScreen();
+		} else if (element.webkitRequestFullScreen) { // Webkit current API
+			element.webkitRequestFullScreen();
+		}
+	});
 }
 
 function addScript (url) {
@@ -29,39 +55,7 @@ function addScript (url) {
 	promiseScript.promise = p;
 	return promiseScript;
 }
-
-// Add a fake generator which accepts arrays of functions
-// to interface with a-slides on platofrms which don't support
-// generators
-window.FakeGenerator = function FakeGenerator(arr) {
-	return function () {
-		var toRun = arr.slice();
-		var done = false;
-		var self = this;
-		return {
-			done: false,
-			next: function (arg) {
-				if (done || !toRun.length) return {
-					value: undefined,
-					done: true
-				};
-				if (toRun.length === 1) done = true;
-				return {
-					done: done,
-					value: toRun.shift().bind(self)(arg)
-				}
-			}
-		}
-	}
-}
-
-// Fancy Emojis
-addScript('https://twemoji.maxcdn.com/2/twemoji.min.js')().then(function () {
-	twemoji.parse(document.body, {
-		folder: 'svg',
-		ext: '.svg'
-	});
-});
+window._addScript = addScript;
 
 function prevAll(el) {
 	var nodes = Array.from(el.parentNode.children);
@@ -80,7 +74,7 @@ function genId(name) {
 
 function init() {
 	return Promise.all([
-			addScript('https://cdn.rawgit.com/AdaRoseEdwards/a-slides/v1.4.0/build/a-slides.js').promise
+			addScript('./scripts/third-party/a-slides.js').promise
 	])
 	.then(function () {
 
@@ -134,6 +128,9 @@ function init() {
 		document.body.before(slideContainer);
 
 		document.body.classList.remove('post');
+		Array.from(document.querySelectorAll('.slide-view-button')).forEach(function (el) {
+			el.parentNode.removeChild(el);
+		});
 	})
 	.then(function () {
 
@@ -150,7 +147,8 @@ function init() {
 				ASlides.plugins.interactionTouch({ // has configuration
 					use: ['swipe-back']
 				}),
-				ASlides.plugins.bridgeServiceWorker
+				ASlides.plugins.bridgeServiceWorker,
+				fullScreenPlugin
 			]
 		});
 
@@ -162,7 +160,7 @@ function init() {
 			slideContainer.classList.add('hide-presentation');
 		}
 
-		var clock = document.querySelector('#a-frame-clock');
+		var clock = document.querySelector('#a-slides_clock');
 		if (clock) {
 			var clockLength = parseInt(Number(clock.textContent) * 60);
 			var finishAt = Date.now() + clockLength * 1000;
@@ -197,6 +195,8 @@ function init() {
 				fire(slideContainer, 'a-slides_goto-slide', {slide: oldHash ? slideContainer.querySelector('[data-slide-id="' + oldHash.substr(1,Infinity) + '"]') : 0});
 			});
 		}
+
+		window.removeHashChangeEventListener();
 	}
 
 	var oldHash = location.hash || false;
@@ -220,143 +220,3 @@ function init() {
 
 
 window.aSlidesSlideData = {};
-
-window.setDynamicSlide = function (o) {
-	window.aSlidesSlideData[window.getSlideName(document.currentScript)] = o;
-}
-
-/**
- * Define some useful presetup generators
- */
-window.iframeSlide = {
-	setup: function () {
-		var iframe = this.querySelector('iframe');
-		iframe.src = iframe.dataset.src;
-	},
-	action: window.FakeGenerator([ function() {} ]),
-	teardown: function () { this.querySelector('iframe').src = 'about:blank'; }
-};
-
-window.playVideo = {
-	setup: function () {
-		this.querySelector('video').currentTime=0;
-		this.querySelector('video').pause();
-	},
-	action: window.FakeGenerator([ function() {
-		this.querySelector('video').play();
-	}]),
-	teardown: function () {
-		this.querySelector('video').pause();
-	}
-}
-
-window.elByEl = function () {
-
-	var children;
-	var clone;
-
-	function replaceWithEl(el, target) {
-		target.innerHTML = '';
-		target.appendChild(el);
-	}
-
-	var out = {};
-
-	function init() {
-		if (!children) {
-			children = Array.from(this.children);
-			var target = this;
-			clone = children.map(function (el) {
-				return function () { replaceWithEl(el, this) };
-			}.bind(this));
-			clone.push(function () {});
-			out.action = window.FakeGenerator(clone);
-		}
-	}
-
-	out.setup = function () {
-		init.bind(this)();
-		this.innerHTML = '';
-	};
-
-	out.teardown = function () {
-		init.bind(this)();
-		this.innerHTML = '';
-	}
-
-	return out;
-};
-
-window.getSlideName = function (el) {
-	var name;
-	if (el.matches('script[id]')) {
-		name = genId(el.id);
-	} else {
-		var hs = el.prevAll().filter(function (el) {
-			return el.tagName.match(/h[0-6]/i);
-		});
-		if (!hs.length) throw 'No h to find';
-		var h = hs[hs.length - 1];
-		name =  genId(h.textContent);
-	}
-	return 'slide-' + name;
-}
-
-window.contentSlide = function (slides) {
-	var oldContent;
-
-	return {
-		setup: function setup() {
-			oldContent = Array.from(this.children);
-		},
-		action: function* () {
-
-			const t = slides.slice();
-
-			if (t.length === 0) {
-				yield;
-				return;
-			}
-
-			while(t.length) {
-
-				this.empty();
-				let i = t.shift();
-				if (i) {
-					switch(Object.keys(i)[0]) {
-						case 'video':
-							this.innerHTML = `<video src="${i.video}" preload autoplay autostart loop style="object-fit: contain; flex: 1 0;" />`;
-							this.querySelector('video').currentTime=0;
-							this.querySelector('video').play();
-							break;
-						case 'image':
-							this.innerHTML = `<image src="${i.image}" />`;
-							break;
-						case 'markdown':
-							this.addMarkdown(i.markdown);
-							break;
-						case 'html':
-							this.innerHTML = i.html;
-							break;
-						case 'iframe':
-							this.innerHTML = `<iframe src="${i.iframe}" frameborder="none" style="flex: 1 0;" /></iframe>`;
-							break;
-					}
-					if (i.caption) {
-						this.addMarkdown(i.caption);
-					}
-					if (i.url  || i.iframe) {
-						this.addHTML(`<div class="slide-url">${i.url || i.iframe || ''}</div>`);
-					}
-				}
-				yield;
-			}
-		},
-		teardown() {
-			if (oldContent) {
-				this.empty();
-				oldContent.forEach(c => this.appendChild(c));
-			}
-		}
-	};
-};
