@@ -5,9 +5,9 @@
 
 name: Getting started with WebVR
 description: Introduction to A-Frame
-baseurl: webvr
+baseurl: /webvr
 color: lavenderblush
-url: https://ada.is/getting-started-with-webvr
+url: https://ada.is/webvr
 author:
   name: Ada Rose Edwards
   email: ada@ada.is

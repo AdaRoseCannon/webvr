@@ -75,7 +75,7 @@ A-Frame simplifies everything and abstracts away the more difficult bits.
 
 Allowing us to get started straight away!
 
-> ![WebVR](images/VR-Requirements.svg)
+> ![WebVR](images/VR-Requirements-2.svg)
 
 Why do I like A-Frame?
 
@@ -350,24 +350,26 @@ It is being transformed elaborately
 >
 > ## {{ site.url }}/scene-graph.html
 
-# Third Party components
+# Workshop
 
-At this point you are ready to put together some simple scenes and animations.
+So I am going to step aside for a bit.
 
-A-Frame provides lots of components
+To leave you to play with some demos and get some inspiration.
 
-Which is nice but they probably don't do every thing you want.
+And ask me some questions.
 
-There are lots of components built by third parties a prominent library is A-Frame extras
+Then in about 10 minutes I will then run through some of my favourite examples of UI interactions.
 
-> ## A-Frame extras provides
+
 >
-> * Various ways to get user input
-> * Dynamic Physics
-> * Some extra primitives such as a grid plane
-> * Dynamic Shadows
+> ## Docs - <span style="color: yellow;">https://aframe.io/docs/0.3.0/introduction/</span>
 >
-> ## https://github.com/donmccurdy/aframe-extras
+> ## Interactivity Workspace - <span style="color: yellow;">https://jsbin.com/xilaja/</span>
+>
+> ## Fancy Material Workspace - <span style="color: yellow;">https://jsbin.com/yekider/</span>
+>
+> ## Physics Workspace - <span style="color: yellow;">https://jsbin.com/pawace/</span>
+
 
 # Making new components
 
@@ -417,15 +419,15 @@ More complex components such as geometry or material have properties defined lik
 
 <script id="what-can-components-do">window.setDynamicSlide(window.elByEl())</script>
 
-> <code><span style="background: yellow;">&lt;a-entity&gt;&lt;/a-entity&gt;</span></code>
+> <code><span style="background: goldenrod;">&lt;a-entity&gt;&lt;/a-entity&gt;</span></code>
 >
-> <code>&lt;a-entity <span style="background: yellow;">position="0 1 0"</span>&gt;&lt;/a-entity&gt;</code>
+> <code>&lt;a-entity <span style="background: goldenrod;">position="0 1 0"</span>&gt;&lt;/a-entity&gt;</code>
 >
-> <code>&lt;a-entity position="0 1 0" <span style="background: yellow;">rotation="0 90 0"</span>&gt;&lt;/a-entity&gt;</code>
+> <code>&lt;a-entity position="0 1 0" <span style="background: goldenrod;">rotation="0 90 0"</span>&gt;&lt;/a-entity&gt;</code>
 >
-> <code>&lt;a-entity position="0 1 0" rotation="0 90 0" <span style="background: yellow;">geometry="primitive: box; width: 3; height: 2; depth: 2;"</span>&gt;&lt;/a-entity&gt;</code>
+> <code>&lt;a-entity position="0 1 0" rotation="0 90 0" <span style="background: goldenrod;">geometry="primitive: box; width: 3; height: 2; depth: 2;"</span>&gt;&lt;/a-entity&gt;</code>
 >
-> <code>&lt;a-entity position="0 1 0" rotation="0 90 0" geometry="primitive: box; width: 3; height: 2; depth: 2;" <span style="background: yellow;">material="color: red;"</span>&gt;&lt;/a-entity&gt;</code>
+> <code>&lt;a-entity position="0 1 0" rotation="0 90 0" geometry="primitive: box; width: 3; height: 2; depth: 2;" <span style="background: goldenrod;">material="color: red;"</span>&gt;&lt;/a-entity&gt;</code>
 
 # Reusing Components
 
@@ -596,163 +598,46 @@ AFRAME.registerPrimitive('a-ocean-plane', {
 });
 ```
 
-# Workshop
-
-So I am going to step aside for a bit.
-
-To leave you to play with some demos and get some inspiration.
-
-And ask me some questions.
-
-Then in about 10 minutes I will then run through some of my favourite examples of UI interactions.
-
-
-> ##  http://jsbin.com/vemejiy/edit
->
-> * geometry - add 3d shapes
-> * material - sets the material to a geometry
-> * rotation, position, scale
-> * wasd-controls
->
-> ### http://jsbin.com/guxaqi/edit
->
-> * cursor
-> * `<a-animation>`
-> * sound
-
-# Other projects and User Interfaces
-
-The really interesting state we are in now is that we are in a green field of interface design.
-
-Nothing is set in stone.
-
-Interactions tend to fall somewhere on this graph.
-
-Building interactions in the top right is where most people jump to.
-
-Although familiar and quick to be grasped they limit what could be done to what is already doable.
-
-Interactions in the top left square can be quirky and fun because they subvert are expectations of reality.
-
-The bottom right tend to be more minimalist, they make sense when that interaction is not something which needs to be special. This kind of interface is probably familiar to those used to playing first person roleplaying games.
-
-Click on this, click on that. Simple potentially restrictive.
-
-The bottom left square is where the VR magic will happen. Unconstrained by both reality and pre-existing assumptions and expectations a new User interface language will be formed.
-
-Thinking of icons we are familiar with
-
-* E.g. Hamburger icon would sit in the bottom left
-* Save icon is top right if you are born in the 80s
-* Or bottom right if you were born in the 90s 00s
-
-A new generation has grown up where every screen is a touch screen
-
-Who are familiar with the visual language of those screens.
-
-We designing user interfaces for the VR generation.
-
-VR gives us new tools for design
-
-A sense of scale, we can build interfaces at a familiar scale to the user or with no extra work make them tiny or huge.
-
-Things can be relateable or familiar but behave by different rules.
-
-VR can be at once both familiar and Surreal,
-
-> ![Diagram of interaactions](images/vr-interactions.svg)
-
-People get used to new interactions really quickly.
-
-Minesweeper was invented to teach people to use right click.
-
-As we settle on new design languages for VR people are going to need a similar step up
-
-> ![Minesweeper](images/mines.gif)
-
-# My Faves
-
-Over the past year I have seen some really interesting user interface elements in VR.
-
-These are a few of my faves. The a forementioned exit burrito.
-
-* Juicy Sliders
-* Exit Burrito
-* Going through links by putting something on your head
-
-<script>window.aSlidesSlideData['slide-my-faves'] = window.contentSlide([{
-	video: 'images/juicy-sliders.mp4',
-	caption: '## https://twitter.com/Cabbibo/status/758792984095621120'
-},{
-	video: 'images/exit-burrito.mp4',
-	caption: '## Owlchemy Labs’ Job Simulator 2050'
-},{
-	video: 'images/a-frame-link-traversal.mp4',
-	caption: '## Link traversal in the next release of A-Frame'
-}
-])</script>
-
-> <video src="images/juicy-sliders.mp4" muted preload autoplay autostart loop></video>
-
-# A-Frame Examples
-
-That last one I found on the A-Frame blog.
-
-Each week A-Frame do a blog post highlighting development of the platform and interesting projects from the community.
-
-Check it out really interesting and exciting to see what is upcoming in A-Frame.
-
-Also the wide variety of demos and projects are great if you are stumped for ideas
-
-> ![a-frame-blog](images/a-frame-blog.png)
->
-> ## https://aframe.io/blog/
-
-# Google's Daydream Experiments
-
-Google are regularly giving feedback from their experiments into VR interaction
-
-<script>window.aSlidesSlideData['slide-google-s-daydream-experiments'] = window.playVideo</script>
-
-> # Google's Daydream Experiments
->
-> <video src="images/simpleavatars.mp4" muted autoplay autostart loop preload></video>
->
-> ## http://uploadvr.com/google-shares-lessons-60-vr-experiments/
-
-# Google VR Videos
-
-They have lots of examples on their website
-
-This recent one is interesting, an experiment in diffusing situations where one player might get irate by reducing their agency if not playing nice.
-
-<script>window.aSlidesSlideData['slide-google-vr-videos'] = window.iframeSlide</script>
-
-> <iframe width="560" height="315" src="https://www.youtube.com/embed/BoOVVx9CnL8" frameborder="0" allowfullscreen></iframe>
->
-> ## https://www.youtube.com/channel/UCkUZagbGbewp3bZQLXGzkmA
-
-# Some rules for what you should not do
-
-* Don't teleport the user it will just confuse them.
-* Don't accelerate or rotate the camera unless in well expected smooth fashion, you will make them seasick.
-* Don't do something which runs laggy, it may make them ill.
-
-# Stuff you should do
-
-* Do have interactive elements give a wiggle when the user glances at it.
-* Do make any text large, thick and clear
-* Do have fun making something
-
-Some guides to building good expereinces:
-
-My slides are online if you want to find this later
-
-> ### https://developer.leapmotion.com/assets/ Leap%20Motion%20VR%20Best%20Practices%20Guidelines.pdf
->
-> ## https://developer.oculus.com/documentation/intro-vr/latest/concepts/bp_intro/
-
 <script>
+
+	// Fancy Emojis
+	window._addScript('https://twemoji.maxcdn.com/2/twemoji.min.js')().then(function () {
+		twemoji.parse(document.body, {
+			folder: 'svg',
+			ext: '.svg'
+		});
+	});
+
+	// Add links to deep link into slides
+	var blockquote = Array.from(document.querySelectorAll('body.post > blockquote'));
+	var newSpans = [];
+	document.querySelector('a[href="#aslides"]').addEventListener('click', function () {
+		newSpans.forEach(function (s) {
+			s.removeEventListener('click', onclick);
+			s.remove();
+		});
+		newSpans.splice(0);
+	});
+
+	blockquote.forEach(function (el) {
+		var span = document.createElement('span');
+		newSpans.push(span);
+		span.textContent = ' View Slide';
+		span.addEventListener('click', function onclick() {
+			window.removeHashChangeEventListener();
+			newSpans.forEach(function (s) {
+				s.removeEventListener('click', onclick);
+				s.remove();
+			});
+			init().then(function () {
+				document.querySelector('.a-slides_slide-container').dispatchEvent(new CustomEvent('a-slides_goto-slide', {detail: {slide: el.parentNode}}));
+			});
+		});
+		span.setAttribute('class', 'slide-view-button');
+		el.appendChild(span);
+	});
+
+	// iframe buttons
 	var iframes = Array.from(document.querySelectorAll('iframe'));
 	var blank = 'about:blank';
 	iframes.forEach(function (iframe) {
@@ -774,32 +659,5 @@ My slides are online if you want to find this later
 		button.classList.add('blank');
 		button.textContent = "Load iFrame";
 		iframe.after(button);
-	});
-
-	var blockquote = Array.from(document.querySelectorAll('blockquote'));
-	var newSpans = [];
-	document.querySelector('a[href="#aslides"]').addEventListener('click', function () {
-		newSpans.forEach(function (s) {
-			s.removeEventListener('click', onclick);
-			s.remove();
-		});
-		newSpans.splice(0);
-	});
-	blockquote.forEach(function (el) {
-		var span = document.createElement('span');
-		newSpans.push(span);
-		span.textContent = ' View Slide';
-		span.addEventListener('click', function onclick() {
-			window.removeHashChangeEventListener();
-			newSpans.forEach(function (s) {
-				s.removeEventListener('click', onclick);
-				s.remove();
-			});
-			init().then(function () {
-				document.querySelector('.a-slides_slide-container').dispatchEvent(new CustomEvent('a-slides_goto-slide', {detail: {slide: el.parentNode}}));
-			});
-		});
-		span.setAttribute('class', 'slide-view-button');
-		el.appendChild(span);
 	});
 </script>

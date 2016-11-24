@@ -67,6 +67,15 @@
 			flex-direction: column;
 			flex-grow: 1;
 
+			.highlight {
+				margin: 0;
+				padding: 0.5em;
+			}
+
+			.highlighter-rouge {
+				flex-shrink: 0;
+			}
+
 			blockquote {
 				margin: 0;
 				border: none;
