@@ -3,7 +3,15 @@ layout: post
 title: Introducing the WebVR API
 description: Creating virtual reality experiences in the web with new APIs.
 image: http://www.hypergridbusiness.com/wp-content/uploads/2016/08/Obama-Yosemite-VR.jpg
-script: https://cdn.rawgit.com/AdaRoseEdwards/dirty-dom/v1.3.1/build/dirty-dom-lib.min.js
+scripts: [
+	'/webvr/scripts/post-to-slides.js',
+	'/webvr/scripts/slide-utils.js',
+	'https://cdn.rawgit.com/AdaRoseEdwards/dirty-dom/v1.3.1/build/dirty-dom-lib.min.js',
+]
+styles: [
+	'/webvr/scripts/third-party/a-slides.css',
+]
+redirect_from: "/webvr-api.html"
 ---
 
 <!-- contents -->

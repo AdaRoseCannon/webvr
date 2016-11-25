@@ -17,3 +17,6 @@ author:
 permalink: /:title.html
 
 excerpt_separator: qwertyuiopsdfghjkl
+
+gems:
+  - jekyll-redirect-from

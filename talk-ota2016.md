@@ -4,11 +4,11 @@ title: AFrame for Over the air
 description: Touching on A-Frame and tools for authoring content.
 image: https://i.imgur.com/1CuaofJ.jpg
 scripts: [
-	'scripts/post-to-slides.js',
-	'scripts/slide-utils.js',
+	'/webvr/scripts/post-to-slides.js',
+	'/webvr/scripts/slide-utils.js',
 ]
 styles: [
-	'scripts/third-party/a-slides.css',
+	'/webvr/scripts/third-party/a-slides.css',
 ]
 ---
 
@@ -600,14 +600,6 @@ AFRAME.registerPrimitive('a-ocean-plane', {
 
 <script>
 
-	// Fancy Emojis
-	window._addScript('https://twemoji.maxcdn.com/2/twemoji.min.js')().then(function () {
-		twemoji.parse(document.body, {
-			folder: 'svg',
-			ext: '.svg'
-		});
-	});
-
 	// Add links to deep link into slides
 	var blockquote = Array.from(document.querySelectorAll('body.post > blockquote'));
 	var newSpans = [];
@@ -659,5 +651,13 @@ AFRAME.registerPrimitive('a-ocean-plane', {
 		button.classList.add('blank');
 		button.textContent = "Load iFrame";
 		iframe.after(button);
+	});
+
+	// Fancy Emojis
+	window._addScript('https://twemoji.maxcdn.com/2/twemoji.min.js')().then(function () {
+		twemoji.parse(document.body, {
+			folder: 'svg',
+			ext: '.svg'
+		});
 	});
 </script>
