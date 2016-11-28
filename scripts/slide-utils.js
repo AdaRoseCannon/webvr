@@ -93,8 +93,13 @@ window.getSlideName = function (el) {
 	if (el.matches('script[id]')) {
 		name = genId(el.id);
 	} else {
-		var hs = prevAll(el).filter(function (el) {
-			return el.tagName.match(/h[0-6]/i);
+		var foundBlockquote = false;
+		var hs = prevAll(el).reverse().filter(function (el) {
+			if (foundBlockquote || !!el.tagName.match(/blockquote/i)) {
+				foundBlockquote = true;
+				return false;
+			}
+			return !!el.tagName.match(/h[0-6]/i);
 		});
 		if (!hs.length) throw 'No h to find';
 		var h = hs[hs.length - 1];
@@ -107,12 +112,12 @@ function renderContent(el, data) {
 	if (data) {
 		switch(Object.keys(data)[0]) {
 			case 'video':
-				el.innerHTML = `<video src="${data.video}" preload autoplay autostart loop style="object-fit: contain; flex: 1 0;" />`;
+				el.innerHTML = `<video src="${data.video}" preload autoplay autostart loop style="object-fit: contain; flex: 1 0; ${data.style}" />`;
 				el.querySelector('video').currentTime=0;
 				el.querySelector('video').play();
 				break;
 			case 'image':
-				el.innerHTML = `<image src="${data.image}" />`;
+				el.innerHTML = `<image src="${data.image}" style="${data.style}" />`;
 				break;
 			case 'markdown':
 				el.addMarkdown(data.markdown);
@@ -121,7 +126,7 @@ function renderContent(el, data) {
 				el.innerHTML = data.html;
 				break;
 			case 'iframe':
-				el.innerHTML = `<iframe src="${data.iframe}" frameborder="none" style="flex: 1 0;" /></iframe>`;
+				el.innerHTML = `<iframe src="${data.iframe}" frameborder="none" style="flex: 1 0; ${data.style}" /></iframe>`;
 				break;
 		}
 		if (data.caption) {
