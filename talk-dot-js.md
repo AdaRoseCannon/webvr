@@ -17,7 +17,7 @@ styles: [
 <!-- Link to trigger conversion script -->
 [Convert to Slide Deck](#aslides)
 
-#### Abstract
+## Abstract
 
 Virtual Reality has tradionally been the domain of the Desktop or Native App. New APIs give a two way benefit allowing
 VR content to be delivered quickly through the web platform whilst taking advantage of the many benefits the web offers.
@@ -88,21 +88,73 @@ One can take advantage of the web's powerful apis to enhance these experiences
 
 ## How the web platform can enhance VR
 
+The web has access to many useful APIs which VR will bring to entirely new relevance.
+
 ### P2P Via WebRTC
+
+WebRTC primarily used for Video Chat and Multiplayer gaming can now be used for Copresence.
+
+Explain how it can be used for Copresence with some code
+
+> ## Copresence Demo
 
 ### Service Workers and Cache APIs
 
+Using the Service worker to cache assets, models etc
+
+Work offline, reduce network usage, handle assets
+
+Cross-origin Service Workers & Foreign Fetch libraries and assets common across VR experiences can be cached and made available quickly for a fast VR browsing experience.
+
+> Service Worker Pseudo code for Caching assets
+>
+> Cache first route
+
 ## Expectations by being on the web
+
+Even though one may be making something new and amazing, the wow factor for VR will wear off and users have a short attention span.
+
+The lessons we've learnt in engaging uers on the web are still applicable here
+
+Primarily reduce the barrier between the user and content.
+
+> * < 3s Acceptable
+> * < 1s Good
+> * < 0.5s Ideal
 
 ### Start fast - load content as needed
 
+Start fast. Each barrier to entry will lose a signifcant portion of your users.
+
+The advantage of the web is that one link click takes you to the content but that advantage is lost easily.
+
+* Avoid interstitials redirecting users to different devices or platforms
+* Avoid long loading
+* Work on desktop but enhance into VR
+
+> Demo play canvas.
+
 ### Works across devices
 
+> Demo same content across Samsung Internet, Safari, Desktop Chrome
+
 ## The potential future of VR in the web (Markup CSS3D)
+
+The web isn't just WebGL though we have 25 years of content already available
+
+The web should be providing APIs to bring this content into the future
+
+> # The Future
 
 ## How to get involved in Standards to influence the future of VR
 
 W3C webVR workshop!
+
+Now is the time to get in at the ground floor of where the web may evolve.
+
+If graphical fidelity were the driving metric we would all be watching blu-rays and not Netflix - Josh Carpenter
+
+> # Get involved in standards
 
 <script>
 
