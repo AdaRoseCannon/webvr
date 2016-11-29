@@ -58,8 +58,8 @@ and setting the environment.
 {html: `<div style="background-image: url(images/cellphone.jpg);background-size: cover;min-height: 16em;display: flex;justify-content: flex-end;padding: 0.5em;background-position: center right;">
 <small style="color: white; text-align: right;">Michael Douglas in Wall Street (1987)</small>
 </div>`},
-{video: 'images/space-jam.mp4', style: 'object-fit: cover;'},
-{video: 'images/360-media.mp4', style: 'object-fit: cover;'},
+{video: 'images/space-jam.mp4'},
+{video: 'images/360-media.mp4'},
 ]));</script>
 <blockquote style="padding: 0;">
 <h2>Picture of me and dan</h2>
@@ -82,33 +82,154 @@ The web makes it ideal for single use throw away experiences with the aim of goi
 
 One can take advantage of the web's powerful apis to enhance these experiences
 
-> ## Video of requestPresent
->
-> https://iswebvrready.org/
+There is a polyfill to allow these apis to be used on iOS and mobile chrome with a google cardboard.
+
+<script>setDynamicSlide({
+	setup: function () {
+		this.querySelector('video').currentTime=0;
+		this.querySelector('video').pause();
+	},
+	action: function *() {
+		this.querySelector('video').play();
+		yield;
+	},
+	teardown: function () {
+		this.querySelector('video').pause();
+	}
+});</script>
+<blockquote style="padding: 0; justify-content: flex-end;">
+<video src="images/enter-vr.mp4" style="position:absolute; top: 0; left: 0; width:100%; height: 100%; max-height: none;"></video>
+<pre style="z-index: 2; text-align: center; background: rgba(0,0,0,0.4);">VRDisplay.requestPresent({ source: myCanvas });</pre>
+</blockquote>
 
 ## How the web platform can enhance VR
 
-The web has access to many useful APIs which VR will bring to entirely new relevance.
+The web as a platform has been delivering media content for years now.
+
+There are many reasons Native platforms can be trump the web with regard to quality.
+
+But this is a trade off we make for the many benefits we gain from the web.
+
+-- slide --
+
+The web brings us the ability to reach a large audience accross a wide variety of platforms,
+
+We can take advantage of URLs and deep linking
+
+The web also has access to many useful APIs which VR will bring to entirely new relevance.
+
+<script>window.setDynamicSlide(window.elByEl());</script>
+> # Why do VR on the web?
+>
+> > ## *"If visual fidelity was all that mattered we would be watching blu-rays not Netflix"*
+> >
+> > ### -- Josh Carpenter
 
 ### P2P Via WebRTC
 
-WebRTC primarily used for Video Chat and Multiplayer gaming can now be used for Copresence.
+WebRTC is an Api to allow peer to peer messaging between browsers.
+
+WebRTC primarily used for Video Chat now will probably become the primary
+method of delivering copresence. Allowing multiple avatars to share the same virtual space.
 
 Explain how it can be used for Copresence with some code
 
-> ## Copresence Demo
+<script>setDynamicSlide({
+	setup: function () {
+		this.querySelector('video').currentTime=0;
+		this.querySelector('video').pause();
+		this.querySelector('span').style.display = 'block';
+		this.querySelector('pre').style.display = 'none';
+	},
+	action: function *() {
+		this.querySelector('video').play();
+		yield;
+
+		this.querySelector('span').style.display = 'none';
+		const pre = this.querySelector('pre');
+		pre.style.display = 'block';
+
+		pre.textContent = 'var peerConn = new RTCPeerConnection(config);';
+		yield;
+
+		pre.textContent = `navigator.mediaDevices.getUserMedia({
+	audio: true,
+	video: false
+})
+.then(function(stream) {
+	var microphone = audioCtx.createMediaStreamSource(stream);
+	var dest = audioCtx.createMediaStreamDestination();
+	microphone.connect(dest);
+	peerConn.addStream(dest.stream);
+})`;
+		yield;
+
+		pre.textContent = 'peerConn.createDataChannel();';
+		yield;
+	},
+	teardown: function () {
+		this.querySelector('video').pause();
+	}
+});</script>
+<blockquote style="padding: 0; justify-content: flex-end;">
+<video src="images/boris-smus-copresence.m4v" style="position:absolute; top: 0; left: 0; width:100%; height: 100%; max-height: none;"></video>
+<span style="z-index: 2; text-align: center; background: rgba(0,0,0,0.4); padding: 1em; margin: 1em; border-radius: 1em;">WebVR Copresence by Boris Smus</span>
+<pre style="z-index: 2; background: rgba(0,0,0,0.4); padding: 1em; margin: 1em; border-radius: 1em;"></pre>
+</blockquote>
+
 
 ### Service Workers and Cache APIs
+
+There are new APIs for advanced network control known as a Service Worker
+
+*Who here has used Service Workers Before?*
 
 Using the Service worker to cache assets, models etc
 
 Work offline, reduce network usage, handle assets
 
+Here we have a Service worker registered to cache all out intial assets so they work offline and are available quickly.
+
+We can then send messages to the service worker to cache additional content as it is needed, e.g. the assests for the next level
+
+this allows us to get started quickly and pull down additional assets in the background
+
 Cross-origin Service Workers & Foreign Fetch libraries and assets common across VR experiences can be cached and made available quickly for a fast VR browsing experience.
 
-> Service Worker Pseudo code for Caching assets
+The new Crossorigin Service Workers Foreign fetch will allow reusable VR components such as popular models or libraries to be cached on the client so
+have a large chance of not needing to be downloaded again.
+
+<script>setDynamicSlide(elByEl())</script>
+> <img src="images/the-pwa-web3.svg" style="background: white;"/>
 >
-> Cache first route
+> ```js
+self.addEventListener('install', function(event) {
+	caches.open('my-cache')
+	.then(cache => cache.addAll([
+		'texture.jpg',
+		'model.gltf',
+		'engine.js'
+	]));
+});
+>
+self.addEventListener('fetch', function(event) {
+  event.respondWith(
+    caches.match(event.request)
+	.then(function(response) {
+        return response || fetch(event.request);
+    });
+  );
+});
+```
+>
+> ```js
+self.addEventListener('message', function(event) {
+	if (event.data.action === 'CACHE') {
+		caches.open('my-cache')
+		.then(cache => cache.addAll(event.data.assetsArray));
+	}
+});
+```
 
 ## Expectations by being on the web
 
@@ -118,9 +239,7 @@ The lessons we've learnt in engaging uers on the web are still applicable here
 
 Primarily reduce the barrier between the user and content.
 
-> * < 3s Acceptable
-> * < 1s Good
-> * < 0.5s Ideal
+> Some quote on web perf
 
 ### Start fast - load content as needed
 
@@ -132,6 +251,17 @@ The advantage of the web is that one link click takes you to the content but tha
 * Avoid long loading
 * Work on desktop but enhance into VR
 
+Think of showing VR content the same way you would use video content,
+
+* Content is buffered, not loaded all in one go
+* Content is visible on the page straight away
+* Content quality improves with bandwidth and device power
+
+> * < 3s Acceptable
+> * < 1s Good
+> * < 0.5s Ideal
+>
+> http://gun.playcanvas.com
 > Demo play canvas.
 
 ### Works across devices
