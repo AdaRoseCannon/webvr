@@ -5,7 +5,7 @@ description: What considerations one needs to make when doing VR in the web
 image: https://i.imgur.com/1CuaofJ.jpg
 scripts: [
 	'scripts/post-to-slides.js',
-	'scripts/slide-utils.js',
+	'scripts/slide-utils.js'
 ]
 styles: [
 	'scripts/third-party/a-slides.css',
@@ -59,7 +59,7 @@ and setting the environment.
 <small style="color: white; text-align: right;">Michael Douglas in Wall Street (1987)</small>
 </div>`},
 {video: 'images/space-jam.mp4'},
-{video: 'images/360-media.mp4'},
+{video: 'images/360-media.mp4', start: 17},
 ]));</script>
 <blockquote style="padding: 0;">
 <h2>Picture of me and dan</h2>
@@ -98,8 +98,8 @@ There is a polyfill to allow these apis to be used on iOS and mobile chrome with
 	}
 });</script>
 <blockquote style="padding: 0; justify-content: flex-end;">
-<video src="images/enter-vr.mp4" style="position:absolute; top: 0; left: 0; width:100%; height: 100%; max-height: none;"></video>
-<pre style="z-index: 2; text-align: center; background: rgba(0,0,0,0.4);">VRDisplay.requestPresent({ source: myCanvas });</pre>
+<video src="images/enter-vr.mp4" style="position:absolute; top: 0; left: 0; width:100%; height: 100%; max-height: none; object-fit: cover;"></video>
+<pre style="z-index: 2; text-align: center; background: rgba(0,0,0,0.8);">VRDisplay.requestPresent({ source: myCanvas });</pre>
 </blockquote>
 
 ## How the web platform can enhance VR
@@ -112,7 +112,7 @@ But this is a trade off we make for the many benefits we gain from the web.
 
 -- slide --
 
-The web brings us the ability to reach a large audience accross a wide variety of platforms,
+The web brings us the ability to reach a large audience across a wide variety of platforms,
 
 We can take advantage of URLs and deep linking
 
@@ -124,6 +124,8 @@ The web also has access to many useful APIs which VR will bring to entirely new 
 > > ## *"If visual fidelity was all that mattered we would be watching blu-rays not Netflix"*
 > >
 > > ### -- Josh Carpenter
+>
+> # Enabling Copresence on the Web
 
 ### P2P Via WebRTC
 
@@ -172,11 +174,46 @@ Explain how it can be used for Copresence with some code
 	}
 });</script>
 <blockquote style="padding: 0; justify-content: flex-end;">
-<video src="images/boris-smus-copresence.m4v" style="position:absolute; top: 0; left: 0; width:100%; height: 100%; max-height: none;"></video>
-<span style="z-index: 2; text-align: center; background: rgba(0,0,0,0.4); padding: 1em; margin: 1em; border-radius: 1em;">WebVR Copresence by Boris Smus</span>
-<pre style="z-index: 2; background: rgba(0,0,0,0.4); padding: 1em; margin: 1em; border-radius: 1em;"></pre>
+<video src="images/boris-smus-copresence.m4v" style="position:absolute; top: 0; left: 0; width:100%; height: 100%; max-height: none; object-fit: cover;"></video>
+<span style="z-index: 2; text-align: center; background: rgba(0,0,0,0.8); padding: 1em; margin: 1em; border-radius: 1em;">WebVR Copresence by Boris Smus</span>
+<pre style="z-index: 2; background: rgba(0,0,0,0.8); padding: 1em; margin: 1em; border-radius: 1em;"></pre>
 </blockquote>
 
+## Expectations by being on the web
+
+Even though one may be making something new and amazing, the wow factor for VR will wear off and users have a short attention span.
+
+The lessons we've learnt in engaging uers on the web are still applicable here
+
+Primarily reduce the barrier between the user and content.
+
+Start fast. Each barrier to entry will lose a signifcant portion of your users.
+
+The advantage of the web is that one link click takes you to the content but that advantage is lost easily.
+
+* Avoid interstitials redirecting users to different devices or platforms
+* Avoid long loading
+* Work on desktop but enhance into VR
+
+Think of showing VR content the same way you would use video content,
+
+* Content is buffered, not loaded all in one go
+* Content is visible on the page straight away
+* Content quality improves with bandwidth and device power
+
+<script>setDynamicSlide(contentSlide([
+	{html: '<h1 style="position: absolute; top: 0; left: 1em;">The Web Comes with Expectations</h1>'},
+	{image: 'images/engagement.png', caption: 'Study by Google on Loading time and Engagement', captionStyle: 'z-index: 2; text-align: center; background: rgba(0,0,0,0.8); padding: 1em; border-radius: 1em; width: auto; margin: 1em; font-size: 3rem;', style:"position: absolute; top: 0; left: 0; width: 100%; height: 100%; margin: 0; max-width: none; max-height: none;"},
+	{video: 'images/gun.m4v', caption: 'http://gun.playcanvas.com', style:'position: absolute; top:0; left: 0; width: 100%; height: 100%; z-index: -1; object-fit: cover;', captionStyle: 'z-index: 2; text-align: center; background: rgba(0,0,0,0.8); padding: 1em; border-radius: 1em; width: auto; margin: 1em; font-size: 3rem;'},
+]));</script>
+<blockquote style="justify-content: flex-end; padding: 0;">
+<ul>
+<li>&lt; 3s Acceptable</li>
+<li>&lt; 1s Good</li>
+<li>&lt; 0.5s Ideal</li>
+</ul>
+<video src="images/gun.m4v" muted></video>
+</blockquote>
 
 ### Service Workers and Cache APIs
 
@@ -231,40 +268,14 @@ self.addEventListener('message', function(event) {
 });
 ```
 
-## Expectations by being on the web
 
-Even though one may be making something new and amazing, the wow factor for VR will wear off and users have a short attention span.
+## Works across devices
 
-The lessons we've learnt in engaging uers on the web are still applicable here
+until there is enough content that people are regularly browsing in a headset
 
-Primarily reduce the barrier between the user and content.
+People probably won't have a head set to hand
 
-> Some quote on web perf
-
-### Start fast - load content as needed
-
-Start fast. Each barrier to entry will lose a signifcant portion of your users.
-
-The advantage of the web is that one link click takes you to the content but that advantage is lost easily.
-
-* Avoid interstitials redirecting users to different devices or platforms
-* Avoid long loading
-* Work on desktop but enhance into VR
-
-Think of showing VR content the same way you would use video content,
-
-* Content is buffered, not loaded all in one go
-* Content is visible on the page straight away
-* Content quality improves with bandwidth and device power
-
-> * < 3s Acceptable
-> * < 1s Good
-> * < 0.5s Ideal
->
-> http://gun.playcanvas.com
-> Demo play canvas.
-
-### Works across devices
+Need to support cardboard and gearvr as well as htc vive and occulus rift
 
 > Demo same content across Samsung Internet, Safari, Desktop Chrome
 
@@ -272,19 +283,60 @@ Think of showing VR content the same way you would use video content,
 
 The web isn't just WebGL though we have 25 years of content already available
 
-The web should be providing APIs to bring this content into the future
+The web should start providing additional APIs to bring this content into the future
 
-> # The Future
+Should the web handle the concept of a persistent avatar to maintain a user across multiple domains or should that be left to the web platform?
+
+Should html be able to mark up 3D models or should it be left up to WebGL?
+
+What about the metaverse?
+
+The idea of the metaverse is that of a persistent shared virtual space
+
+Can this grow out of the web platform?
+
+<script>setDynamicSlide(elByEl());</script>
+
+> # The Future?
+>
+> ```css
+.container {
+	overflow-y: scroll;
+	perspective: 600px;
+	height: 100vh;
+}
+.container .hero {
+	transform: translateZ(100px);
+}
+```
+>
+> ```css
+.container {
+	overflow-y: scroll;
+	perspective: 600px;
+	perspective: real3d; /* handle headset perspective?! */
+	height: 100vh;
+}
+.container .hero {
+	transform: translateZ(100px);
+}
+```
 
 ## How to get involved in Standards to influence the future of VR
 
-W3C webVR workshop!
+These discussions are happening today!
 
-Now is the time to get in at the ground floor of where the web may evolve.
+If anything in this talk has interested you then please get involved.
 
-If graphical fidelity were the driving metric we would all be watching blu-rays and not Netflix - Josh Carpenter
+If you start now you will be able to shape the next medium of the web
+
+I don't know about you guys but I am pretty excited for our VR future.
 
 > # Get involved in standards
+>
+> ## https://www.w3.org/community/webvr/
+>
+> ## https://github.com/w3c/webvr
 
 <script>
 

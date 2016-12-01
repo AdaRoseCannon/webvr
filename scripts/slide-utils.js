@@ -109,11 +109,12 @@ window.getSlideName = function (el) {
 }
 
 function renderContent(el, data) {
+	data.style = data.style || '';
 	if (data) {
 		switch(Object.keys(data)[0]) {
 			case 'video':
-				el.innerHTML = `<video src="${data.video}" preload autoplay autostart loop style="object-fit: contain; flex: 1 0; ${data.style}" />`;
-				el.querySelector('video').currentTime=0;
+				el.innerHTML = `<video src="${data.video}" preload autoplay autostart ${data.loop ? 'loop' : ''} style="object-fit: contain; flex: 1 0; ${data.style}" />`;
+				el.querySelector('video').currentTime= data.start || 0;
 				el.querySelector('video').play();
 				break;
 			case 'image':
@@ -130,7 +131,10 @@ function renderContent(el, data) {
 				break;
 		}
 		if (data.caption) {
-			el.addMarkdown(data.caption);
+			var caption = document.createElement('h2');
+			caption.textContent = data.caption;
+			el.appendChild(caption);
+			if (data.captionStyle) caption.setAttribute('style', data.captionStyle);
 		}
 		if (data.url  || data.iframe) {
 			el.addHTML(`<div class="slide-url">${data.url || data.iframe || ''}</div>`);
