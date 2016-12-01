@@ -134,10 +134,14 @@ function renderContent(el, data) {
 			var caption = document.createElement('h2');
 			caption.textContent = data.caption;
 			el.appendChild(caption);
+			caption.classList.add('caption');
 			if (data.captionStyle) caption.setAttribute('style', data.captionStyle);
 		}
 		if (data.url  || data.iframe) {
 			el.addHTML(`<div class="slide-url">${data.url || data.iframe || ''}</div>`);
+		}
+		if (data.callback) {
+			data.callback.bind(el)(data);
 		}
 	}
 }

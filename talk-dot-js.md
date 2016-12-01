@@ -12,6 +12,10 @@ styles: [
 ]
 ---
 
+<script>
+var captionStyle = 'z-index: 2; text-align: center; background: rgba(0,0,0,0.8); padding: 1em; border-radius: 1em; width: auto; margin: 1em; font-size: 3rem; margin-top: -3em;';
+</script>
+
 # {{page.title}}
 
 <!-- Link to trigger conversion script -->
@@ -58,8 +62,11 @@ and setting the environment.
 {html: `<div style="background-image: url(images/cellphone.jpg);background-size: cover;min-height: 16em;display: flex;justify-content: flex-end;padding: 0.5em;background-position: center right;">
 <small style="color: white; text-align: right;">Michael Douglas in Wall Street (1987)</small>
 </div>`},
-{video: 'images/space-jam.mp4'},
-{video: 'images/360-media.mp4', start: 17},
+{video: 'images/space-jam.mp4', captionStyle: captionStyle, caption: 'Samsung Internet for GearVR' },
+{video: 'images/360-media.mp4', start: 19, captionStyle: captionStyle, caption: 'window.SamsungChangeSky({ sphere: \'http://site.com/blue-sky.jpg\' })', callback: function () {
+	var caption = this.querySelector('.caption');
+	setTimeout(function(){caption.textContent = '<video controls src="360video.mp4" type="video/mp4; dimension=360-lr;">'}, 14000);
+}},
 ]));</script>
 <blockquote style="padding: 0;">
 <h2>Picture of me and dan</h2>
@@ -203,8 +210,8 @@ Think of showing VR content the same way you would use video content,
 
 <script>setDynamicSlide(contentSlide([
 	{html: '<h1 style="position: absolute; top: 0; left: 1em;">The Web Comes with Expectations</h1>'},
-	{image: 'images/engagement.png', caption: 'Study by Google on Loading time and Engagement', captionStyle: 'z-index: 2; text-align: center; background: rgba(0,0,0,0.8); padding: 1em; border-radius: 1em; width: auto; margin: 1em; font-size: 3rem;', style:"position: absolute; top: 0; left: 0; width: 100%; height: 100%; margin: 0; max-width: none; max-height: none;"},
-	{video: 'images/gun.m4v', caption: 'http://gun.playcanvas.com', style:'position: absolute; top:0; left: 0; width: 100%; height: 100%; z-index: -1; object-fit: cover;', captionStyle: 'z-index: 2; text-align: center; background: rgba(0,0,0,0.8); padding: 1em; border-radius: 1em; width: auto; margin: 1em; font-size: 3rem;'},
+	{image: 'images/engagement.png', caption: 'Study by Google on Loading time and Engagement', captionStyle: captionStyle, style:"position: absolute; top: 0; left: 0; width: 100%; height: 100%; margin: 0; max-width: none; max-height: none;"},
+	{video: 'images/gun.m4v', caption: 'http://gun.playcanvas.com', style:'position: absolute; top:0; left: 0; width: 100%; height: 100%; z-index: -1; object-fit: cover;', captionStyle: captionStyle},
 ]));</script>
 <blockquote style="justify-content: flex-end; padding: 0;">
 <ul>
@@ -240,6 +247,7 @@ have a large chance of not needing to be downloaded again.
 > <img src="images/the-pwa-web3.svg" style="background: white;"/>
 >
 > ```js
+// in the service worker
 self.addEventListener('install', function(event) {
 	caches.open('my-cache')
 	.then(cache => cache.addAll([
@@ -259,15 +267,26 @@ self.addEventListener('fetch', function(event) {
 });
 ```
 >
-> ```js
+> > ```js
+// in the service worker
 self.addEventListener('message', function(event) {
 	if (event.data.action === 'CACHE') {
 		caches.open('my-cache')
-		.then(cache => cache.addAll(event.data.assetsArray));
+		.then(cache => cache.addAll(event.data.assets));
 	}
 });
 ```
-
+> >
+> > ```js
+// On the client
+navigator.serviceWorker.controller.postMessage({
+	action: 'CACHE',
+	assets: [
+		'/level2.gltf',
+		'level2-sounds.wav'
+	]
+})
+```
 
 ## Works across devices
 
@@ -277,7 +296,7 @@ People probably won't have a head set to hand
 
 Need to support cardboard and gearvr as well as htc vive and occulus rift
 
-> Demo same content across Samsung Internet, Safari, Desktop Chrome
+<blockquote style="background-blend-mode: normal; ;background-image: url(images/devices.jpg);background-size: cover;min-height: 16em;"></blockquote>
 
 ## The potential future of VR in the web (Markup CSS3D)
 
