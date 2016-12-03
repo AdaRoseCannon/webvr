@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Bringing VR to the Web
-description: What considerations one needs to make when doing VR in the web
+description: What it means to do VR on the Web
 image: https://i.imgur.com/1CuaofJ.jpg
 scripts: [
 	'scripts/post-to-slides.js',
@@ -109,30 +109,11 @@ There is a polyfill to allow these apis to be used on iOS and mobile chrome with
 <pre style="z-index: 2; text-align: center; background: rgba(0,0,0,0.8);">VRDisplay.requestPresent({ source: myCanvas });</pre>
 </blockquote>
 
-## How the web platform can enhance VR
+# Copresence and Metaverse
 
-The web as a platform has been delivering media content for years now.
-
-There are many reasons Native platforms can be trump the web with regard to quality.
-
-But this is a trade off we make for the many benefits we gain from the web.
-
--- slide --
-
-The web brings us the ability to reach a large audience across a wide variety of platforms,
-
-We can take advantage of URLs and deep linking
-
-The web also has access to many useful APIs which VR will bring to entirely new relevance.
-
-<script>window.setDynamicSlide(window.elByEl());</script>
-> # Why do VR on the web?
+> # Remote Copresence on the Web
 >
-> > ## *"If visual fidelity was all that mattered we would be watching blu-rays not Netflix"*
-> >
-> > ### -- Josh Carpenter
->
-> # Enabling Copresence on the Web
+> ## *Copresence: occurrence of two or more things together in the same place and time*
 
 ### P2P Via WebRTC
 
@@ -186,6 +167,30 @@ Explain how it can be used for Copresence with some code
 <pre style="z-index: 2; background: rgba(0,0,0,0.8); padding: 1em; margin: 1em; border-radius: 1em;"></pre>
 </blockquote>
 
+
+## How the web platform can enhance VR
+
+The web as a platform has been delivering media content for years now.
+
+There are many reasons Native platforms can be trump the web with regard to quality.
+
+But this is a trade off we make for the many benefits we gain from the web.
+
+-- slide --
+
+The web brings us the ability to reach a large audience across a wide variety of platforms,
+
+We can take advantage of URLs and deep linking
+
+The web also has access to many useful APIs which VR will bring to entirely new relevance.
+
+<script>window.setDynamicSlide(window.elByEl());</script>
+> # Why do VR on the web?
+>
+> > ## *"If visual fidelity was all that mattered we would be watching blu-rays not Netflix"*
+> >
+> > ### -- Josh Carpenter
+
 ## Expectations by being on the web
 
 Even though one may be making something new and amazing, the wow factor for VR will wear off and users have a short attention span.
@@ -209,8 +214,7 @@ Think of showing VR content the same way you would use video content,
 * Content quality improves with bandwidth and device power
 
 <script>setDynamicSlide(contentSlide([
-	{html: '<h1 style="position: absolute; top: 0; left: 1em;">The Web Comes with Expectations</h1>'},
-	{image: 'images/engagement.png', caption: 'Study by Google on Loading time and Engagement', captionStyle: captionStyle, style:"position: absolute; top: 0; left: 0; width: 100%; height: 100%; margin: 0; max-width: none; max-height: none;"},
+	{html: '<h1 style="margin-left: 1em;">The Web Comes with Expectations</h1><div style="justify-content: flex-end; padding: 0;"><img src="images/engagement.png" style="margin: 0; height: 0;" /><h2 style="' + captionStyle + '">Study by Google on Loading time and Engagement</h2></div>'},
 	{video: 'images/gun.m4v', caption: 'http://gun.playcanvas.com', style:'position: absolute; top:0; left: 0; width: 100%; height: 100%; z-index: -1; object-fit: cover;', captionStyle: captionStyle},
 ]));</script>
 <blockquote style="justify-content: flex-end; padding: 0;">
@@ -322,17 +326,6 @@ Can this grow out of the web platform?
 .container {
 	overflow-y: scroll;
 	perspective: 600px;
-	height: 100vh;
-}
-.container .hero {
-	transform: translateZ(100px);
-}
-```
->
-> ```css
-.container {
-	overflow-y: scroll;
-	perspective: 600px;
 	perspective: real3d; /* handle headset perspective?! */
 	height: 100vh;
 }
@@ -356,6 +349,8 @@ I don't know about you guys but I am pretty excited for our VR future.
 > ## https://www.w3.org/community/webvr/
 >
 > ## https://github.com/w3c/webvr
+>
+> ## @samsunginternet
 
 <script>
 
