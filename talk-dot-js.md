@@ -95,10 +95,15 @@ There is a polyfill to allow these apis to be used on iOS and mobile chrome with
 	setup: function () {
 		this.querySelector('video').currentTime=0;
 		this.querySelector('video').pause();
+		this.querySelector('pre').textContent = 'VRDisplay.requestPresent({ source: myCanvas });';
 	},
 	action: function *() {
 		this.querySelector('video').play();
 		yield;
+
+		this.querySelector('pre').textContent = 'VRDisplay.getPose()';
+		yield;
+
 	},
 	teardown: function () {
 		this.querySelector('video').pause();
