@@ -308,38 +308,6 @@ Need to support cardboard and gearvr as well as htc vive and occulus rift
 
 <blockquote style="background-blend-mode: normal; ;background-image: url(images/devices.jpg);background-size: cover;min-height: 16em;"></blockquote>
 
-## The potential future of VR in the web (Markup CSS3D)
-
-The web isn't just WebGL though we have 25 years of content already available
-
-The web should start providing additional APIs to bring this content into the future
-
-Should the web handle the concept of a persistent avatar to maintain a user across multiple domains or should that be left to the web platform?
-
-Should html be able to mark up 3D models or should it be left up to WebGL?
-
-What about the metaverse?
-
-The idea of the metaverse is that of a persistent shared virtual space
-
-Can this grow out of the web platform?
-
-<script>setDynamicSlide(elByEl());</script>
-
-> # The Future?
->
-> ```css
-.container {
-	overflow-y: scroll;
-	perspective: 600px;
-	perspective: real3d; /* handle headset perspective?! */
-	height: 100vh;
-}
-.container .hero {
-	transform: translateZ(100px);
-}
-```
-
 ## How to get involved in Standards to influence the future of VR
 
 These discussions are happening today!
