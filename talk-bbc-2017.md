@@ -72,6 +72,7 @@ Length: 15 minutes + 5 for Qs
 		yield;
 	},
 	teardown () {
+		if (!this._img) return;
 		this._img.setAttribute('style', '');
 		this._shadeAfter.setAttribute('style', '');
 	}
@@ -120,6 +121,14 @@ There is a polyfill to allow these apis to be used on iOS and mobile chrome with
 </blockquote>
 
 
+# Where is it supported
+
+> Desktop: Chrome, Firefox, Servo, Microsoft Edge
+>
+> Android: Samsung Internet for GearVR, Chrome, Carmel on GearVR
+>
+> Other mobile browsers such as Safari for iOS work extremely well with the WebVR polyfill.
+
 ## How the web platform can enhance VR
 
 The web as a platform has been delivering media content for years now.
@@ -165,10 +174,12 @@ Think of showing VR content the same way you would use video content,
 * Content is visible on the page straight away
 * Content quality improves with bandwidth and device power
 
-<script>setDynamicSlide(contentSlide([
+<script>
+setDynamicSlide(contentSlide([
 	{html: '<h1 style="margin-left: 1em;">The Web Comes with Expectations</h1><div style="justify-content: flex-end; padding: 0;"><img src="images/engagement.png" style="margin: 0; height: 0;" /><h2 style="' + captionStyle + '">Study by Google on Loading time and Engagement</h2></div>'},
 	{video: 'images/gun.m4v', caption: 'http://gun.playcanvas.com', style:'position: absolute; top:0; left: 0; width: 100%; height: 100%; z-index: -1; object-fit: cover;', captionStyle: captionStyle},
-]));</script>
+]));
+</script>
 <blockquote style="justify-content: flex-end; padding: 0;">
 <ul>
 <li>&lt; 3s Acceptable</li>
@@ -177,72 +188,6 @@ Think of showing VR content the same way you would use video content,
 </ul>
 <video src="images/gun.m4v" muted></video>
 </blockquote>
-
-### Service Workers and Cache APIs
-
-There are new APIs for advanced network control known as a Service Worker
-
-*Who here has used Service Workers Before?*
-
-Using the Service worker to cache assets, models etc
-
-Work offline, reduce network usage, handle assets
-
-Here we have a Service worker registered to cache all out intial assets so they work offline and are available quickly.
-
-We can then send messages to the service worker to cache additional content as it is needed, e.g. the assests for the next level
-
-this allows us to get started quickly and pull down additional assets in the background
-
-Cross-origin Service Workers & Foreign Fetch libraries and assets common across VR experiences can be cached and made available quickly for a fast VR browsing experience.
-
-The new Crossorigin Service Workers Foreign fetch will allow reusable VR components such as popular models or libraries to be cached on the client so
-have a large chance of not needing to be downloaded again.
-
-<script>setDynamicSlide(elByEl())</script>
-> <img src="images/the-pwa-web3.svg" style="background: white;"/>
->
-> ```js
-// in the service worker
-self.addEventListener('install', function(event) {
-	caches.open('my-cache')
-	.then(cache => cache.addAll([
-		'texture.jpg',
-		'model.gltf',
-		'engine.js'
-	]));
-});
->
-self.addEventListener('fetch', function(event) {
-  event.respondWith(
-    caches.match(event.request)
-	.then(function(response) {
-        return response || fetch(event.request);
-    });
-  );
-});
-```
->
-> > ```js
-// in the service worker
-self.addEventListener('message', function(event) {
-	if (event.data.action === 'CACHE') {
-		caches.open('my-cache')
-		.then(cache => cache.addAll(event.data.assets));
-	}
-});
-```
-> >
-> > ```js
-// On the client
-navigator.serviceWorker.controller.postMessage({
-	action: 'CACHE',
-	assets: [
-		'/level2.gltf',
-		'level2-sounds.wav'
-	]
-})
-```
 
 ## Works across devices
 
