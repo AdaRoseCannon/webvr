@@ -8,8 +8,7 @@ importScripts('scripts/sw-toolbox.js');
 toolbox.precache([
 	'https://cdn.rawgit.com/AdaRoseEdwards/a-slides/v1.4.0/build/a-slides.js',
 	'https://twemoji.maxcdn.com/2/twemoji.min.js',
-
-])
+]);
 
 // Send a signal to all connected windows.
 // Used for service worker bridge in a-slides

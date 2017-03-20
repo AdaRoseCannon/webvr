@@ -28,6 +28,23 @@ window.setDynamicSlide = function (o) {
 	window.aSlidesSlideData[window.getSlideName(document.currentScript)] = o;
 }
 
+window.applyCSS = function (node, props) {
+	function units(prop, i) {
+		if (typeof i === 'number') {
+			if (prop.match(/width|height|top|left|right|bottom/)) {
+				return i + 'px';
+			}
+		}
+		return i;
+	}
+	for (var n in props) {
+		if (props.hasOwnProperty(n)) {
+			node.style[n] = units(n, props[n]);
+		}
+	}
+	return node;
+};
+
 /**
  * Define some useful presetup generators
  */
@@ -155,6 +172,9 @@ window.contentSlide = function (slides) {
 			oldContent = Array.from(this.children);
 			this.innerHTML = '';
 			renderContent(this, slides[0]);
+			if (slides[0].video) {
+				this.querySelector('video').pause();
+			}
 		},
 		action: function* () {
 

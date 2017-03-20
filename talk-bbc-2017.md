@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Making VR Work for You
-description: Using the Web to get the maximal impact with Virtual Reality
+title: Performing VR on the Web
+description: The web has new capabilities for working with VR hardware right in the browser. This talk aims to show the benefits the web can bring to VR and best practises to get your audience engaged and to keep coming back for more.
 image: https://i.imgur.com/1CuaofJ.jpg
 scripts: [
 	'scripts/post-to-slides.js',
@@ -22,59 +22,63 @@ var captionStyle = 'z-index: 2; text-align: center; background: rgba(0,0,0,0.8);
 <!-- Link to trigger conversion script -->
 [Convert to Slide Deck](#aslides)
 
-## Abstract
+Length: 15 minutes + 5 for Qs
 
-Virtual Reality has tradionally been the domain of the Desktop or Native App. New APIs give a two way benefit allowing
-VR content to be delivered quickly through the web platform whilst taking advantage of the many benefits the web offers.
-
-This talk aims to discuss VR as a new platform, in the same way the mobile web was. What lessons can we learn from that era
-to avoid dividing the web and how can developers get involved to influence the way WebVR grows.
-
-
-## VR as a new platform
-
-The current wave of VR has been around for a few years now and has had a wonderous start.
-
-Of the most popular headsets there have been millions of GearVRs sold and Tens of Millions of Cardboard units.
-
-This is only the beginning we will look back on VR today
-
--- Slide --
-
-As we do on mobile phones in the 80s
-
--- slide --
-
-Right now there are now 2 Virtual Reality web browsers, for browsing the web inside the headset, Samsung Internet for Gear VR Chrome for Daydream with more coming soon.
-
-There are some new web apis for providing enhanced content for VR headsets
-
-such as enabling the playing of 360 media
-
--- slide --
-
-and setting the environment.
-
-<script>window.setDynamicSlide(contentSlide([
-	{html: `<div class="dark" style="background-color: #576363 !important; background-image: url(images/me-and-dan.jpg);background-size: cover;min-height: 16em;display: flex;justify-content: flex-start;padding: 0.5em;background-position: center right;align-items: stretch;">
+<blockquote class="dark" style="background-color: #576363 !important; background-image: url(images/me-and-dan.jpg);background-size: cover;min-height: 16em;display: flex;justify-content: flex-start;padding: 0.5em;background-position: center right;align-items: stretch;">
 <span style="flex-grow: 1;text-align: right; font-size: 4rem; text-shadow: 0 0 1em #576363;">@lady_ada_king</span>
 <span style="font-size: 5rem; text-shadow: 0 0 1em #576363;">@samsunginternet</span>
-</div>`},
-{html: `<div style="background-image: url(images/cellphone.jpg);background-size: cover;min-height: 16em;display: flex;justify-content: flex-end;padding: 0.5em;background-position: center right;">
-<small style="color: white; text-align: right;">Michael Douglas in Wall Street (1987)</small>
-</div>`},
-{video: 'images/space-jam.mp4', captionStyle: captionStyle, caption: 'Samsung Internet for GearVR' },
-{video: 'images/360-media.mp4', start: 19, captionStyle: captionStyle, caption: 'window.SamsungChangeSky({ sphere: \'http://site.com/blue-sky.jpg\' })', callback: function () {
-	var caption = this.querySelector('.caption');
-	setTimeout(function(){caption.textContent = '<video controls src="360video.mp4" type="video/mp4; dimension=360-lr;">'}, 14000);
-}},
-]));</script>
-<blockquote style="padding: 0;">
-<h2>Picture of me and dan</h2>
-<h2>Old mobile phone</h2>
-<h2>Video of Samsung Internet in Browser</h2><video src="images/space-jam.mp4"></video>
-<h2>360deg media being handled in the browser</h2><video src="images/360-media.mp4"></video>
 </blockquote>
+
+
+# History
+
+
+<script>window.setDynamicSlide({
+	setup: function () {
+		this._img = this._img || this.querySelector('img');
+		this._shadeAfter = this._shadeAfter || this.querySelector('.shade-after');
+		applyCSS(this._shadeAfter, {
+			opacity: 1
+		});
+		applyCSS(this._img, {
+			transition: 'transform 1s ease',
+			filter: 'invert(1)',
+			maxHeight: 'none',
+			height: '100%',
+			flexShrink: '0',
+			margin: 0
+		});
+		this._img.style.transform = 'translateY(50vh) translateY(-1.5rem) translateY(-3.5%)';
+	},
+	action: function *() {
+		this._img.style.transform = 'translateY(50vh) translateY(-1.5rem) translateY(-3.5%)';
+		yield;
+		this._img.style.transform = 'translateY(50vh) translateY(-1.5rem) translateY(-13.5%)';
+		yield;
+		this._img.style.transform = 'translateY(50vh) translateY(-1.5rem) translateY(-25%)';
+		yield;
+		this._img.style.transform = 'translateY(50vh) translateY(-1.5rem) translateY(-38%)';
+		yield;
+		this._img.style.transform = 'translateY(50vh) translateY(-1.5rem) translateY(-45%)';
+		yield;
+		this._img.style.transform = 'translateY(50vh) translateY(-1.5rem) translateY(-57%)';
+		yield;
+		this._img.style.transform = 'translateY(50vh) translateY(-1.5rem) translateY(-70%)';
+		yield;
+		this._img.style.transform = 'translateY(50vh) translateY(-1.5rem) translateY(-83%)';
+		yield;
+		this._shadeAfter.style.opacity = 0;
+		this._img.style.transform = 'translateY(50vh) translateY(-1.5rem) translateY(-92%)';
+		yield;
+	},
+	teardown () {
+		this._img.setAttribute('style', '');
+		this._shadeAfter.setAttribute('style', '');
+	}
+});</script>
+
+> <div class="shade-before"></div><div style="position: absolute; left: 0; top:0; right: 0;"><img src="images/vr-timeline.svg" /></div><div class="shade-after"></div>
+
 
 ## The state of VR today (WebGL based)
 
@@ -113,64 +117,6 @@ There is a polyfill to allow these apis to be used on iOS and mobile chrome with
 <blockquote style="padding: 0; justify-content: flex-end;">
 <video src="images/enter-vr.mp4" style="position:absolute; top: 0; left: 0; width:100%; height: 100%; max-height: none; object-fit: cover;"></video>
 <pre style="z-index: 2; text-align: center; background: rgba(0,0,0,0.8);">VRDisplay.requestPresent({ source: myCanvas });</pre>
-</blockquote>
-
-# Copresence and Metaverse
-
-> # Remote Copresence on the Web
->
-> ## *Copresence: occurrence of two or more things together in the same place and time*
-
-### P2P Via WebRTC
-
-WebRTC is an Api to allow peer to peer messaging between browsers.
-
-WebRTC primarily used for Video Chat now will probably become the primary
-method of delivering copresence. Allowing multiple avatars to share the same virtual space.
-
-Explain how it can be used for Copresence with some code
-
-<script>setDynamicSlide({
-	setup: function () {
-		this.querySelector('video').currentTime=0;
-		this.querySelector('video').pause();
-		this.querySelector('span').style.display = 'block';
-		this.querySelector('pre').style.display = 'none';
-	},
-	action: function *() {
-		this.querySelector('video').play();
-		yield;
-
-		this.querySelector('span').style.display = 'none';
-		const pre = this.querySelector('pre');
-		pre.style.display = 'block';
-
-		pre.textContent = 'var peerConn = new RTCPeerConnection(config);';
-		yield;
-
-		pre.textContent = `navigator.mediaDevices.getUserMedia({
-	audio: true,
-	video: false
-})
-.then(function(stream) {
-	var microphone = audioCtx.createMediaStreamSource(stream);
-	var dest = audioCtx.createMediaStreamDestination();
-	microphone.connect(dest);
-	peerConn.addStream(dest.stream);
-})`;
-		yield;
-
-		pre.textContent = 'peerConn.createDataChannel();';
-		yield;
-	},
-	teardown: function () {
-		this.querySelector('video').pause();
-	}
-});</script>
-<blockquote style="padding: 0; justify-content: flex-end;">
-<video src="images/boris-smus-copresence.m4v" style="position:absolute; top: 0; left: 0; width:100%; height: 100%; max-height: none; object-fit: cover;"></video>
-<span style="z-index: 2; text-align: center; background: rgba(0,0,0,0.8); padding: 1em; margin: 1em; border-radius: 1em;">WebVR Copresence by Boris Smus</span>
-<pre style="z-index: 2; background: rgba(0,0,0,0.8); padding: 1em; margin: 1em; border-radius: 1em;"></pre>
 </blockquote>
 
 
