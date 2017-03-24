@@ -70,6 +70,8 @@ window.playVideo = {
 	}
 }
 
+window.videoSlide = window.playVideo;
+
 window.elByEl = function () {
 
 	var children;

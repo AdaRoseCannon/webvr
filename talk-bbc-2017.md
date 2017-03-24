@@ -97,37 +97,33 @@ One can take advantage of the web's powerful apis to enhance these experiences
 
 There is a polyfill to allow these apis to be used on iOS and mobile chrome with a google cardboard.
 
-<script>setDynamicSlide({
-	setup: function () {
-		this.querySelector('video').currentTime=0;
-		this.querySelector('video').pause();
-		this.querySelector('pre').textContent = 'VRDisplay.requestPresent({ source: myCanvas });';
-	},
-	action: function *() {
-		this.querySelector('video').play();
-		yield;
-
-		this.querySelector('pre').textContent = 'VRDisplay.getPose()';
-		yield;
-
-	},
-	teardown: function () {
-		this.querySelector('video').pause();
-	}
-});</script>
+<script>setDynamicSlide(window.videoSlide);</script>
 <blockquote style="padding: 0; justify-content: flex-end;">
 <video src="images/enter-vr.mp4" style="position:absolute; top: 0; left: 0; width:100%; height: 100%; max-height: none; object-fit: cover;"></video>
-<pre style="z-index: 2; text-align: center; background: rgba(0,0,0,0.8);">VRDisplay.requestPresent({ source: myCanvas });</pre>
 </blockquote>
 
 
+## Render loop
+
+> <img src="images/render-loop.svg" style="filter: invert(1)" />
+
+
+## Head Tracking Demo
+
+<script>setDynamicSlide(window.videoSlide);</script>
+<blockquote style="padding: 0; justify-content: flex-end; background-color: black !important;">
+<video src="images/tracking.m4v" style="position:absolute; top: 0; left: 0; width:100%; height: 100%; max-height: none; object-fit: contain;"></video>
+</blockquote>
+
 # Where is it supported
 
-> Desktop: Chrome, Firefox, Servo, Microsoft Edge
+> ![supported](images/support.png)
+
+# Where to get started?
+
+> # https://aframe.io - Build VR by writing HTML
 >
-> Android: Samsung Internet for GearVR, Chrome, Carmel on GearVR
->
-> Other mobile browsers such as Safari for iOS work extremely well with the WebVR polyfill.
+> # https://playcanvas.com - Online 3D Editor
 
 ## How the web platform can enhance VR
 
@@ -198,6 +194,13 @@ People probably won't have a head set to hand
 Need to support cardboard and gearvr as well as htc vive and occulus rift
 
 <blockquote style="background-blend-mode: normal; ;background-image: url(images/devices.jpg);background-size: cover;min-height: 16em;"></blockquote>
+
+
+## Supporting user interactions.
+
+Different modes of user input.
+
+> <img src="images/devices.svg" style="filter: invert(1)" />
 
 ## How to get involved in Standards to influence the future of VR
 
