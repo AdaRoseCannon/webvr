@@ -1,3 +1,4 @@
+/* eslint-env es6 */
 
 // Add a fake generator which accepts arrays of functions
 // to interface with a-slides on platofrms which don't support
@@ -72,13 +73,17 @@ window.playVideo = {
 
 window.videoSlide = window.playVideo;
 
-window.elByEl = function () {
+window.elByEl = function (selector) {
 
 	var children;
 	var clone;
+	var preserve = [];
 
 	function replaceWithEl(el, target) {
 		target.innerHTML = '';
+		preserve.forEach(function (el) {
+			target.appendChild(el);
+		});
 		target.appendChild(el);
 	}
 
@@ -86,6 +91,12 @@ window.elByEl = function () {
 	var setUpFirstEl;
 
 	function init() {
+		var self = this;
+		preserve = Array.from(selector ? (this.querySelectorAll(selector) || []) : []);
+		preserve.forEach(function (el) {
+			self.removeChild(el);
+		});
+
 		children = Array.from(this.children);
 		var target = this;
 		clone = children.map(function (el) {
@@ -140,7 +151,8 @@ function renderContent(el, data) {
 				el.innerHTML = `<image src="${data.image}" style="${data.style}" />`;
 				break;
 			case 'markdown':
-				el.addMarkdown(data.markdown);
+				const preWhite = data.markdown.match(/\n?([ \t]*)[^\w]/)[1];
+				el.addMarkdown(data.markdown.replace(new RegExp('\\n' + preWhite, 'gi'), '\n'));
 				break;
 			case 'html':
 				el.innerHTML = data.html;

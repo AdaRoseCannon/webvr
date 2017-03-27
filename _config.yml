@@ -20,3 +20,4 @@ excerpt_separator: qwertyuiopsdfghjkl
 
 gems:
   - jekyll-redirect-from
+exclude: [.vscode]

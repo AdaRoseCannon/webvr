@@ -28,7 +28,6 @@ self.addEventListener('message', function(event) {
 	reply(event.data);
 });
 
-// Recieve messages from the client and reply back onthe same port
 self.addEventListener('fetch', function(event) {
 	const request = event.request;
 
@@ -115,7 +114,7 @@ function handleVideo(event, force) {
 	const swType = force || url.searchParams.get('sw') || 'no-intercept';
 	const polyfilRange = force || url.searchParams.get('poly-range') === "1";
 
-	console.log("SW Type", swType);
+	// console.log("SW Type", swType);
 
 	if (swType == 'no-intercept') return;
 
@@ -126,7 +125,7 @@ function handleVideo(event, force) {
 				return createRangedResponse(event.request, response);
 			})
 			.then(response => {
-				console.log(event.request, response);
+				// console.log(event.request, response);
 				return response;
 			})
 	);
