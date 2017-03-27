@@ -17,3 +17,4 @@ author:
 permalink: /:title.html
 
 excerpt_separator: qwertyuiopsdfghjkl
+exclude: [.vscode]

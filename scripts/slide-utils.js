@@ -24,10 +24,6 @@ window.FakeGenerator = function FakeGenerator(arr) {
 	}
 }
 
-window.setDynamicSlide = function (o) {
-	window.aSlidesSlideData[window.getSlideName(document.currentScript)] = o;
-}
-
 /**
  * Define some useful presetup generators
  */
@@ -53,13 +49,17 @@ window.playVideo = {
 	}
 }
 
-window.elByEl = function () {
+window.elByEl = function (selector) {
 
 	var children;
 	var clone;
+	var preserve = [];
 
 	function replaceWithEl(el, target) {
 		target.innerHTML = '';
+		preserve.forEach(function (el) {
+			target.appendChild(el);
+		});
 		target.appendChild(el);
 	}
 
@@ -67,6 +67,12 @@ window.elByEl = function () {
 	var setUpFirstEl;
 
 	function init() {
+		var self = this;
+		preserve = Array.from(selector ? (this.querySelectorAll(selector) || []) : []);
+		preserve.forEach(function (el) {
+			self.removeChild(el);
+		});
+
 		children = Array.from(this.children);
 		var target = this;
 		clone = children.map(function (el) {
@@ -93,8 +99,13 @@ window.getSlideName = function (el) {
 	if (el.matches('script[id]')) {
 		name = genId(el.id);
 	} else {
-		var hs = prevAll(el).filter(function (el) {
-			return el.tagName.match(/h[0-6]/i);
+		var foundBlockquote = false;
+		var hs = prevAll(el).reverse().filter(function (el) {
+			if (foundBlockquote || !!el.tagName.match(/blockquote/i)) {
+				foundBlockquote = true;
+				return false;
+			}
+			return !!el.tagName.match(/h[0-6]/i);
 		});
 		if (!hs.length) throw 'No h to find';
 		var h = hs[hs.length - 1];
@@ -104,31 +115,40 @@ window.getSlideName = function (el) {
 }
 
 function renderContent(el, data) {
+	data.style = data.style || '';
 	if (data) {
 		switch(Object.keys(data)[0]) {
 			case 'video':
-				el.innerHTML = `<video src="${data.video}" preload autoplay autostart loop style="object-fit: contain; flex: 1 0;" />`;
-				el.querySelector('video').currentTime=0;
+				el.innerHTML = `<video src="${data.video}" preload autoplay autostart ${data.loop ? 'loop' : ''} style="object-fit: contain; flex: 1 0; ${data.style}" />`;
+				el.querySelector('video').currentTime= data.start || 0;
 				el.querySelector('video').play();
 				break;
 			case 'image':
-				el.innerHTML = `<image src="${data.image}" />`;
+				el.innerHTML = `<image src="${data.image}" style="${data.style}" />`;
 				break;
 			case 'markdown':
-				el.addMarkdown(data.markdown);
+				const preWhite = data.markdown.match(/\n?([ \t]*)[^\w]/)[1];
+				el.addMarkdown(data.markdown.replace(new RegExp('\\n' + preWhite, 'gi'), '\n'));
 				break;
 			case 'html':
 				el.innerHTML = data.html;
 				break;
 			case 'iframe':
-				el.innerHTML = `<iframe src="${data.iframe}" frameborder="none" style="flex: 1 0;" /></iframe>`;
+				el.innerHTML = `<iframe src="${data.iframe}" frameborder="none" style="flex: 1 0; ${data.style}" /></iframe>`;
 				break;
 		}
 		if (data.caption) {
-			el.addMarkdown(data.caption);
+			var caption = document.createElement('h2');
+			caption.textContent = data.caption;
+			el.appendChild(caption);
+			caption.classList.add('caption');
+			if (data.captionStyle) caption.setAttribute('style', data.captionStyle);
 		}
 		if (data.url  || data.iframe) {
 			el.addHTML(`<div class="slide-url">${data.url || data.iframe || ''}</div>`);
+		}
+		if (data.callback) {
+			data.callback.bind(el)(data);
 		}
 	}
 }

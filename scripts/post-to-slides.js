@@ -7,6 +7,8 @@
  */
 
 'use strict';
+var preSetupFns = [];
+window.aSlidesSlideData = {};
 
 // Load the service worker which does not have push notification support.
 if ('serviceWorker' in navigator) {
@@ -17,7 +19,6 @@ if ('serviceWorker' in navigator) {
 		console.log('sw registration failed with ' + error);
 	});
 }
-
 
 function addStyle(url){
 	var styles = document.createElement('link');
@@ -72,6 +73,46 @@ function genId(name) {
 	return (name + '').trim().replace(/[^A-Za-z0-9]/ig, '-').toLowerCase();
 }
 
+window._setNextSlide = function _setNextSlide(setUpObject) {
+	var el = document.currentScript;
+	preSetupFns.push(function () {
+		el.nextElementSibling._aSlideObject = setUpObject;
+	});
+}
+
+window._executeOnNextEl = function _executeOnNextEl(fn) {
+	var el = document.currentScript;
+	preSetupFns.push(function () {
+		fn.bind(el.nextElementSibling)();
+	});
+}
+
+window._cssNextEl = function _cssNextEl(o) {
+	var el = document.currentScript;
+	preSetupFns.push(function () {
+		_applyCSS(el.nextElementSibling, o);
+	});
+}
+
+window._applyCSS = function _applyCSS(node, props) {
+	function units(prop, i) {
+		if (typeof i === 'number') {
+			if (prop.match(/width|height|top|left|right|bottom/)) {
+				return i + 'px';
+			}
+		}
+		return i;
+	}
+	for (var n in props) {
+		if (props.hasOwnProperty(n)) {
+			node.style[n] = units(n, props[n]);
+		}
+	}
+	return node;
+};
+
+window.setDynamicSlide = window._setNextSlide;
+
 function init() {
 	return Promise.all([
 			addScript('./scripts/third-party/a-slides.js').promise
@@ -116,9 +157,13 @@ function init() {
 			slide.classList.add('a-slides_slide-content');
 			if (!name && notes[0] && notes[0].tagName.match(/h[0-6]/i)) {
 				name = genId(notes[0].textContent);
-				name = name + (slideContainer.querySelectorAll('[data-slide-id="' + name + '"]').length || '');
+				name = name + (slideContainer.querySelectorAll('[data-slide-id="slide-' + name + '"]').length || '');
 			}
-			newSlide.dataset.slideId = 'slide-' + (name || i);
+			var finalName = 'slide-' + (name || i);
+			newSlide.dataset.slideId = finalName;
+			if (slide._aSlideObject) {
+				window.aSlidesSlideData[finalName] = slide._aSlideObject;
+			}
 			newSlide.appendChild(slide);
 			newSlide.appendChild(notesWrapper);
 			notes.forEach(function (note) { notesWrapper.appendChild(note) });
@@ -186,7 +231,8 @@ function init() {
 	});
 }
 
-(function () {
+document.addEventListener("DOMContentLoaded", function (event) {
+
 	function locationHashChanged() {
 		if (location.hash === '#aslides') {
 			window.removeEventListener('hashchange', locationHashChanged);
@@ -200,6 +246,10 @@ function init() {
 	}
 
 	var oldHash = location.hash || false;
+
+	preSetupFns.forEach(function (fn) {
+		fn();
+	});
 
 	if (location.hash === '#aslides' || location.search.indexOf('aslides') !== -1) {
 		init().then(function (slideContainer) {
@@ -216,7 +266,4 @@ function init() {
 	window.removeHashChangeEventListener = function () {
 		window.removeEventListener('hashchange', locationHashChanged);
 	}
-}());
-
-
-window.aSlidesSlideData = {};
+});

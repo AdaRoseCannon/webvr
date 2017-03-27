@@ -88,22 +88,120 @@ body.post {
 		max-height: 50vmax;
 	}
 
-	blockquote {
-		background-color: darkslategray;
-		color: white;
-		border: 1px solid grey;
-		display: flex;
-		flex-direction: column;
-		align-items: stretch;
-		min-height: 4em;
+	footer {
 		position: relative;
-		overflow: hidden;
-		margin-bottom: 3em;
+	}
+}
+
+body > blockquote, .a-slides_slide-content {
+	background-color: darkslategray;
+    text-shadow: 0 0 1em darkslategrey;
+	color: white;
+	border: 1px solid grey;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	min-height: 4em;
+	position: relative;
+	overflow: hidden;
+	margin-bottom: 3em;
+	font-size: 2rem;
+	padding: 1em;
+	background-blend-mode: soft-light;
+	background-size: cover;
+	background-position: center center;
+
+	&:not(.a-slides_slide-content) {
 		max-width: 1024px;
 	}
 
-	footer {
-		position: relative;
+	.highlight {
+		margin: 0;
+		padding: 0.5em;
+	}
+
+	.highlighter-rouge {
+		flex-shrink: 0;
+	}
+
+	p {
+		min-width: 20%;
+		max-height: 100%;
+		max-width: 100%;
+		display: flex;
+		flex-grow: 1;
+		flex-shrink: 1;
+	}
+
+	& h1,
+	& h2,
+	& h3 {
+		width: 100%;
+		padding: 0;
+	}
+
+	// image captions in slides
+	h4 {
+		margin: 0;
+	}
+
+	& img:not(.emoji),
+	& video {
+		object-fit: contain;
+		flex-grow: 1;
+		flex-shrink: 1;
+		width: auto;
+		max-height: calc(100vh - 10rem);
+		max-width: 100%;
+		min-width: 0;
+		min-height: 0;
+	}
+
+	img.emoji {
+		max-height: calc(100vh - 10rem);
+		max-width: 100%;
+	}
+
+	// Video behaves differently from img here
+	video {
+		min-height: 8em;
+	}
+
+	& iframe {
+		height: 100%;
+		width: 100%;
+	}
+
+	& > blockquote {
+		border-left: 10px solid #ccc;
+		margin: 0;
+		padding: 0.5em 10px;
+		quotes: "\201C""\201D""\2018""\2019";
+
+		&:before {
+			color: #ccc;
+			content: open-quote;
+			font-size: 4em;
+			line-height: 0.1em;
+			margin-right: 0.25em;
+			vertical-align: -0.4em;
+		}
+
+		& > p:first-child {
+			display: inline;
+			font-style: italic;
+			font-size: 1.2em;
+			font-family: serif;
+		}
+	}
+
+	div {
+		display: flex;
+		align-items: stretch;
+		justify-content: flex-start;
+		align-content: flex-start;
+		flex-direction: column;
+		flex-grow: 1;
 	}
 }
 
@@ -175,14 +273,6 @@ footer {
 	border-top: 1px solid #ccc;
 }
 
-blockquote, .dark {
-	background-color: darkslategray !important;
-	background-blend-mode: soft-light;
-	color: white;
-	background-size: cover;
-	background-position: center center;
-}
-
 .highlight {
 	font-size: 0.9em;
 }
@@ -196,6 +286,7 @@ blockquote, .dark {
 	bottom: 0;
 	right: 0;
 	background: white;
+	text-shadow: none;
 	border-radius: 0.5em 0 0 0;
 	border: 1px solid grey;
 	border-width: 1px 0 0 1px;
@@ -206,10 +297,6 @@ blockquote, .dark {
 	.presentation & {
 		display: none;
 	}
-}
-
-ol.prpl li::first-letter {
-	font-size: 1.5em;
 }
 
 @media print {

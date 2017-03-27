@@ -5,6 +5,11 @@
 
 importScripts('scripts/sw-toolbox.js');
 
+toolbox.precache([
+	'https://cdn.rawgit.com/AdaRoseEdwards/a-slides/v1.4.0/build/a-slides.js',
+	'https://twemoji.maxcdn.com/2/twemoji.min.js',
+]);
+
 // Send a signal to all connected windows.
 // Used for service worker bridge in a-slides
 function reply(data) {
@@ -23,7 +28,6 @@ self.addEventListener('message', function(event) {
 	reply(event.data);
 });
 
-// Recieve messages from the client and reply back onthe same port
 self.addEventListener('fetch', function(event) {
 	const request = event.request;
 
@@ -31,18 +35,18 @@ self.addEventListener('fetch', function(event) {
 		return handleVideo(event, true);
 	}
 
-	if (!(
-			request.url.match(/data:/i)
-		)) {
-		if (request.url.match(/^https:\/\/twemoji.maxcdn.com/gi)) {
-			return event.respondWith(toolbox.cacheFirst(request, [], {}));
-		}
-		event.respondWith(toolbox.networkFirst(request, [], {
-			networkTimeoutSeconds: 3
-		}));
+	if (request.url.match(/data:/i)) {
+		return;
 	}
-});
 
+	if (request.url.match(/^https:\/\/twemoji.maxcdn.com/gi)) {
+		return event.respondWith(toolbox.cacheFirst(request, [], {}));
+	}
+
+	event.respondWith(toolbox.networkFirst(request, [], {
+		networkTimeoutSeconds: 3
+	}));
+});
 
 // via https://github.com/jakearchibald/range-request-test
 function createRangedResponse(request, response) {
@@ -110,7 +114,7 @@ function handleVideo(event, force) {
 	const swType = force || url.searchParams.get('sw') || 'no-intercept';
 	const polyfilRange = force || url.searchParams.get('poly-range') === "1";
 
-	console.log("SW Type", swType);
+	// console.log("SW Type", swType);
 
 	if (swType == 'no-intercept') return;
 
@@ -121,7 +125,7 @@ function handleVideo(event, force) {
 				return createRangedResponse(event.request, response);
 			})
 			.then(response => {
-				console.log(event.request, response);
+				// console.log(event.request, response);
 				return response;
 			})
 	);
