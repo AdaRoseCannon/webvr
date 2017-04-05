@@ -28,17 +28,47 @@ Length: 45 minutes + 10 for Qs
 <span style="font-size: 5rem; text-shadow: 0 0 1em #576363;">@samsunginternet</span>
 </blockquote>
 
+<blockquote style="background-color: white;">
+<img src="images/StatCounter-browser-SE-monthly-201602-201702.png" />
+</blockquote>
 
-<script>setDynamicSlide(window.videoSlide);</script>
+<blockquote>
+<img src="images/DeX.jpg" />
+</blockquote>
+
+<blockquote>
+<h1>Samsung Internet 5.4 Beta</h1>
+<div style="flex-direction: row;">
+<img src="images/beta-play-store.png" />
+<ul>
+<li>Available on GDE devices, Pixel, Nexus etc</li>
+<li>Chromium 51</li>
+<li>Progressive Web Apps</li>
+<li>Web Payment</li>
+<li>Samsung Specific Features
+<ul>
+<li>Physical Web Beacons</li>
+<li>WebVR</li>
+<li>Ad-Blocking</li>
+</ul>
+</li>
+</ul>
+</div>
+</blockquote>
+
+<script>window._setNextSlide(window.videoSlide);</script>
 <blockquote style="padding: 0; justify-content: flex-end;">
 <video src="images/space-jam.mp4" style="position:absolute; top: 0; left: 0; width:100%; height: 100%; max-height: none; object-fit: cover;"></video>
 </blockquote>
 
-<script>setDynamicSlide(window.videoSlide);</script>
+<script>window._setNextSlide(window.videoSlide);</script>
 <blockquote style="padding: 0; justify-content: flex-end;">
 <video src="images/360-media.mp4" style="position:absolute; top: 0; left: 0; width:100%; height: 100%; max-height: none; object-fit: cover;"></video>
 </blockquote>
 
+<script>window._setNextSlide(elByEl({
+	preserve: 'h1:first-child'
+}))</script>
 > # Building immersive media into the web platform
 >
 > ## Set the environment
@@ -47,7 +77,7 @@ Length: 45 minutes + 10 for Qs
 // First, check if the API is available
 if ('SamsungChangeSky' in window) {
   // Set the spherical panorama image
-  window.SamsungChangeSky({ sphere: 'http://site.com/my-360-image.jpg' });
+  window.SamsungChangeSky({ sphere: 'http://site.com/panorama.jpg' });
 }
 ```
 >
@@ -56,7 +86,7 @@ if ('SamsungChangeSky' in window) {
 </code></pre>
 
 
-<script>setDynamicSlide(window.videoSlide);</script>
+<script>window._setNextSlide(window.videoSlide);</script>
 <blockquote style="padding: 0; justify-content: flex-end;">
 <video src="images/enter-vr.mp4" style="position:absolute; top: 0; left: 0; width:100%; height: 100%; max-height: none; object-fit: cover;"></video>
 </blockquote>
@@ -64,16 +94,15 @@ if ('SamsungChangeSky' in window) {
 
 # History
 
-<script>_setNextSlide({
+<script>window._setNextSlide({
 	setup: function () {
 		this._img = this._img || this.querySelector('img');
 		this._shadeAfter = this._shadeAfter || this.querySelector('.shade-after');
-		applyCSS(this._shadeAfter, {
+		_applyCSS(this._shadeAfter, {
 			opacity: 1
 		});
-		applyCSS(this._img, {
+		_applyCSS(this._img, {
 			transition: 'transform 1s ease',
-			filter: 'invert(1)',
 			maxHeight: 'none',
 			height: '100%',
 			flexShrink: '0',
@@ -108,17 +137,16 @@ if ('SamsungChangeSky' in window) {
 		this._shadeAfter.setAttribute('style', '');
 	}
 });</script>
-> <div class="shade-before"></div><div style="position: absolute; left: 0; top:0; right: 0;"><img src="images/vr-timeline.svg" /></div><div class="shade-after"></div>
+> <div class="shade-before"></div><div style="position: absolute; left: 0; top:0; right: 0;"><img src="images/vr-timeline.svg" style="filter: invert(1)" /></div><div class="shade-after"></div>
 
 
 ## Render loop
 
 > <img src="images/render-loop.svg" style="filter: invert(1)" />
 
-
 ## Head Tracking Demo
 
-<script>setDynamicSlide(window.videoSlide);</script>
+<script>window._setNextSlide(window.videoSlide);</script>
 <blockquote style="padding: 0; justify-content: flex-end; background-color: black !important;">
 <video src="images/tracking.m4v" style="position:absolute; top: 0; left: 0; width:100%; height: 100%; max-height: none; object-fit: contain;"></video>
 </blockquote>
@@ -129,33 +157,75 @@ if ('SamsungChangeSky' in window) {
 
 
 
+<script>window._setNextSlide(elByEl({
+	reveal: true
+}));</script>
+> # How can the web help VR?
+>
+> # VR has problems with engagement.
+>
+> * Users may be put off my large initial download sizes
+> * May get distracted by during set up of VR equipment
+> * Can get bored during long loading times, especially on mobile.
+>
+> # How does the web solve these issues?
+
+
+Traditionally the Web has been a media for documents.
+
+Right now VR is bad for text
+
+Even in the best VR headsets text is difficult to read and can induce eye strain
+
+APIs traditionally for A11y have relevance for every one now as we are all physically and visually impaired in VR.
+
+Newer APIs like *Speech recognition* and *Speech Synthesis* are very useful but can be limited to languages spoken in the western world, and the web is for everyone and should not be limited to the wealthy.
+
+
+The Web has a pedigree for assembling beautiful documents, providing new APIs for setting text and laying out block elements.
+
+All of this power is discarded for VR in the Web.
+
+Due to security concerns we are unable to access layers rendered by the browser in WebGL.
+
+An API for converting HTML to mipped bitmaps efficiently would be very powerful in enabling WebVR in it's current state to layout 2D interfaces in VR.
+
+## But What if we think bigger.
+
+Platform level support for 3D assets and layout.
+
+Allow developers who are unfamiliar with the complex paradigms of real time rendering and 3D graphics to describe an interface using HTML and CSS.
+
+## Benefits of Declarative VR
+
+* A11y
+* Dynamic Performance
+* Seperate content from rendering and interactions
+* Content can be reinerpreted for different platforms and will upgrade/degrade gracefully
+* Interactions depend heavily on the hardware involved, abstractions based around interactions with objects rather than granular doing own maths allow, new hardware to reinterpret content in a way which makes sense.
+
+Such an investment would take enormous effort by standards bodies and implementators but should VR prove to be as inevitable as it seems then it would pave the way to make the web the future of VR content.
 
 
 
+> # Challenges of VR on the Web
+
+A-Frame is a Mozilla project for building VR using HTML
+
+It really made me a beleiver in declarative VR is a good and possible future for the Web.
+
+By abstracting away a bunch of details
+
+I am introducing the A-Frame project.
+
+A-Frame uses custom elements to bring declarative VR to the web
 
 
 
+> ![A-Frame](images/aframevr.png)
 
 
 
-
-
-## Works across devices
-
-until there is enough content that people are regularly browsing in a headset
-
-People probably won't have a head set to hand
-
-Need to support cardboard and gearvr as well as htc vive and occulus rift
-
-<blockquote style="background-blend-mode: normal; ;background-image: url(images/devices.jpg);background-size: cover;min-height: 16em;"></blockquote>
-
-
-## Supporting user interactions.
-
-Different modes of user input.
-
-> <img src="images/devices.svg" style="filter: invert(1)" />
 
 ## How to get involved in Standards to influence the future of VR
 

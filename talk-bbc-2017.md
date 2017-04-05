@@ -37,10 +37,10 @@ Length: 15 minutes + 5 for Qs
 	setup: function () {
 		this._img = this._img || this.querySelector('img');
 		this._shadeAfter = this._shadeAfter || this.querySelector('.shade-after');
-		applyCSS(this._shadeAfter, {
+		_applyCSS(this._shadeAfter, {
 			opacity: 1
 		});
-		applyCSS(this._img, {
+		_applyCSS(this._img, {
 			transition: 'transform 1s ease',
 			filter: 'invert(1)',
 			maxHeight: 'none',
