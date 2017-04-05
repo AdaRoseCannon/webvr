@@ -164,6 +164,85 @@ A-Frame uses custom elements to bring declarative VR to the web
 > ![A-Frame](images/aframevr.png)
 
 
+
+
+## How the web platform can enhance VR
+
+The web as a platform has been delivering media content for years now.
+
+There are many reasons Native platforms can be trump the web with regard to quality.
+
+But this is a trade off we make for the many benefits we gain from the web.
+
+-- slide --
+
+The web brings us the ability to reach a large audience across a wide variety of platforms,
+
+We can take advantage of URLs and deep linking
+
+The web also has access to many useful APIs which VR will bring to entirely new relevance.
+
+<script>window.setDynamicSlide(window.elByEl());</script>
+> # Why do VR on the web?
+>
+> > ## *"If visual fidelity was all that mattered we would be watching blu-rays not Netflix"*
+> >
+> > ### -- Josh Carpenter
+
+## Expectations by being on the web
+
+Even though one may be making something new and amazing, the wow factor for VR will wear off and users have a short attention span.
+
+The lessons we've learnt in engaging uers on the web are still applicable here
+
+Primarily reduce the barrier between the user and content.
+
+Start fast. Each barrier to entry will lose a signifcant portion of your users.
+
+The advantage of the web is that one link click takes you to the content but that advantage is lost easily.
+
+* Avoid interstitials redirecting users to different devices or platforms
+* Avoid long loading
+* Work on desktop but enhance into VR
+
+Think of showing VR content the same way you would use video content,
+
+* Content is buffered, not loaded all in one go
+* Content is visible on the page straight away
+* Content quality improves with bandwidth and device power
+
+<script>
+setDynamicSlide(contentSlide([
+	{html: '<h1 style="margin-left: 1em;">The Web Comes with Expectations</h1><div style="justify-content: flex-end; padding: 0;"><img src="images/engagement.png" style="margin: 0; height: 0;" /><h2 style="' + captionStyle + '">Study by Google on Loading time and Engagement</h2></div>'},
+	{video: 'images/gun.m4v', caption: 'http://gun.playcanvas.com', style:'position: absolute; top:0; left: 0; width: 100%; height: 100%; z-index: -1; object-fit: cover;', captionStyle: captionStyle},
+]));
+</script>
+<blockquote style="justify-content: flex-end; padding: 0;">
+<ul>
+<li>&lt; 3s Acceptable</li>
+<li>&lt; 1s Good</li>
+<li>&lt; 0.5s Ideal</li>
+</ul>
+<video src="images/gun.m4v" muted></video>
+</blockquote>
+
+## Works across devices
+
+until there is enough content that people are regularly browsing in a headset
+
+People probably won't have a head set to hand
+
+Need to support cardboard and gearvr as well as htc vive and occulus rift
+
+<blockquote style="background-blend-mode: normal; ;background-image: url(images/devices.jpg);background-size: cover;min-height: 16em;"></blockquote>
+
+
+## Supporting user interactions.
+
+Different modes of user input.
+
+> <img src="images/devices.svg" style="filter: invert(1)" />
+
 # Augmented Reality
 
 <script>window._setNextSlide(window.videoSlide);</script>
@@ -186,8 +265,6 @@ I don't know about you guys but I am pretty excited for our VR future.
 > ## https://www.w3.org/community/webvr/
 >
 > ## https://github.com/w3c/webvr
->
-> ## @samsunginternet
 
 <script type="text/javascript">
 window._executeOnNextEl(function (el) {
@@ -195,9 +272,15 @@ window._executeOnNextEl(function (el) {
 	console.log(qr);
 });
 </script>
-> # Please give feedback on this talk so we can learn and improve!
->
-> http://o.ada.is/feedback-bulgaria <span class="qr-target" style="background: white;align-self: flex-end;margin: 1em;flex-shrink: 0;"></span>
+
+<blockquote style="display: block;">
+<h1>Please give feedback on this talk so we can learn and improve!</h1>
+<div style="display: block;">
+<h2>http://o.ada.is/feedback-bulgaria</h2>
+<span class="qr-target" style="float: right;background: white;align-self: flex-end;margin: 0.5em;flex-shrink: 0;"></span>
+</div>
+<h2>@samsunginternet</h2>
+</blockquote>
 
 <script>
 
