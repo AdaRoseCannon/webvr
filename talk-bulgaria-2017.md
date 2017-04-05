@@ -243,6 +243,10 @@ Different modes of user input.
 
 > <img src="images/devices.svg" style="filter: invert(1)" />
 
+<blockquote style="background-image: url(images/face5.jpg);">
+<h1>Now time for something completely different</h1>
+</blockquote>
+
 # Augmented Reality
 
 <script>window._setNextSlide(window.videoSlide);</script>
