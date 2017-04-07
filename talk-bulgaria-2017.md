@@ -24,15 +24,13 @@ var captionStyle = 'z-index: 2; text-align: center; background: rgba(0,0,0,0.8);
 
 Length: 45 minutes
 
-
-
 <blockquote class="dark" style="background-color: #576363 !important; background-image: url(images/me-and-dan.jpg);background-size: cover;min-height: 16em;display: flex;justify-content: flex-start;padding: 0.5em;background-position: center right;align-items: stretch;">
 <span style="flex-grow: 1;text-align: right; font-size: 4rem; text-shadow: 0 0 1em #576363;">@lady_ada_king</span>
 <span style="font-size: 5rem; text-shadow: 0 0 1em #576363;">@samsunginternet</span>
 </blockquote>
 
 <blockquote style="background-color: white;">
-<img src="images/StatCounter-browser-SE-monthly-201602-201702.png" />
+<img src="images/StatCounter-browser-BG-monthly-201603-201703.png" />
 </blockquote>
 
 <blockquote>
@@ -47,6 +45,12 @@ Length: 45 minutes
 <script>window._setNextSlide(window.videoSlide);</script>
 <blockquote style="padding: 0; justify-content: flex-end;">
 <video src="images/360-media.mp4" style="position:absolute; top: 0; left: 0; width:100%; height: 100%; max-height: none; object-fit: cover;"></video>
+</blockquote>
+
+<script>window._setNextSlide(window.elByEl());</script>
+<blockquote>
+<img src="a-frame-assets/SAM_100_0046_SMALL.jpg" alt="A 360 image taken with the gear VR" />
+<img src="images/gear360.jpg" alt="Gear360 Camera" />
 </blockquote>
 
 <script>window._setNextSlide(elByEl({
@@ -65,6 +69,7 @@ if ('SamsungChangeSky' in window) {
 ```
 >
 > ## Immersive Video
+>
 > <pre class="highlight"><code><span class="nt">&lt;video</span> <span class="na">src=</span><span class="s">"/360.webm"</span> <span class="na">type=</span><span class="s">"video/webm; dimension=360-lr;"</span><span class="nt">&gt;&lt;/video&gt;</span>
 </code></pre>
 
@@ -129,6 +134,8 @@ if ('SamsungChangeSky' in window) {
 
 > <img src="images/render-loop.svg" style="filter: invert(1);" />
 
+> <img src="images/devices.svg" style="filter: invert(1)" />
+
 ## Head Tracking Demo
 
 <script>window._setNextSlide(window.videoSlide);</script>
@@ -162,7 +169,25 @@ A-Frame uses custom elements to bring declarative VR to the web
 > * Unity
 >
 > ![A-Frame](images/aframevr.png)
-
+>
+> ```html
+	<html>
+	<head>
+		<script src="js/a-frame.js"></script>
+	</head>
+	<body>
+		<a-scene>
+			<a-sphere position="0 1.25 -1" radius="1.25" color="#EF2D5E"></a-sphere>
+			<a-box position="-1 0.5 1" rotation="0 45 0" color="#4CC3D9"></a-box>
+			<a-cylinder position="1 0.75 1" radius="0.5" color="#FFC65D"></a-cylinder>
+			<a-plane rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+			<a-sky color="#ECECEC"></a-sky>
+		</a-scene>
+	</body>
+	</html>
+```
+>
+> <iframe src="basic.html" seamless="seamless"></iframe>
 
 
 
@@ -235,7 +260,6 @@ People probably won't have a head set to hand
 Need to support cardboard and gearvr as well as htc vive and occulus rift
 
 <blockquote style="background-blend-mode: normal; ;background-image: url(images/devices.jpg);background-size: cover;min-height: 16em;"></blockquote>
-
 
 ## Supporting user interactions.
 
