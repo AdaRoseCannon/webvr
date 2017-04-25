@@ -15,7 +15,10 @@
    id="svg4575"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="render-loop.svg">
+   sodipodi:docname="render-loop.svg"
+   inkscape:export-filename="/home/SERILOCAL/ada.edwards/gitWorkingDir/webvr/images/render-loop.svg.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
   <defs
      id="defs4581">
     <inkscape:perspective
@@ -159,8 +162,8 @@
      id="namedview4579"
      showgrid="false"
      inkscape:zoom="0.89702955"
-     inkscape:cx="405.33572"
-     inkscape:cy="389.39715"
+     inkscape:cx="187.39418"
+     inkscape:cy="387.16757"
      inkscape:window-x="0"
      inkscape:window-y="27"
      inkscape:window-maximized="1"
@@ -173,7 +176,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -235,7 +238,7 @@
          height="92.527611"
          x="428.07953"
          y="391.82071" /></flowRegion><flowPara
-       id="flowPara4694"></flowPara></flowRoot>  <rect
+       id="flowPara4694" /></flowRoot>  <rect
      style="fill:#ffffff;fill-opacity:0.80203038;fill-rule:nonzero;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
      id="rect4740"
      width="332.20758"
@@ -253,7 +256,7 @@
        id="tspan4738"
        x="413.58725"
        y="245.78314"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25px;font-family:monospace;-inkscape-font-specification:monospace;fill:#000000;fill-opacity:1">myVRDisplay.getPose()</tspan></text>
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25px;font-family:monospace;-inkscape-font-specification:monospace;fill:#000000;fill-opacity:1">Get headset position</tspan></text>
   <text
      xml:space="preserve"
      style="font-style:normal;font-weight:normal;font-size:25px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -318,19 +321,24 @@
      style="fill:#ffffff;fill-opacity:0.80203038;fill-rule:nonzero;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
      id="rect4740-2"
      width="409.12811"
-     height="46.821201"
-     x="17.476387"
-     y="302.63745" />
+     height="93.642403"
+     x="4.0989013"
+     y="255.81625" />
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-     x="28.624275"
-     y="332.73679"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:Lato;-inkscape-font-specification:Lato;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     x="182.36998"
+     y="301.52264"
      id="text4736-4"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan4738-7"
-       x="28.624275"
-       y="332.73679"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25px;font-family:monospace;-inkscape-font-specification:monospace;fill:#000000;fill-opacity:1">myVRDisplay.submitFrame()</tspan></text>
+       x="182.36998"
+       y="301.52264"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25px;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1">Send the rendered frame</tspan><tspan
+       sodipodi:role="line"
+       x="182.36998"
+       y="332.77264"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25px;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1"
+       id="tspan4227">to the headset</tspan></text>
 </svg>
