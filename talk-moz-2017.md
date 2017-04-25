@@ -80,6 +80,7 @@ if ('SamsungChangeSky' in window) {
 <video src="images/enter-vr.mp4" style="position:absolute; top: 0; left: 0; width:100%; height: 100%; max-height: none; object-fit: cover;"></video>
 </blockquote>
 
+> # https://jsbin.com/hoxaji
 
 # History
 
@@ -215,33 +216,13 @@ The web also has access to many useful APIs which VR will bring to entirely new 
 > >
 > > ### -- Josh Carpenter
 
-
-
-## Some cool uses
-
-<script>window.setDynamicSlide(window.elByEl());</script>
-<blockquote>
-
-<div>
-<h1>Immersive Movies</h1>
-<img src="images/vrmovie.png" />
-</div>
-<div>
-<h1>Shopping</h1>
-<img src="images/thomas-cook.png" />
-<img src="images/ikea.png" />
-</div>
-<div>
-<h1>Education</h1>
-<img src="images/google-exhibitions.png" />
-</div>
-<div>
-<h1>Social</h1>
-<h2 style="margin:0;">https://metaverse.samsunginter.net</h2>
-<img src="images/metaverse.jpg" />
-</div>
-
-</blockquote>
+> # A WebVR experience Should:
+>
+> ## Work without VR equipment
+>
+> ## Prioritise speed over completeness
+>
+> ## Be on the open Web
 
 ## Expectations by being on the web
 
@@ -295,6 +276,33 @@ Need to support cardboard and gearvr as well as htc vive and occulus rift
 Different modes of user input.
 
 > <img src="images/devices.svg" style="filter: invert(1)" />
+
+## Some cool uses
+
+<script>window.setDynamicSlide(window.elByEl());</script>
+<blockquote>
+<div>
+<h1>Immersive Movies</h1>
+<img src="images/vrmovie.png" />
+</div>
+<div>
+<h1>Shopping</h1>
+<div style="flex-direction: row; display: flex;">
+<img src="images/thomas-cook.png" />
+<img src="images/ikea.png" />
+</div>
+</div>
+<div>
+<h1>Education</h1>
+<img src="images/google-exhibitions.png" />
+</div>
+<div>
+<h1>Social</h1>
+<h2 style="margin:0;">https://metaverse.samsunginter.net</h2>
+<img src="images/metaverse.jpg" />
+</div>
+</blockquote>
+
 
 <blockquote style="background-image: url(images/face5.jpg);">
 <h1>Now time for something completely different</h1>
