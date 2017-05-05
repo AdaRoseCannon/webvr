@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" baseProfile="full" width="79.3472" height="237.702" viewBox="0 0 79.35 237.70" enable-background="new 0 0 79.35 237.70" xml:space="preserve">
+	<g>
+		<path fill="none" stroke-width="1.02409" stroke-linejoin="round" stroke="#000000" stroke-opacity="1" d="M 39.6736,0.512024L 39.6736,0.512024C 61.3019,0.512024 78.8352,18.0453 78.8352,39.6736L 78.8352,198.029C 78.8352,219.657 61.3019,237.19 39.6736,237.19L 39.6736,237.19C 18.0453,237.19 0.51207,219.657 0.51207,198.029L 0.51207,39.6736C 0.51207,18.0453 18.0453,0.512024 39.6736,0.512024 Z "/>
+		<ellipse fill="none" stroke-linejoin="round" stroke="#000000" stroke-opacity="1" cx="39.6737" cy="39.145" rx="34.8917" ry="34.8917"/>
+		<g>
+			<path fill="none" stroke-linejoin="round" stroke="#000000" stroke-opacity="1" d="M 39.6736,126.374C 46.9954,126.374 52.9309,132.31 52.9309,139.632C 52.9309,146.953 46.9954,152.889 39.6736,152.889C 32.3519,152.889 26.4164,146.953 26.4164,139.632C 26.4164,132.31 32.3519,126.374 39.6736,126.374 Z "/>
+			<ellipse fill="none" stroke-linejoin="round" stroke="#000000" stroke-opacity="1" cx="39.6737" cy="139.632" rx="4.92065" ry="4.92065"/>
+		</g>
+		<g>
+			<path fill="none" stroke-linejoin="round" stroke="#000000" stroke-opacity="1" d="M 39.6736,86.9686C 46.9954,86.9686 52.9309,92.9039 52.9309,100.226C 52.9309,107.548 46.9954,113.483 39.6736,113.483C 32.3519,113.483 26.4164,107.548 26.4164,100.226C 26.4164,92.9039 32.3519,86.9686 39.6736,86.9686 Z "/>
+			<line fill="none" stroke-linejoin="round" stroke="#000000" stroke-opacity="1" x1="33.7901" y1="100.226" x2="45.5572" y2="100.226"/>
+		</g>
+		<path fill="none" stroke-linejoin="round" stroke="#000000" stroke-opacity="1" d="M 39.6737,197.174C 40.8865,197.174 41.8696,198.158 41.8696,199.37C 41.8696,200.583 40.8865,201.566 39.6737,201.566C 38.4609,201.566 37.4777,200.583 37.4777,199.37C 37.4777,198.158 38.4608,197.174 39.6737,197.174 Z "/>
+	</g>
+</svg>

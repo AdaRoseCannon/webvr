@@ -71,3 +71,29 @@ footer {
 	left: 0;
 	right: 0;
 }
+
+/**
+	Aditional Slide style
+*/
+
+.shade-before {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	height: 35vh;
+	z-index: 100;
+	background: linear-gradient(to bottom, rgba(47,79,79,1) 50%,rgba(47,79,79,0) 100%);
+	transition: opacity;
+}
+
+.shade-after {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 35vh;
+	z-index: 100;
+	background: linear-gradient(to top, rgba(47,79,79,1) 50%,rgba(47,79,79,0) 100%);
+	transition: opacity;
+}
