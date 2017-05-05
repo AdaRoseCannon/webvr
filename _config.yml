@@ -16,5 +16,8 @@ author:
 
 permalink: /:title.html
 
+gems:
+  - jekyll-redirect-from
+
 excerpt_separator: qwertyuiopsdfghjkl
 exclude: [.vscode]

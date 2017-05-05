@@ -1,3 +1,4 @@
+/* eslint-env es6 */
 
 // Add a fake generator which accepts arrays of functions
 // to interface with a-slides on platofrms which don't support
@@ -49,11 +50,17 @@ window.playVideo = {
 	}
 }
 
-window.elByEl = function (selector) {
+window.videoSlide = window.playVideo;
 
+window.elByEl = function (options) {
+
+
+	options = options || {};
+	var selector = options.preserve || false;
 	var children;
 	var clone;
 	var preserve = [];
+	var reveal = options.reveal || false;
 
 	function replaceWithEl(el, target) {
 		target.innerHTML = '';
@@ -68,15 +75,17 @@ window.elByEl = function (selector) {
 
 	function init() {
 		var self = this;
-		preserve = Array.from(selector ? (this.querySelectorAll(selector) || []) : []);
-		preserve.forEach(function (el) {
-			self.removeChild(el);
+		preserve = Array.from(this.children).filter(function (el) {
+			if (el.matches(selector)) {
+				self.removeChild(el);
+				return true;
+			}
 		});
 
 		children = Array.from(this.children);
 		var target = this;
 		clone = children.map(function (el) {
-			return function () { replaceWithEl(el, this) };
+			return !reveal ? function () { replaceWithEl(el, this) } : function () { this.appendChild(el) };
 		}.bind(this));
 		if (!clone.length) throw Error('Empty elByEl target');
 		setUpFirstEl = clone.shift();
@@ -93,26 +102,6 @@ window.elByEl = function (selector) {
 
 	return out;
 };
-
-window.getSlideName = function (el) {
-	var name;
-	if (el.matches('script[id]')) {
-		name = genId(el.id);
-	} else {
-		var foundBlockquote = false;
-		var hs = prevAll(el).reverse().filter(function (el) {
-			if (foundBlockquote || !!el.tagName.match(/blockquote/i)) {
-				foundBlockquote = true;
-				return false;
-			}
-			return !!el.tagName.match(/h[0-6]/i);
-		});
-		if (!hs.length) throw 'No h to find';
-		var h = hs[hs.length - 1];
-		name =  genId(h.textContent);
-	}
-	return 'slide-' + name;
-}
 
 function renderContent(el, data) {
 	data.style = data.style || '';
@@ -162,6 +151,9 @@ window.contentSlide = function (slides) {
 			oldContent = Array.from(this.children);
 			this.innerHTML = '';
 			renderContent(this, slides[0]);
+			if (slides[0].video) {
+				this.querySelector('video').pause();
+			}
 		},
 		action: function* () {
 

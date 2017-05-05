@@ -13,6 +13,7 @@ html, body {
 	margin: 0;
 	padding: 0;
 	overflow: auto;
+	word-break: break-word;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -101,11 +102,11 @@ body > blockquote, .a-slides_slide-content {
 	display: flex;
 	flex-direction: column;
 	align-items: stretch;
-	min-height: 4em;
+	min-height: 600px;
 	position: relative;
 	overflow: hidden;
 	margin-bottom: 3em;
-	font-size: 2rem;
+	font-size: 3rem;
 	padding: 1em;
 	background-blend-mode: soft-light;
 	background-size: cover;
@@ -131,6 +132,15 @@ body > blockquote, .a-slides_slide-content {
 		display: flex;
 		flex-grow: 1;
 		flex-shrink: 1;
+	}
+
+	h1 {
+		font-size: 1.3em;
+		margin: 0 0 0.5em 0;
+	}
+
+	ul {
+		margin: 0;
 	}
 
 	& h1,

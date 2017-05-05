@@ -83,7 +83,7 @@ window._setNextSlide = function _setNextSlide(setUpObject) {
 window._executeOnNextEl = function _executeOnNextEl(fn) {
 	var el = document.currentScript;
 	preSetupFns.push(function () {
-		fn.bind(el.nextElementSibling)();
+		fn.bind(el.nextElementSibling)(el.nextElementSibling);
 	});
 }
 
