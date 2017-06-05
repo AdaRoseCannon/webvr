@@ -39,14 +39,22 @@ window.iframeSlide = {
 
 window.playVideo = {
 	setup: function () {
-		this.querySelector('video').currentTime=0;
-		this.querySelector('video').pause();
+		var vid=this.querySelector('video');
+		if (vid.dataset.src) {
+			vid.src = vid.dataset.src;
+			this.destroyAfter = true;
+		}
+		vid.currentTime=0;
+		vid.pause();
 	},
 	action: window.FakeGenerator([ function() {
 		this.querySelector('video').play();
 	}]),
 	teardown: function () {
 		this.querySelector('video').pause();
+		if (this.destroyAfter) {
+			this.querySelector('video').src = '';
+		}
 	}
 }
 
