@@ -52,15 +52,15 @@
 		display: none;
 	}
 
-	.a-slides_slide-content {
+	.a-slides_slide-content.a-slides_slide-content {
 		transform: translate(0.4em, 1.25em) scale(0.4);
 		z-index: 7;
 		display: flex;
 		align-items: stretch;
-		justify-content: flex-start;
 		align-content: flex-start;
 		flex-direction: column;
 		flex-grow: 1;
+		padding: 0;
 	}
 }
 

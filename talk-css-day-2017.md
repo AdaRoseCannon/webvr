@@ -33,21 +33,21 @@ Length: 45 minutes
 <img src="images/StatCounter-browser-NL-monthly-201605-201705.png" />
 </blockquote>
 
-<blockquote style="padding: 0; justify-content: flex-end;">
-<img src="images/DeX.jpg" style="position:absolute; top: 0; left: 0; width:100%; height: 100%; max-height: none; margin: 0;" />
+<blockquote>
+<img src="images/DeX.jpg" class="bg-img"  />
 </blockquote>
 
-<blockquote style="padding: 0; justify-content: flex-end;">
-<img src="images/gearvr+controller.png" style="position:absolute; top: 0; left: 0; width:100%; height: 100%; max-height: none; margin: 0;" />
+<blockquote>
+<img src="images/gearvr+controller.png" class="bg-img"  />
 </blockquote>
 
 <script>window._setNextSlide(window.videoSlide);</script>
-<blockquote style="padding: 0; justify-content: flex-end;">
+<blockquote>
 <video data-src="images/space-jam.mp4" style="position:absolute; top: 0; left: 0; width:100%; height: 100%; max-height: none; object-fit: cover;"></video>
 </blockquote>
 
 <script>window._setNextSlide(window.videoSlide);</script>
-<blockquote style="padding: 0; justify-content: flex-end;">
+<blockquote>
 <video data-src="images/360-media.mp4" style="position:absolute; top: 0; left: 0; width:100%; height: 100%; max-height: none; object-fit: cover;"></video>
 </blockquote>
 
@@ -61,6 +61,10 @@ Length: 45 minutes
 window._setNextSlide(window.elByEl({
 	preserve: 'h1:first-child'
 }));
+window._cssNextEl({
+    padding: '1em',
+    justifyContent: 'flex-start'
+})
 </script>
 
 > # Building immersive media into the web platform
@@ -83,7 +87,7 @@ window._setNextSlide(window.elByEl({
 # Try it out for yourself:
 
 <script>window._setNextSlide(window.videoSlide);</script>
-<blockquote style="padding: 0; justify-content: flex-end;">
+<blockquote>
 <video data-src="images/enter-vr.mp4" style="position:absolute; top: 0; left: 0; width:100%; height: 100%; max-height: none; object-fit: cover;"></video>
 </blockquote>
 
@@ -92,23 +96,39 @@ window._setNextSlide(window.elByEl({
 > ![supported](images/support.png)
 
 
-<blockquote style="padding: 0; justify-content: flex-end;">
-<img data-name="screen" style="position:absolute; top: 0; left: 0; " />
-<img src="images/gearvr+controller.png" style="position:absolute; top: 0; left: 0; width:100%; height: 100%; max-height: none; margin: 0;" />
-<img src="images/gearvr+controller+detail.png" style="position:absolute; top: 0; left: 0; width:100%; height: 100%; max-height: none; margin: 0;" />
+<script>window._setNextSlide(window.elByEl({
+    preserve: 'img:first-child'
+}));</script>
+<blockquote>
+<img src="images/gearvr+controller.png" class="bg-img"  />
+<img src="images/gearvr+controller+detail.png" class="bg-img"  />
 </blockquote>
 
 ## Head Tracking Demo
 
 <script>window._setNextSlide(window.videoSlide);</script>
-<blockquote style="padding: 0; justify-content: flex-end; background-color: black !important;">
+<blockquote style="background-color: black !important;">
 <video data-src="images/tracking.m4v" style="position:absolute; top: 0; left: 0; width:100%; height: 100%; max-height: none; object-fit: contain;"></video>
 </blockquote>
 
-> ## WebVR does nothing on it's own.
 
-> EXAMPLE!!
-> 
+<script>window._setNextSlide(window.elByEl());</script>
+<blockquote style="background-color: #4d4d4d;">
+<img src="images/teamwork.jpg" class="bg-img" style="object-fit: cover;" />
+<img src="images/gl.png" class="bg-img" />
+</blockquote>
+
+
+<script type="text/javascript">
+window._executeOnNextEl(function (el) {
+	var qr = new QRCode(el.querySelector('.qr-target'), "http://o.ada.is/vrdemo1");
+});
+</script>
+<blockquote class="a-slides_slide-content">
+    <img src="images/metaverse.png" class="bg-img" style="object-fit: cover;" />
+    <span class="qr-target" style="z-index: 1; align-self: flex-start; margin-left: 1em;"></span>
+    <h2 style="padding: 0.5em; margin:0; z-index: 1; background: rgba(0,0,0,0.4);">http://o.ada.is/vrdemo1</h2>
+</blockquote>
 
 > The web works with it to provide rich content.
 
@@ -167,16 +187,15 @@ I don't know about you guys but I am pretty excited for our VR future.
 
 <script type="text/javascript">
 window._executeOnNextEl(function (el) {
-	var qr = new QRCode(el.querySelector('.qr-target'), "http://o.ada.is/feedback-bulgaria");
-	console.log(qr);
+	var qr = new QRCode(el.querySelector('.qr-target'), "http://o.ada.is/css-day");
 });
 </script>
 
 <blockquote style="display: block;">
 <h1>Please give feedback on this talk so we can learn and improve!</h1>
 <div style="display: block;">
-<h2>http://o.ada.is/feedback-bulgaria</h2>
-<span class="qr-target" style="float: right;background: white;align-self: flex-end;margin: 0.5em;flex-shrink: 0;"></span>
+<h2>http://o.ada.is/css-day</h2>
+<span class="qr-target" style="float: right;align-self: flex-end;margin: 0.5em;flex-shrink: 0;"></span>
 </div>
 <h2>@samsunginternet</h2>
 </blockquote>
@@ -218,5 +237,48 @@ window._executeOnNextEl(function (el) {
 		});
 		span.setAttribute('class', 'slide-view-button');
 		el.appendChild(span);
+	});
+
+
+	var iframes = Array.from(document.querySelectorAll('iframe'));
+	var blank = 'about:blank';
+	iframes.forEach(function (iframe) {
+		var button = document.createElement('button');
+		var src = iframe.src;
+		iframe.src = blank;
+		iframe.dataset.src = src;
+		button.addEventListener('click', function () {
+			iframe.src = iframe.src === blank ? src : blank;
+			if (iframe.src === blank) {
+				button.classList.add('blank');
+				button.textContent = "Load iFrame";
+			} else {
+				button.classList.remove('blank');
+				button.textContent = "Unload iFrame";
+			}
+		});
+		button.classList.add('load-content-button');
+		button.classList.add('blank');
+		button.textContent = "Load iFrame";
+		iframe.after(button);
+	});
+
+	var videos = Array.from(document.querySelectorAll('video'));
+	videos.forEach(function (video) {
+		var button = document.createElement('button');
+		var src = video.src;
+        if (src) {
+            video.src = blank;
+            video.dataset.src = src;
+        }
+		button.addEventListener('click', function () {
+			video.src = video.dataset.src;
+            video.controls = true;
+            button.parentNode.removeChild(button);
+		});
+		button.classList.add('load-content-button');
+		button.classList.add('blank');
+		button.textContent = "Load Video";
+		video.after(button);
 	});
 </script>

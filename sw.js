@@ -32,7 +32,8 @@ self.addEventListener('fetch', function(event) {
 	const request = event.request;
 
 	if (request.url.match(/(\.mp4|\.webm|\.avi|\.wmv|\.m4v)$/i)) {
-		return handleVideo(event, true);
+		return;
+		// return handleVideo(event, true);
 	}
 
 	if (request.url.match(/data:/i)) {
