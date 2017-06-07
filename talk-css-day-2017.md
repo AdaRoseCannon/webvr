@@ -50,12 +50,12 @@ Length: 45 minutes
 <blockquote>
 <video data-src="images/360-media.mp4" style="position:absolute; top: 0; left: 0; width:100%; height: 100%; max-height: none; object-fit: cover;"></video>
 </blockquote>
-
+<!--
 <script>window._setNextSlide(window.elByEl());</script>
 <blockquote>
 <img src="a-frame-assets/SAM_100_0046_SMALL.jpg" alt="A 360 image taken with the gear VR" />
 <img src="images/gear360.jpg" alt="Gear360 Camera" />
-</blockquote>
+</blockquote>-->
 
 <script>
 window._setNextSlide(window.elByEl({
@@ -97,10 +97,10 @@ window._cssNextEl({
 
 
 <script>window._setNextSlide(window.elByEl({
-    preserve: 'img:first-child'
+    reveal: true
 }));</script>
 <blockquote>
-<img src="images/gearvr+controller.png" class="bg-img"  />
+<img class="base" src="images/gearvr+controller.png" class="bg-img"  />
 <img src="images/gearvr+controller+detail.png" class="bg-img"  />
 </blockquote>
 
@@ -113,11 +113,37 @@ window._cssNextEl({
 
 
 <script>window._setNextSlide(window.elByEl());</script>
-<blockquote style="background-color: #4d4d4d;">
+<blockquote>
 <img src="images/teamwork.jpg" class="bg-img" style="object-fit: cover;" />
-<img src="images/gl.png" class="bg-img" />
+<div style="background-color: #4d4d4d;"><img src="images/gl.png" style="margin: 1em auto;" /></div>
+<div style="background-color: lavenderblush; padding: 1em;"><img src="images/logos.png" style="margin: 1em auto;" /></div>
 </blockquote>
+## WebGL
 
+* Basic Shapes
+* Lighting
+* 3D models
+
+## WebAudio
+
+* Mix Audio
+* HRTF - 3D Audio
+* Get Mic info
+
+## Libraries
+
+* Animation
+* Physics
+
+## Realtime Data
+
+* Web Sockets: Mass sync
+* WebRTC Stream Audio/Video/Data to a few
+
+## Speech APIs
+
+* Generate Speech from Text to describe scenes without text
+* Use voice commands with speech to text.
 
 <script type="text/javascript">
 window._executeOnNextEl(function (el) {
@@ -130,44 +156,22 @@ window._executeOnNextEl(function (el) {
     <h2 style="padding: 0.5em; margin:0; z-index: 1; background: rgba(0,0,0,0.4);">http://o.ada.is/vrdemo1</h2>
 </blockquote>
 
-> The web works with it to provide rich content.
-
-> WebGL
-> 3D rendering
-
-> Web Audio
-> 3D Audio
-
-> WebRTC/WebSockets
-> Realtime Data, AV streaming
-
-> An entire world wide webs worth of Rest APIs
-> Data display, social messaging
-
-> Libraries for animations and physics simulations
-
-> Start thinking about the APIs of the Web in a new fashion!
->
-> WebVR isn't just a way to distribute VR content it is a new way to think about the web.
-
-
-
-
-
-
 
 # Destroying the illusion.
-
+<script>
+window._cssNextEl({
+    padding: '1em'
+});
+</script>
 > > ## *“Explaining a joke is like dissecting a frog. You understand it better but the frog dies in the process.”*
 >
 > ― E.B. White
 
-> # A-Frame
+> WebVR introduces new problems for interfaces and accessibility.
 
-> # Web Sockets
+> https://samsunginter.net/word-drop/
 
-
-
+> WebVR isn't just a way to distribute VR content it is a new way to think about the web.
 
 ## How to get involved in Standards to influence the future of VR
 
