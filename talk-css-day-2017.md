@@ -89,6 +89,7 @@ window._cssNextEl({
 <script>window._setNextSlide(window.videoSlide);</script>
 <blockquote>
 <video data-src="images/enter-vr.mp4" style="position:absolute; top: 0; left: 0; width:100%; height: 100%; max-height: none; object-fit: cover;"></video>
+<h1 style="margin:0; z-index: 2; position: absolute;">http://o.ada.is/simple-vr</h1>
 </blockquote>
 
 # Where is it supported
@@ -118,6 +119,7 @@ window._cssNextEl({
 <div style="background-color: #4d4d4d;"><img src="images/gl.png" style="margin: 1em auto;" /></div>
 <div style="background-color: lavenderblush; padding: 1em;"><img src="images/logos.png" style="margin: 1em auto;" /></div>
 </blockquote>
+
 ## WebGL
 
 * Basic Shapes
@@ -156,8 +158,13 @@ window._executeOnNextEl(function (el) {
     <h2 style="padding: 0.5em; margin:0; z-index: 1; background: rgba(0,0,0,0.4);">http://o.ada.is/vrdemo1</h2>
 </blockquote>
 
+<script>window._setNextSlide(window.videoSlide);</script>
+<blockquote style="padding: 0; justify-content: flex-end;">
+<video data-src="images/boris-smus-copresence.m4v" style="position:absolute; top: 0; left: 0; width:100%; height: 100%; max-height: none; object-fit: cover;"></video>
+<span style="z-index: 2; text-align: center; background: rgba(0,0,0,0.8); padding: 1em; margin: 1em; border-radius: 1em;">WebVR Copresence with WebRTC by Boris Smus</span>
+</blockquote>
 
-# Destroying the illusion.
+<!--# Destroying the illusion.
 <script>
 window._cssNextEl({
     padding: '1em'
@@ -165,11 +172,11 @@ window._cssNextEl({
 </script>
 > > ## *“Explaining a joke is like dissecting a frog. You understand it better but the frog dies in the process.”*
 >
-> ― E.B. White
+> ― E.B. White-->
+<!--
+> WebVR introduces new problems for interfaces and accessibility.-->
 
-> WebVR introduces new problems for interfaces and accessibility.
-
-> https://samsunginter.net/word-drop/
+> # https://samsunginter.net/word-drop/
 
 > WebVR isn't just a way to distribute VR content it is a new way to think about the web.
 
@@ -183,6 +190,12 @@ If you start now you will be able to shape the next medium of the web
 
 I don't know about you guys but I am pretty excited for our VR future.
 
+<script>
+window._cssNextEl({
+    padding: '1em',
+    justifyContent: 'flex-start'
+})
+</script>
 > # Get involved in standards
 >
 > ## https://www.w3.org/community/webvr/
@@ -195,7 +208,7 @@ window._executeOnNextEl(function (el) {
 });
 </script>
 
-<blockquote style="display: block;">
+<blockquote style="display: block; padding: 1em;">
 <h1>Please give feedback on this talk so we can learn and improve!</h1>
 <div style="display: block;">
 <h2>http://o.ada.is/css-day</h2>
@@ -272,7 +285,7 @@ window._executeOnNextEl(function (el) {
 		var button = document.createElement('button');
 		var src = video.src;
         if (src) {
-            video.src = blank;
+            video.removeAttribute('src');
             video.dataset.src = src;
         }
 		button.addEventListener('click', function () {

@@ -41,6 +41,7 @@ window.playVideo = {
 	setup: function () {
 		var vid=this.querySelector('video');
 		if (vid.dataset.src) {
+			vid.src = '';
 			vid.src = vid.dataset.src;
 			this.destroyAfter = true;
 		}
