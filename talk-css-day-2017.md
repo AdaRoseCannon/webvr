@@ -208,7 +208,13 @@ Need to support cardboard and gearvr as well as htc vive and occulus rift
 
 Different modes of user input.
 
-> <img src="images/devices.svg" style="filter: invert(1)" />
+<script>
+window._cssNextEl({
+    backgroundColor: 'lavenderblush'
+});	
+</script>
+
+> <img src="images/devices.svg" />
 
 
 ## Some cool uses
