@@ -112,7 +112,6 @@ window._cssNextEl({
 <video data-src="images/tracking.m4v" style="position:absolute; top: 0; left: 0; width:100%; height: 100%; max-height: none; object-fit: contain;"></video>
 </blockquote>
 
-
 <script>window._setNextSlide(window.elByEl());</script>
 <blockquote>
 <img src="images/teamwork.jpg" class="bg-img" style="object-fit: cover;" />
@@ -176,9 +175,72 @@ window._cssNextEl({
 <!--
 > WebVR introduces new problems for interfaces and accessibility.-->
 
+<!--
 > # https://samsunginter.net/word-drop/
+-->
 
-> WebVR isn't just a way to distribute VR content it is a new way to think about the web.
+
+<script>
+window._setNextSlide(window.elByEl());
+window._cssNextEl({
+    justifyContent: 'center',
+	padding: '1em'
+});	
+</script>
+> <h1 style="text-align: center; font-size: 2.5em;">WebVR isn't just a way to distribute VR content.</h1>
+>
+> <h1 style="text-align: center; font-size: 2.5em;">VR brings a new way to think about the web.</h1>
+>
+> <h1 style="text-align: center; font-size: 2.5em;">The web brings a new way to think about VR.</h1>
+
+
+## Works across devices
+
+until there is enough content that people are regularly browsing in a headset
+
+People probably won't have a head set to hand
+
+Need to support cardboard and gearvr as well as htc vive and occulus rift
+
+<blockquote style="background-blend-mode: normal; ;background-image: url(images/devices.jpg);background-size: cover;min-height: 16em;"></blockquote>
+
+## Supporting user interactions.
+
+Different modes of user input.
+
+> <img src="images/devices.svg" style="filter: invert(1)" />
+
+
+## Some cool uses
+
+<script>
+window.setDynamicSlide(window.elByEl());
+window._cssNextEl({
+    padding: '1em'
+});	
+</script>
+<blockquote>
+<div>
+<h1>Immersive Movies</h1>
+<img src="images/vrmovie.png" />
+</div>
+<div>
+<h1>Shopping</h1>
+<div style="flex-direction: row; display: flex;">
+<img src="images/thomas-cook.png" />
+<img src="images/ikea.png" />
+</div>
+</div>
+<div>
+<h1>Education</h1>
+<img src="images/google-exhibitions.png" />
+</div>
+<div>
+<h1>Social</h1>
+<h2 style="margin:0;">https://metaverse.samsunginter.net</h2>
+<img src="images/metaverse.jpg" />
+</div>
+</blockquote>
 
 ## How to get involved in Standards to influence the future of VR
 
