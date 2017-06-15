@@ -248,6 +248,10 @@ window._cssNextEl({
 </div>
 </blockquote>
 
+<blockquote style="background-image: url(images/hackathon.jpg); justify-content: center;">
+<h1 style="text-align: center;">http://o.ada.is/vrtogether</h1>
+</blockquote>
+
 ## How to get involved in Standards to influence the future of VR
 
 These discussions are happening today!
