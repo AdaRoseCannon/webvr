@@ -163,23 +163,6 @@ window._executeOnNextEl(function (el) {
 <span style="z-index: 2; text-align: center; background: rgba(0,0,0,0.8); padding: 1em; margin: 1em; border-radius: 1em;">WebVR Copresence with WebRTC by Boris Smus</span>
 </blockquote>
 
-<!--# Destroying the illusion.
-<script>
-window._cssNextEl({
-    padding: '1em'
-});
-</script>
-> > ## *“Explaining a joke is like dissecting a frog. You understand it better but the frog dies in the process.”*
->
-> ― E.B. White-->
-<!--
-> WebVR introduces new problems for interfaces and accessibility.-->
-
-<!--
-> # https://samsunginter.net/word-drop/
--->
-
-
 <script>
 window._setNextSlide(window.elByEl());
 window._cssNextEl({
