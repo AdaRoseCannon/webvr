@@ -356,14 +356,14 @@ window._cssNextEl({
 
 <script type="text/javascript">
 window._executeOnNextEl(function (el) {
-	var qr = new QRCode(el.querySelector('.qr-target'), "http://o.ada.is/css-day");
+	var qr = new QRCode(el.querySelector('.qr-target'), "http://o.ada.is/fullstack2017");
 });
 </script>
 
 <blockquote style="display: block; padding: 1em;">
 <h1>Please give feedback on this talk so we can learn and improve!</h1>
 <div style="display: block;">
-<h2>http://o.ada.is/css-day</h2>
+<h2>http://o.ada.is/fullstack2017</h2>
 <span class="qr-target" style="float: right;align-self: flex-end;margin: 0.5em;flex-shrink: 0;"></span>
 </div>
 <h2>@samsunginternet</h2>
