@@ -39,7 +39,9 @@ The goals of this talk is to give your the tools to start building VR in the web
 
 <script>
 window._cssNextEl({
-    padding: '1em'
+    padding: '1em',
+	fontSize: '2rem',
+	justifyContent: 'flex-start'
 });	
 </script>
 > # Jargon
@@ -73,7 +75,8 @@ window._cssNextEl({
 
 <script>
 window._cssNextEl({
-    padding: '1em'
+    padding: '1em',
+	justifyContent: 'flex-start'
 });	
 </script>
 > # State of WebVR
@@ -250,23 +253,23 @@ Need to support cardboard and gearvr as well as htc vive and occulus rift
 </script>
 <blockquote>
 	<img src="images/devices.jpg" class="bg-img">
-	<div style="flex-direction: row;">
-		<img src="images/pc.png" >
+	<div style="flex-direction: row; padding-right: 0.5em;">
+		<img src="images/laptop.png" >
 		<ul>
 			<li>Not immersive</li>
 			<li>Click and Drag Interactions</li>
 			<li>Potentially Powerful Hardware</li>
 		</ul>
 	</div>
-	<div style="flex-direction: row;">
-		<img src="images/magic-window.png" >
+	<div style="flex-direction: row; padding-right: 0.5em;">
+		<img src="images/phone.png" >
 		<ul>
 			<li>Not Immersive</li>
 			<li>Limited interactions</li>
 			<li>Potentially low power hardware</li>
 		</ul>
 	</div>
-	<div style="flex-direction: row;">
+	<div style="flex-direction: row; padding-right: 0.5em;">
 		<img src="images/cardboard.png" >
 		<ul>
 			<li>Immersive</li>
@@ -275,8 +278,8 @@ Need to support cardboard and gearvr as well as htc vive and occulus rift
 			<li>Massive Reach for VR</li>
 		</ul>
 	</div>
-	<div style="flex-direction: row;">
-		<img src="images/gearvr.png" >
+	<div style="flex-direction: row; padding-right: 0.5em;">
+		<img src="images/gearvr+controller.png" >
 		<ul>
 			<li>Immersive</li>
 			<li>Rotation Tracked Controller</li>
@@ -284,7 +287,7 @@ Need to support cardboard and gearvr as well as htc vive and occulus rift
 			<li>Very popular</li>
 		</ul>
 	</div>
-	<div style="flex-direction: row;">
+	<div style="flex-direction: row; padding-right: 0.5em;">
 		<img src="images/htcvive.png" >
 		<ul>
 			<li>Immersive</li>
