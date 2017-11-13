@@ -1,0 +1,96 @@
+---
+---
+
+.support-icon-container.support-icon-container.support-icon-container.support-icon-container {
+	position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    display: block;
+    height: 2em;
+    flex-direction: row;
+    padding: 0 0 0.2em 0.2em;
+    background: darkslategray;
+    border-radius: 0 0 0 1em;
+    border: 1px solid darkgreen;
+    border-width: 0 0 1px 1px;
+    box-shadow: 0 0 1em -0.2em black;
+
+	.support-icon {
+		display: inline-block;
+		width: 2em;
+		height: 100%;
+		position: relative;
+		filter: grayscale(1);
+		background-size: 2em 2em;
+		background-repeat: no-repeat;
+		background-position: center center;
+	}
+
+	.firefox {
+		background-image: url(../images/browser-icons/firefox.svg);
+	}
+
+	&[firefox] .firefox {
+		filter: none;
+	}
+
+	&[firefox-wip] .firefox {
+		filter: none;
+		background-color: goldenrod;
+	}
+
+	.edge {
+		background-image: url(../images/browser-icons/edge.svg);
+	}
+
+	&[edge] .edge {
+		filter: none;
+	}
+
+	&[edge-wip] .edge {
+		filter: none;
+		background-color: goldenrod;
+	}
+
+
+	.chrome {
+		background-image: url(../images/browser-icons/chrome.svg);
+	}
+
+	&[chrome] .chrome {
+		filter: none;
+	}
+
+	&[chrome-wip] .chrome {
+		filter: none;
+		background-color: goldenrod;
+	}
+
+	.samsung {
+		background-image: url(../images/browser-icons/samsung-internet.svg);
+	}
+
+	&[samsung] .samsung {
+		filter: none;
+	}
+
+	&[samsung-wip] .samsung {
+		filter: none;
+		background-color: goldenrod;
+	}
+
+	.safari {
+		background-image: url(../images/browser-icons/safari.png);
+	}
+
+	&[safari] .safari {
+		filter: none;
+	}
+
+	&[safari-wip] .safari {
+		filter: none;
+		background-color: goldenrod;
+	}
+
+}

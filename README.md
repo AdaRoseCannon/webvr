@@ -2,23 +2,22 @@
 layout: post
 title: Readme
 description: Building a slide deck from a single page
-script: https://cdn.rawgit.com/AdaRoseEdwards/dirty-dom/v1.3.1/build/dirty-dom-lib.min.js
+scripts: [
+	'https://cdn.rawgit.com/AdaRoseEdwards/dirty-dom/v1.3.1/build/dirty-dom-lib.min.js',
+	'scripts/post-to-slides.js',
+	'scripts/slide-utils.js',
+]
+styles: [
+	'scripts/third-party/a-slides.css',
+]
 ---
 
-<!-- Define slide animation generators -->
-<script>
-	window.aSlidesSlideData = {};
-</script>
-<!-- contents -->
-
-# README
+# {{page.title}}
 
 This is a little layout for blog posts which can turn into slides using a-slides
 
 <!-- Link to trigger conversion script -->
 [Convert to Slide Deck](#aslides)
-
-## Set up
 
 ```bash
 sudo apt-get install bundler zlib1g-dev libxml2-dev nodejs
@@ -44,10 +43,10 @@ It should work with slide remotes and a wii mote on supported platforms
 * f to toggle fullscreen
 * If you hae multiple tabs open (in a broser which supports a service worker), press parent in the control bar and it will control all the other tabs
 
-<!-- This slide uses information from _config.yml -->
+<!-- This slide uses information from _config.yml and the page settings -->
 <blockquote class="dark" id="splash-slide" style="background-image: url('images/pattern.svg');">
-<h1>{{ site.name }}</h1>
-<h3>{{ site.description }}</h3>
+<h1>{{ page.title }}</h1>
+<h3>{{ page.description }}</h3>
 <h2>{{site.author.name}} - {{site.author.company}}</h2>
 </blockquote>
 

@@ -14,7 +14,8 @@ AFRAME.registerComponent('ada-ship-controller', {
 		rollEasing: { default: 1 },
 		acceleration: { default: 250 },
 		rollAcceleration: { default: 50 },
-		rollTarget: { type: 'selector' }
+		rollTarget: { type: 'selector' },
+		turnTarget: { type: 'selector' },
 	},
 
 	init: function () {
@@ -41,10 +42,10 @@ AFRAME.registerComponent('ada-ship-controller', {
 		var prevTime = this.prevTime = this.prevTime || Date.now();
 		var time = window.performance.now();
 		var delta = (time - prevTime) / 1000;
+		this.prevTime = time;
 		var keys = this.keys;
 		var movementVector;
 		var el = this.el;
-		this.prevTime = time;
 
 		// If data changed or FPS too low, reset velocity.
 		if (previousData || delta > MAX_DELTA) {
@@ -54,9 +55,9 @@ AFRAME.registerComponent('ada-ship-controller', {
 		}
 
 		var position = el.getComputedAttribute('position');
-		var rotation = el.getComputedAttribute('rotation');
+		var rotation = (this.data.turnTarget || el).getComputedAttribute('rotation');
 
-		this.roll += this.el.sceneEl.camera.el.getComputedAttribute('rotation').z * (Math.PI/180) * delta * this.data.rollAcceleration;
+		this.roll -= this.el.sceneEl.camera.el.getComputedAttribute('rotation').z * (Math.PI/180) * delta * this.data.rollAcceleration;
 		rotation.y += this.roll * this.data.rollEasing * delta * -velocity.z * 0.05;
 		this.roll -= this.roll * this.data.rollEasing * delta;
 		velocity.x -= velocity.x * easing * delta;
@@ -65,15 +66,15 @@ AFRAME.registerComponent('ada-ship-controller', {
 		if (this.data.rollTarget) {
 			var rollTargetRotation = this.data.rollTarget.getComputedAttribute('rotation');
 			rollTargetRotation.z = this.roll;
-			this.rollTarget.setAttribute('rotation', rotation);
+			this.data.rollTarget.setAttribute('rotation', rollTargetRotation);
 		} else {
 			rotation.z = this.roll;
 		}
 
-		if (keys[65] || keys[37]) { this.roll += this.data.rollAcceleration * delta; } // Left
-		if (keys[68] || keys[39]) { this.roll -= this.data.rollAcceleration * delta; } // Right
-		if (keys[87] || keys[38] || keys['touch']) { velocity.z -= acceleration * delta; } // Up
-		if (keys[83] || keys[40]) { velocity.z += acceleration * delta; } // Down
+		if (keys[65] || keys[37]) { this.roll -= this.data.rollAcceleration * delta; } // Left
+		if (keys[68] || keys[39]) { this.roll += this.data.rollAcceleration * delta; } // Right
+		if (keys[87] || keys[38] || keys['touch']) { velocity.z += acceleration * delta; } // Up
+		if (keys[83] || keys[40]) { velocity.z -= acceleration * delta; } // Down
 
 		movementVector = this.getMovementVector(delta);
 		el.object3D.translateX(movementVector.x);
@@ -86,7 +87,7 @@ AFRAME.registerComponent('ada-ship-controller', {
 			z: position.z + movementVector.z
 		});
 
-		el.setAttribute('rotation', rotation);
+		(this.data.turnTarget || el).setAttribute('rotation', rotation);
 	},
 
 	play: function () {
@@ -197,7 +198,7 @@ AFRAME.registerComponent('ada-ship-controller', {
 		var rotation = new THREE.Euler(0, 0, 0, 'YXZ');
 		return function (delta) {
 			var velocity = this.velocity;
-			var elRotation = this.el.getComputedAttribute('rotation');
+			var elRotation = (this.data.turnTarget || el).getComputedAttribute('rotation');
 			direction.copy(velocity);
 			direction.multiplyScalar(delta);
 			if (!elRotation) { return direction; }

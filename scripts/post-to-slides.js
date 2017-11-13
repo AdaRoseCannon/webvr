@@ -1,10 +1,24 @@
 'use strict';
-/* global ASlides, twemoji*/
+/* global ASlides */
 
 /**
  * Turns a normal markdown blog post into a slide deck!!
  * amazing right!!
  */
+
+'use strict';
+var preSetupFns = [];
+window.aSlidesSlideData = {};
+
+// Load the service worker which does not have push notification support.
+if ('serviceWorker' in navigator) {
+	navigator.serviceWorker.register('sw.js', { scope: './' })
+	.then(function(reg) {
+		console.log('sw registered', reg);
+	}).catch(function(error) {
+		console.log('sw registration failed with ' + error);
+	});
+}
 
 function addStyle(url){
 	var styles = document.createElement('link');
@@ -13,6 +27,19 @@ function addStyle(url){
 	styles.media = 'screen';
 	styles.href = url;
 	document.getElementsByTagName('head')[0].appendChild(styles);
+}
+
+function fullScreenPlugin(o) {
+	var element = o.slideContainer;
+	ASlides.plugins.slideController.makeAndBindButton('Fullscreen', function () {
+		if (element.requestFullscreen) { // W3C API
+			element.requestFullscreen();
+		} else if (element.mozRequestFullScreen) { // Mozilla current API
+			element.mozRequestFullScreen();
+		} else if (element.webkitRequestFullScreen) { // Webkit current API
+			element.webkitRequestFullScreen();
+		}
+	});
 }
 
 function addScript (url) {
@@ -29,39 +56,7 @@ function addScript (url) {
 	promiseScript.promise = p;
 	return promiseScript;
 }
-
-// Add a fake generator which accepts arrays of functions
-// to interface with a-slides on platofrms which don't support
-// generators
-window.FakeGenerator = function FakeGenerator(arr) {
-	return function () {
-		var toRun = arr.slice();
-		var done = false;
-		var self = this;
-		return {
-			done: false,
-			next: function (arg) {
-				if (done || !toRun.length) return {
-					value: undefined,
-					done: true
-				};
-				if (toRun.length === 1) done = true;
-				return {
-					done: done,
-					value: toRun.shift().bind(self)(arg)
-				}
-			}
-		}
-	}
-}
-
-// Fancy Emojis
-addScript('https://twemoji.maxcdn.com/2/twemoji.min.js')().then(function () {
-	twemoji.parse(document.body, {
-		folder: 'svg',
-		ext: '.svg'
-	});
-});
+window._addScript = addScript;
 
 function prevAll(el) {
 	var nodes = Array.from(el.parentNode.children);
@@ -74,9 +69,53 @@ function fire(node, name, detail) {
 	return node;
 }
 
+function genId(name) {
+	return (name + '').trim().replace(/[^A-Za-z0-9]/ig, '-').toLowerCase();
+}
+
+window._setNextSlide = function _setNextSlide(setUpObject) {
+	var el = document.currentScript;
+	preSetupFns.push(function () {
+		el.nextElementSibling._aSlideObject = setUpObject;
+	});
+}
+
+window._executeOnNextEl = function _executeOnNextEl(fn) {
+	var el = document.currentScript;
+	preSetupFns.push(function () {
+		fn.bind(el.nextElementSibling)(el.nextElementSibling);
+	});
+}
+
+window._cssNextEl = function _cssNextEl(o) {
+	var el = document.currentScript;
+	preSetupFns.push(function () {
+		_applyCSS(el.nextElementSibling, o);
+	});
+}
+
+window._applyCSS = function _applyCSS(node, props) {
+	function units(prop, i) {
+		if (typeof i === 'number') {
+			if (prop.match(/width|height|top|left|right|bottom/)) {
+				return i + 'px';
+			}
+		}
+		return i;
+	}
+	for (var n in props) {
+		if (props.hasOwnProperty(n)) {
+			node.style[n] = units(n, props[n]);
+		}
+	}
+	return node;
+};
+
+window.setDynamicSlide = window._setNextSlide;
+
 function init() {
 	return Promise.all([
-			addScript('https://cdn.rawgit.com/AdaRoseEdwards/a-slides/v1.3.6/build/a-slides.js').promise
+			addScript('./scripts/third-party/a-slides.js').promise
 	])
 	.then(function () {
 
@@ -93,22 +132,38 @@ function init() {
 		while (slide = document.querySelector('body > blockquote')) {
 			i++;
 			name = '';
-			notes = prevAll(slide).filter(function (a) { return !a.tagName.match(/^script/i) });
+			notes = prevAll(slide);
+			name = notes.find(function (el) { return el.matches('script[id]') });
+			if (name) {
+				name = genId(name.id);
+			}
+			notes = notes.filter(function (a) {
+				if (a.tagName.match(/^script/i)) {
+					a.remove();
+					return false;
+				} else {
+					return true;
+				}
+			});
 			newSlide = document.createElement('div');
 			newSlide.className = ('a-slides_slide');
 			notesWrapper = document.createElement('div');
 			notesWrapper.className = ('a-slides_notes');
-			notesWrapper.tabIndex = -1; // make not tab able to but receives focus when slides are changing.
+			notesWrapper.tabIndex = -1; // make not tab-to-able to but receives focus when slides are changing.
 			progressBar = document.createElement('div');
 			progressBar.className = ('a-slides_progress');
 
 			progressBar.style.width = 100*i/noSlides + '%';
 			slide.classList.add('a-slides_slide-content');
-			if (notes[0] && notes[0].tagName.match(/h[0-6]/i)) {
-				name = notes[0].textContent.trim().replace(/[^A-Za-z0-9]/ig, '-').toLowerCase();
-				name = name + (slideContainer.querySelectorAll('[data-slide-id="' + name + '"]').length || '');
+			if (!name && notes[0] && notes[0].tagName.match(/h[0-6]/i)) {
+				name = genId(notes[0].textContent);
+				name = name + (slideContainer.querySelectorAll('[data-slide-id="slide-' + name + '"]').length || '');
 			}
-			newSlide.dataset.slideId = 'slide-' + (name || i);
+			var finalName = 'slide-' + (name || i);
+			newSlide.dataset.slideId = finalName;
+			if (slide._aSlideObject) {
+				window.aSlidesSlideData[finalName] = slide._aSlideObject;
+			}
 			newSlide.appendChild(slide);
 			newSlide.appendChild(notesWrapper);
 			notes.forEach(function (note) { notesWrapper.appendChild(note) });
@@ -118,6 +173,9 @@ function init() {
 		document.body.before(slideContainer);
 
 		document.body.classList.remove('post');
+		Array.from(document.querySelectorAll('.slide-view-button')).forEach(function (el) {
+			el.parentNode.removeChild(el);
+		});
 	})
 	.then(function () {
 
@@ -134,7 +192,8 @@ function init() {
 				ASlides.plugins.interactionTouch({ // has configuration
 					use: ['swipe-back']
 				}),
-				ASlides.plugins.bridgeServiceWorker
+				ASlides.plugins.bridgeServiceWorker,
+				fullScreenPlugin
 			]
 		});
 
@@ -146,7 +205,7 @@ function init() {
 			slideContainer.classList.add('hide-presentation');
 		}
 
-		var clock = document.querySelector('#a-frame-clock');
+		var clock = document.querySelector('#a-slides_clock');
 		if (clock) {
 			var clockLength = parseInt(Number(clock.textContent) * 60);
 			var finishAt = Date.now() + clockLength * 1000;
@@ -172,7 +231,8 @@ function init() {
 	});
 }
 
-(function () {
+document.addEventListener("DOMContentLoaded", function (event) {
+
 	function locationHashChanged() {
 		if (location.hash === '#aslides') {
 			window.removeEventListener('hashchange', locationHashChanged);
@@ -181,9 +241,15 @@ function init() {
 				fire(slideContainer, 'a-slides_goto-slide', {slide: oldHash ? slideContainer.querySelector('[data-slide-id="' + oldHash.substr(1,Infinity) + '"]') : 0});
 			});
 		}
+
+		window.removeHashChangeEventListener();
 	}
 
 	var oldHash = location.hash || false;
+
+	preSetupFns.forEach(function (fn) {
+		fn();
+	});
 
 	if (location.hash === '#aslides' || location.search.indexOf('aslides') !== -1) {
 		init().then(function (slideContainer) {
@@ -196,4 +262,8 @@ function init() {
 	} else {
 		window.addEventListener('hashchange', locationHashChanged);
 	}
-}());
+
+	window.removeHashChangeEventListener = function () {
+		window.removeEventListener('hashchange', locationHashChanged);
+	}
+});

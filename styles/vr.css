@@ -1,0 +1,24 @@
+blockquote {
+	background-image: url(../images/bg.png);
+}
+
+.heirarchy-grid {
+	grid-gap: 0.5em;
+}
+
+.heirarchy-grid > * {
+	justify-content: center;
+	align-content: center;
+	border: 3px solid brown;
+	border-radius: 0.5em;
+	align-items: center;
+	background: #FFF0FCcc;
+	color: black;
+	margin: 0;	
+}
+
+[data-markdown] pre {
+	margin: 0;
+	padding: 0;
+	border: none;
+}

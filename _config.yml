@@ -3,11 +3,11 @@
 # 2. config.build.yml
 # 3. config.yml
 
-aslide: https://cdn.rawgit.com/AdaRoseEdwards/a-slides/v1.3.4/build
 name: Getting started with WebVR
 description: Introduction to A-Frame
+baseurl: /webvr
 color: lavenderblush
-url: https://ada.is/getting-started-with-webvr
+url: https://ada.is/webvr
 author:
   name: Ada Rose Edwards
   email: ada@ada.is
@@ -16,4 +16,11 @@ author:
 
 permalink: /:title.html
 
+gems:
+  - jekyll-redirect-from
+
 excerpt_separator: qwertyuiopsdfghjkl
+
+gems:
+  - jekyll-redirect-from
+exclude: [.vscode]

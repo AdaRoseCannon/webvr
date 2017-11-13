@@ -81,7 +81,8 @@ AFRAME.registerComponent('a-ada-ocean', {
 				sunDirection: this.data.sunDirection,
 				sunColor: this.data.sunColor,
 				waterColor: this.data.waterColor,
-				distortionScale: this.data.distortionScale
+				distortionScale: this.data.distortionScale,
+				fog: true
 			} );
 			mirrorMesh = new THREE.Mesh(
 				new THREE.PlaneBufferGeometry( this.data.width, this.data.depth ),
