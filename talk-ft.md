@@ -3,7 +3,7 @@ layout: post
 title: WebVR and A-Frame
 description: Getting started Authoring VR Content for the Web - Presented at the Financial Times October 2016
 image: http://www.hypergridbusiness.com/wp-content/uploads/2016/08/Obama-Yosemite-VR.jpg
-script: https://cdn.rawgit.com/AdaRoseEdwards/dirty-dom/v1.3.1/build/dirty-dom-lib.min.js
+script: https://cdn.jsdelivr.net/gh/AdaRoseEdwards/dirty-dom@v1.3.1/build/dirty-dom-lib.min.js
 ---
 
 # {{ page.title }}
